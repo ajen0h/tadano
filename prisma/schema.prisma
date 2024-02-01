@@ -11,12 +11,14 @@ datasource db {
 }
 
 model User {
-  id         String  @id
-  first_name String?
-  image_url  String?
-  email      String?
-  last_name  String?
-  username   String?
+  id           String         @id
+  first_name   String?
+  image_url    String?
+  email        String?
+  last_name    String?
+  username     String?
+  CommentVotes CommentVotes[]
+  Comments     Comment[]
 }
 
 model Product {
@@ -106,12 +108,15 @@ model Comment {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model CommentVotes {
   userId    String
   commentId String
   comment   Comment  @relation(fields: [commentId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
