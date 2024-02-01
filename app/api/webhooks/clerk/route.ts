@@ -71,14 +71,40 @@ export async function POST(req: Request) {
       data: user,
     });
 
-    const color=await db.color.create({
-        data:{
-            name:"Hola",
-            value:"#0000"
-        }
-    })
-
     return Response.json({message: 'OK', user: newUser});
+  }
+  if (eventType === 'user.updated') {
+    const {id, first_name, email_addresses, image_url, last_name, username} =
+      evt.data;
+
+    const user = {
+      id,
+      first_name,
+      image_url,
+      email: email_addresses[0].email_address,
+      last_name,
+      username,
+    };
+
+    const updatedUser = await db.user.update({
+      where: {
+        id,
+      },
+      data: user,
+    });
+
+    return Response.json({message: 'OK', user: updatedUser});
+  }
+  if (eventType === 'user.deleted') {
+    const {id} = evt.data;
+
+    const deletedUser = await db.user.delete({
+      where: {
+        id,
+      },
+    });
+
+    return Response.json({message: 'OK', user: deletedUser});
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
