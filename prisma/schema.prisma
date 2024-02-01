@@ -1,0 +1,188 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String  @id
+  first_name String?
+  image_url  String?
+  email      String?
+  last_name  String?
+  username   String?
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String
+  price       Decimal
+  description String
+  cantidad    Int
+  images      Image[]
+  size        Size?     @relation(fields: [sizeId], references: [id])
+  sizeId      String?
+  color       Color?    @relation(fields: [colorId], references: [id])
+  colorId     String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model Size {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  value     String
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Color {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  value     String
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Survey {
+  id          String        @id @default(uuid())
+  title       String
+  option1Id   String        @default(uuid())
+  option1     String
+  vote1       Int
+  option2Id   String        @default(uuid())
+  option2     String
+  vote2       Int
+  SurveyVotes SurveyVotes[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model SurveyVotes {
+  userId    String
+  surveyId  String
+  surevey   Survey   @relation(fields: [surveyId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, surveyId])
+}
+
+model Comment {
+  id    String  @id @default(uuid())
+  body  String
+  new   New?    @relation(fields: [newId], references: [id])
+  newId String?
+
+  vote CommentVotes[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommentVotes {
+  userId    String
+  commentId String
+  comment   Comment  @relation(fields: [commentId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, commentId])
+}
+
+model New {
+  id        String     @id @default(uuid())
+  title     String
+  body      String     @db.Text
+  imageUrl  String
+  comments  Comment[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  NewVotes  NewVotes[]
+}
+
+model NewVotes {
+  userId    String
+  newId     String
+  new       New      @relation(fields: [newId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, newId])
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Visiting  Match[]  @relation("Visiting")
+  Local     Match[]  @relation("Local")
+  Players   Player[]
+}
+
+model Match {
+  id             String   @id @default(uuid())
+  league         String
+  date           DateTime
+  stadium        String
+  visitingGoals  Int      @default(0)
+  localGoals     Int      @default(0)
+  visitingTeam   Team     @relation("Visiting", fields: [visitingTeamId], references: [id])
+  localTeam      Team     @relation("Local", fields: [localTeamId], references: [id])
+  visitingTeamId String
+  localTeamId    String
+  finished       Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Player {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  age         Int
+  description String
+  imageUrl    String
+  height      Decimal
+  weight      Decimal
+  dorsal      Int
+  goals       Int      @default(0)
+  assists     Int      @default(0)
+  saves       Int      @default(0)
+  position    String
+  country     String   @default("Spain")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Team        Team?    @relation(fields: [teamId], references: [id])
+  teamId      String?
+}
