@@ -75,7 +75,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
                 <FormItem>
                   <FormLabel>Value</FormLabel>
                   <FormControl>
-                    <Input placeholder="Value" {...field} />
+                    <Input disabled={pending} placeholder="Value" {...field} />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
