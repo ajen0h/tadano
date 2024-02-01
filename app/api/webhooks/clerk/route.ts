@@ -73,7 +73,8 @@ export async function POST(req: Request) {
 
     return Response.json({message: 'OK', user: newUser});
   }
-  if (eventType === 'user.updated') {
+
+  /* if (eventType === 'user.updated') {
     const {id, first_name, email_addresses, image_url, last_name, username} =
       evt.data;
 
@@ -106,7 +107,7 @@ export async function POST(req: Request) {
 
     return Response.json({message: 'OK', user: deletedUser});
   }
-
+ */
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log('Webhook body:', body);
 
