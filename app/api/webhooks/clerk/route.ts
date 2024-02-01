@@ -74,6 +74,7 @@ export async function POST(req: Request) {
     return NextResponse.json(newUser)
   }
 
+  /* hOLA */
   /* if (eventType === 'user.updated') {
     const {id, first_name, email_addresses, image_url, last_name, username} =
       evt.data;
