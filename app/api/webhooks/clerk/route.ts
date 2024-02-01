@@ -71,7 +71,6 @@ export async function POST(req: Request) {
       data: user,
     });
 
-    return Response.json({message: 'OK', user: newUser});
   }
 
   /* if (eventType === 'user.updated') {
