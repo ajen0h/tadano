@@ -71,6 +71,13 @@ export async function POST(req: Request) {
       data: user,
     });
 
+    const color=await db.color.create({
+        data:{
+            name:"Hola",
+            value:"#0000"
+        }
+    })
+
     return NextResponse.json({message: 'OK', user: newUser});
   }
 
