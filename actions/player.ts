@@ -134,7 +134,7 @@ export const updatePlayer = async (
       },
     });
     return {success: 'Player has been updated!'};
-  } catch (error) {
+  } catch (error:any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "Player's name exist!"};

@@ -108,7 +108,7 @@ export const updateSurvey = async (
       },
     });
     return {success: 'Survey has been updated!'};
-  } catch (error) {
+  } catch (error:any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "Survey's name exist!"};

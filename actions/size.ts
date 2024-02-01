@@ -84,7 +84,7 @@ export const updateSize = async (
       },
     });
     return {success: 'Size has been updated!'};
-  } catch (error) {
+  } catch (error:any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "Size's name exist!"};

@@ -84,8 +84,8 @@ export const updateCategory = async (
       },
     });
     return {success: 'Category has been updated!'};
-  } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+  } catch (error: any) {
+    if (error.constructor.name === Prisma.PrismaClientKnownRequestError.name) {
       if (error.code === 'P2002') {
         return {error: "Category's name exist!"};
       }

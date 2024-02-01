@@ -84,12 +84,13 @@ export const updateColor = async (
       },
     });
     return {success: 'Color has been updated!'};
-  } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        return {error: "Color's name exist!"};
-      }
-    }
+  } catch (error: any) {
+    if (error === Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2002") {
+        return {error: "Color's name exist!"}      }
+    } 
     return {error: 'Anything wrong!'};
+    
   }
-};
+}
+

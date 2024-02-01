@@ -84,7 +84,7 @@ export const updateTeam = async (
       },
     });
     return {success: 'Team has been updated!'};
-  } catch (error) {
+  } catch (error:any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "Team's name exist!"};
