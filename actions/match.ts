@@ -27,7 +27,7 @@ export const createMatch = async (values: z.infer<typeof MatchSchema>) => {
   const {
     league,
     date,
-    finished,
+    isFinish,
     localGoals,
     localTeamId,
     stadium,
@@ -36,11 +36,12 @@ export const createMatch = async (values: z.infer<typeof MatchSchema>) => {
   } = validatedFields.data;
 
   try {
+    
     await db.match.create({
       data: {
         league,
         date,
-        finished: Boolean(finished),
+        isFinish,
         localGoals,
         localTeamId,
         stadium,
@@ -81,7 +82,7 @@ export const updateMatch = async (
   const {
     league,
     date,
-    finished,
+    isFinish,
     localGoals,
     localTeamId,
     stadium,
@@ -97,7 +98,7 @@ export const updateMatch = async (
       data: {
         league,
         date,
-        finished: Boolean(finished),
+        isFinish,
         localGoals,
         localTeamId,
         stadium,

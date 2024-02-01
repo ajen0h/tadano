@@ -55,7 +55,7 @@ export const MatchSchema = z.object({
   localGoals: z.coerce.number().min(0),
   visitingTeamId: z.string().min(1),
   localTeamId: z.string().min(1),
-  finished: z.string().min(1),
+  isFinish: z.boolean(),
 });
 export const PlayerSchema = z.object({
   name: z.string().min(1),
