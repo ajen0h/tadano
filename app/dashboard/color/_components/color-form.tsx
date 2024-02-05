@@ -13,11 +13,10 @@ import {
 } from '@/components/ui/form';
 import {z} from 'zod';
 import {Color} from '@prisma/client';
-import {FormInput} from 'lucide-react';
-import {Input} from '@/components/ui/input';
+import {Input} from '@/components/ui/input-dashboard';
 import {Button} from '@/components/ui/button';
-import toast, { Toaster } from 'react-hot-toast';
-import { createColor, updateColor } from '@/actions/color';
+import toast, {Toaster} from 'react-hot-toast';
+import {createColor, updateColor} from '@/actions/color';
 
 interface ColorFormProps {
   initialData: Color | null;
@@ -53,18 +52,18 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
-          <div className="grid grid-cols-1">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="name"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <p className='text-sm font-semibold mb-2'>Name</p>
                   <FormControl>
-                    <Input disabled={pending} placeholder="Name" {...field} />
+                    <Input disabled={pending} placeholder="Entre a color's name" {...field} />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -73,17 +72,17 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
               name="value"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <p className='text-sm font-semibold mb-2'>Value</p>
                   <FormControl>
-                    <Input disabled={pending} placeholder="Value" {...field} />
+                    <Input disabled={pending} placeholder="Entre a value" {...field} />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
           </div>
 
-          <Button disabled={pending}>Create</Button>
+          <Button variant={"atm"} disabled={pending}>Create</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

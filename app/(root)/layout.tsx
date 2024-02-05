@@ -3,9 +3,8 @@ import {Separator} from '@/components/ui/separator';
 
 const RootLayout = ({children}: {children: React.ReactNode}) => {
   return (
-    <div className="container">
+    <div className='h-full'>
       <NavBar />
-      <Separator />
       {children}
     </div>
   );

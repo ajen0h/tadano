@@ -14,11 +14,16 @@ const config = {
       center: true,
       padding: '1rem',
       screens: {
-        '2xl': '1800px',
+        '2xl': '1700px',
       },
     },
+    backgroundImage: {
+      hero: 'linear-gradient(to right bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%) ,url(/banner.jpg)',
+    },
+
     extend: {
       colors: {
+        fondo: '#0f0f0f',
         negro: '#000000',
         rosaclarito: '#fcf0f6',
         marronnegro: '#261f1f',

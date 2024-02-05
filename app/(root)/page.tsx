@@ -1,8 +1,11 @@
-import {Button} from '@/components/ui/button';
-import {SignedIn, SignedOut, UserButton} from '@clerk/nextjs';
-import Image from 'next/image';
-import Link from 'next/link';
+import Hero from "./_components/hero";
+import Match from "./_components/match";
 
 export default function Home() {
-  return <main></main>;
+  return (
+    <>
+      <Hero/>   
+      <Match/>   
+    </>
+  );
 }

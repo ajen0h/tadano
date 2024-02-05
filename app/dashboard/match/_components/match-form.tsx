@@ -105,14 +105,6 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
                 <FormLabel>Date</FormLabel>
                 <FormControl>
                     <Input type='datetime-local'/>
-                  {/* <DatePicker
-                    selected={field.value}
-                    onChange={(date: Date) => field.onChange(date)}
-                    showTimeSelect
-                    timeInputLabel="Time:"
-                    dateFormat="MM/dd/yyyy h:mm aa"
-                    wrapperClassName="datePicker"
-                  /> */}
                 </FormControl>
                 <FormMessage />
               </FormItem>
