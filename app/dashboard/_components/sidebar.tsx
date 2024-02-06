@@ -24,7 +24,7 @@ export const SideBar = () => {
   ];
 
   return (
-    <aside className="h-full flex flex-col bg-fondo text-white ">
+    <aside className="h-full flex flex-col bg-fondo text-white">
       <div className="p-7">
         <h2 className="text-center">ATM</h2>
         <p className="text-[0.75rem] text-center">
