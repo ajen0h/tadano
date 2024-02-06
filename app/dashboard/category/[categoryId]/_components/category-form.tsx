@@ -17,7 +17,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import {Category} from '@prisma/client';
-import { createCategory, updateCategory } from '@/actions/category';
+import {createCategory, updateCategory} from '@/actions/category';
 
 interface CategoryFormPorps {
   initialData: Category | null;
@@ -54,20 +54,22 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
+          <div className="md:grid md:grid-cols-2 gap-8">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input disabled={pending} placeholder="Name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <Button disabled={pending}>Create</Button>
         </form>

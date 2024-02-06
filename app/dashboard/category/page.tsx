@@ -1,9 +1,9 @@
 import { CategoryForm } from "./[categoryId]/_components/category-form";
 
 const SizePage = () => {
-    return ( <div>Category Pgae!
+    return ( <>
         <CategoryForm initialData={null}/>
-    </div> );
+    </> );
 }
   
 export default SizePage;

@@ -9,9 +9,18 @@ import {usePathname} from 'next/navigation';
 export const SideBar = () => {
   const pathname = usePathname();
 
-  const links = [
-    {name: 'Color', href: '/dashboard/color'},
+  const linksWeb = [
     {name: 'Match', href: '/dashboard/match'},
+    {name: 'New', href: '/dashboard/new'},
+    {name: 'Player', href: '/dashboard/player'},
+    {name: 'Team', href: '/dashboard/teams'},
+  ];
+
+  const linksStore = [
+    {name: 'Color', href: '/dashboard/color'},
+    {name: 'Category', href: '/dashboard/category'},
+    {name: 'Size', href: '/dashboard/size'},
+    {name: 'Product', href: '/dashboard/product'},
   ];
 
   return (
@@ -26,10 +35,25 @@ export const SideBar = () => {
       <Separator />
       <div className="grid">
         <p className="p-4 text-[0.75rem] opacity-60">Web</p>
-        {links.map((link) => (
+        {linksWeb.map((link) => (
           <Button
             className={`${
-              pathname === link.href ? 'bg-pink-400 opacity-100' :"opacity-60"
+              pathname === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
+            } justify-start rounded-none  `}
+            variant={'ghost'}
+            key={link.name}
+            asChild>
+            <Link href={link.href}>{link.name}</Link>
+          </Button>
+        ))}
+      </div>
+      
+      <div className="grid">
+        <p className="p-4 text-[0.75rem] opacity-60">Store</p>
+        {linksStore.map((link) => (
+          <Button
+            className={`${
+              pathname === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
             } justify-start rounded-none  `}
             variant={'ghost'}
             key={link.name}

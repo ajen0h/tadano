@@ -18,7 +18,7 @@ import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import {Team} from '@prisma/client';
 import ImageUpload from '@/components/ui/image-upload';
-import { createTeam, updateTeam } from '@/actions/teams';
+import {createTeam, updateTeam} from '@/actions/teams';
 
 interface TeamFormPorps {
   initialData: Team | null;
@@ -60,12 +60,15 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="name"
+            name="imageUrl"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    onChange={(url: string) => field.onChange(url)}
+                    onRemove={() => field.onChange('')}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -73,14 +76,12 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
           />
           <FormField
             control={form.control}
-            name="imageUrl"
+            name="name"
             render={({field}) => (
               <FormItem>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <ImageUpload 
-                 value={field.value ? [field.value] : []}
-                 onChange={(url:string) => field.onChange(url)}
-                 onRemove={() => field.onChange('')}/>
+                  <Input disabled={pending} placeholder="Name" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

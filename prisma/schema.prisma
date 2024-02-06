@@ -20,6 +20,7 @@ model User {
   CommentVotes CommentVotes[]
   Comments     Comment[]
   Order        Order[]
+  News         New[]
 }
 
 model Product {
@@ -126,14 +127,17 @@ model CommentVotes {
 }
 
 model New {
-  id        String     @id @default(uuid())
-  title     String
-  body      String     @db.Text
-  imageUrl  String
-  comments  Comment[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  NewVotes  NewVotes[]
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  body        String     @db.Text
+  imageUrl    String
+  Comments    Comment[]
+  NewVotes    NewVotes[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  User        User?      @relation(fields: [userId], references: [id])
+  userId      String?
 }
 
 model NewVotes {
@@ -208,12 +212,14 @@ model Order {
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   orderId   String // Foreign Key to Order
-  order     Order   @relation(fields: [orderId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id])
   productId String // Foreign Key to Product
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
   quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([orderId])
   @@index([productId])

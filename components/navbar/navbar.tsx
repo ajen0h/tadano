@@ -24,8 +24,8 @@ export const NavBar = () => {
     },
   ];
   return (
-    <header className="fixed top-0 z-30 w-full">
-      <main className="container mx-auto flex flex-row justify-between items-center text-white border-b border-white py-4">
+    <header className="top-0 z-30 w-full">
+      <main className="container mx-auto flex flex-row justify-between items-center text-black border-b border-black py-4">
         <div>Logo</div>
         <nav className="hidden md:block">
           <ul className="flex flex-row">

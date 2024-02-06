@@ -17,8 +17,11 @@ const config = {
         '2xl': '1700px',
       },
     },
+    
     backgroundImage: {
       hero: 'linear-gradient(to right bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%) ,url(/banner.jpg)',
+      bannerNews:
+        'linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1) 70%),url(/bannernews.jpg)',
     },
 
     extend: {
