@@ -7,17 +7,15 @@ import Image from 'next/image';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Product} from '@prisma/client';
+import {useRouter} from 'next/navigation';
 
 export const ProductCard = ({product}: Product) => {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
-
+  const router = useRouter();
   useEffect(() => {
     setIsMounted(true);
-    console.log(cart.items);
-    console.log(cart.itemsStripe);
-    console.log(product.id);
-  }, [cart.items, cart.itemsStripe]);
+  }, []);
 
   if (!isMounted) {
     return null;
@@ -25,7 +23,9 @@ export const ProductCard = ({product}: Product) => {
 
   const checkout = async () => {
     const res = await axios.post('api/checkout', cart.itemsStripe);
-    console.log(res.data);
+    if (res.data) {
+      router.push(res.data.url);
+    }
   };
 
   return (

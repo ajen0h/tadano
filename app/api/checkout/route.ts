@@ -2,6 +2,7 @@ import {db} from '@/lib/db';
 import {auth} from '@clerk/nextjs';
 import {NextRequest, NextResponse} from 'next/server';
 import Stripe from 'stripe';
+import {stripe} from '@/lib/stripe';
 
 interface DataProps {
   id: string;
@@ -12,8 +13,6 @@ export async function POST(req: NextRequest) {
   const {userId} = auth();
   const data: DataProps[] = await req.json();
 
-  console.log(data);
-
   //Busca todos lo productos que le pasamos
   const products = await db.product.findMany({
     where: {
@@ -22,7 +21,6 @@ export async function POST(req: NextRequest) {
       },
     },
   });
-  console.log(products);
 
   //Funciona correctamente
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
@@ -43,26 +41,23 @@ export async function POST(req: NextRequest) {
     }
   });
 
-  data.map(
-    async (product) =>
-      await db.order.create({
-        data: {
-          userId,
-          quantity: product.cantidad,
-          orderItems: {
-            create: {
-              product: {
-                connect: {
-                  id: product.id,
-                },
-              },
-            },
-          },
+  //Crear el order cuando se realice la compra exitosamente
+  const order = await db.order.create({
+    data: {
+      userId,
+      isPaid: false,
+      orderItems: {
+        createMany: {
+          data: data.map((product) => ({
+            productId: product.id,
+            quantity: product.cantidad,
+          })),
         },
-      })
-  );
+      },
+    },
+  });
 
-  /*  //stripe
+  //stripe
   const session = await stripe.checkout.sessions.create({
     line_items,
     mode: 'payment',
@@ -72,12 +67,13 @@ export async function POST(req: NextRequest) {
     phone_number_collection: {
       enabled: true,
     },
-    success_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
-    cancel_url: `${process.env.FRONTEND_STORE_URL}/cart?canceled=1`,
+    success_url: `${process.env.FRONTEND_STORE_URL}/store?success=1`,
+    cancel_url: `${process.env.FRONTEND_STORE_URL}/store?canceled=1`,
     metadata: {
-      orderId: order.id
-    },
-  });  */
+      orderId: order.id,
 
-  return NextResponse.json('Backend');
+    },
+  });
+
+  return NextResponse.json({ url: session.url });
 }

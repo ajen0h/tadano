@@ -10,8 +10,6 @@ const StorePage = async () => {
   const categories = await getCategory();
   const colors = await getColor();
 
-  console.log(products);
-
   /* category: {
     id: '6e9cc56d-eb61-406b-9ec3-c9be4c92f8b3',
     name: 'T-Shirt',

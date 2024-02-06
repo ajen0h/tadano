@@ -12,7 +12,6 @@ export const ProductCart = ({products}: {products: Product[]}) => {
 
   useEffect(() => {
     setIsMounted(true);
-    console.log(cart.items);
   }, [cart.items]);
 
   if (!isMounted) {
