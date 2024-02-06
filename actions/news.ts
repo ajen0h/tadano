@@ -7,25 +7,24 @@ import {z} from 'zod';
 export const getNew = async () => {
   const news = await db.new.findMany({
     include: {
-      comments: true,
-      NewVotes:true
+      Comments: true,
+      NewVotes: true,
     },
   });
   return news;
 };
-
 export const getNewById = async (newId: string) => {
   const newFound = await db.new.findUnique({
     where: {
       id: newId,
     },
     include: {
-      comments: {
-        orderBy:{
-          createdAt:"desc"
-        }
+      Comments: {
+        orderBy: {
+          createdAt: 'desc',
+        },
       },
-      NewVotes:true
+      NewVotes: true,
     },
   });
   return newFound;
@@ -37,7 +36,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
     return {error: 'Invalid Fields!'};
   }
 
-  const {title, body, imageUrl} = validatedFields.data;
+  const {title, description, body, imageUrl} = validatedFields.data;
 
   const existingNew = await db.new.findFirst({
     where: {title},
@@ -51,6 +50,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
     await db.new.create({
       data: {
         title,
+        description,
         body,
         imageUrl,
       },
@@ -85,7 +85,7 @@ export const updateNew = async (
     return {error: 'Invalid Fields!'};
   }
 
-  const {title, body, imageUrl} = validatedFields.data;
+  const {title, description, body, imageUrl} = validatedFields.data;
 
   try {
     await db.new.update({
@@ -95,11 +95,12 @@ export const updateNew = async (
       data: {
         title,
         body,
+        description,
         imageUrl,
       },
     });
     return {success: 'New has been updated!'};
-  } catch (error:any) {
+  } catch (error: any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "New's name exist!"};
