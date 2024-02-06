@@ -4,10 +4,10 @@ import {NewSchema} from '@/schema';
 import {Prisma} from '@prisma/client';
 import {z} from 'zod';
 
-/* export const getNew = async () => {
+export const getNew = async () => {
   const news = await db.new.findMany({
     include: {
-      Comments: true,
+      comments: true,
       NewVotes: true,
     },
   });
@@ -19,7 +19,7 @@ export const getNewById = async (newId: string) => {
       id: newId,
     },
     include: {
-      Comments: {
+      comments: {
         orderBy: {
           createdAt: 'desc',
         },
@@ -29,7 +29,7 @@ export const getNewById = async (newId: string) => {
   });
   return newFound;
 };
- */
+
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
