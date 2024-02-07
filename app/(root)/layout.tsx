@@ -7,7 +7,7 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
     <div className='h-full'>
       <NavBar />
       {children}
-      <Footer/>
+     {/*  <Footer/> */}
     </div>
   );
 };
