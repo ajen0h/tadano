@@ -41,8 +41,8 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
       age: 0,
       description: '',
       imageUrl: '',
-      height: 0.0,
-      weight: 0.0,
+      height: 0,
+      weight: 0,
       dorsal: 0,
       goals: 0,
       assists: 0,
@@ -73,7 +73,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
 
   return (
     <>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
@@ -305,7 +305,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
           <Button disabled={pending}>Create</Button>
         </form>
       </Form>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} /> */}
     </>
   );
 };
