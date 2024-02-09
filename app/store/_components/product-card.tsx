@@ -9,7 +9,11 @@ import axios from 'axios';
 import {Product} from '@prisma/client';
 import {useRouter} from 'next/navigation';
 
-export const ProductCard = ({product}: Product) => {
+interface ProductProps{
+
+}
+
+export const ProductCard = ({product}: any) => {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();

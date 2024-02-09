@@ -63,7 +63,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const form = useForm<z.infer<typeof ProductSchema>>({
     resolver: zodResolver(ProductSchema),
-    defaultValues,
+    
   });
 
   const onSubmit = async (values: z.infer<typeof ProductSchema>) => {
