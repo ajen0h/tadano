@@ -39,9 +39,8 @@ export const createComment = async (
     console.log(session);
     await db.comment.create({
       data: {
-        body,
-        
-        newId,
+        body, 
+        reportId:newId,
         
       },
     });
