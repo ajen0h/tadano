@@ -35,7 +35,6 @@ interface MatchFormProps {
 
 export const MatchForm = ({initialData, teams}: MatchFormProps) => {
   const [pending, startTransition] = useTransition();
-    console.log(initialData);
   const form = useForm<z.infer<typeof MatchSchema>>({
     resolver: zodResolver(MatchSchema),
     defaultValues: initialData || {

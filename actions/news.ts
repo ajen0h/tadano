@@ -1,20 +1,22 @@
 'use server';
 import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
+import {auth} from '@clerk/nextjs';
 import {Prisma} from '@prisma/client';
 import {z} from 'zod';
 
-export const getNew = async () => {
-  const news = await db.new.findMany({
+export const getNews = async () => {
+  const news = await db.report.findMany({
     include: {
       comments: true,
-      NewVotes: true,
+      ReportVotes: true,
+      User:true
     },
   });
   return news;
 };
 export const getNewById = async (newId: string) => {
-  const newFound = await db.new.findUnique({
+  const newFound = await db.report.findUnique({
     where: {
       id: newId,
     },
@@ -24,13 +26,16 @@ export const getNewById = async (newId: string) => {
           createdAt: 'desc',
         },
       },
-      NewVotes: true,
+
+      ReportVotes: true,
+      User:true
     },
   });
   return newFound;
 };
 
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
+  const {userId} = auth();
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -38,7 +43,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
 
   const {title, description, body, imageUrl} = validatedFields.data;
 
-  const existingNew = await db.new.findFirst({
+  const existingNew = await db.report.findFirst({
     where: {title},
   });
 
@@ -47,12 +52,13 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
   }
 
   try {
-    await db.new.create({
+    await db.report.create({
       data: {
         title,
         description,
         body,
         imageUrl,
+        userId,
       },
     });
     return {success: 'New has been created!'};
@@ -63,7 +69,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
 
 export const deleteNew = async (NewId: string) => {
   try {
-    await db.new.delete({
+    await db.report.delete({
       where: {
         id: NewId,
       },
@@ -80,6 +86,7 @@ export const updateNew = async (
   NewId: string,
   values: z.infer<typeof NewSchema>
 ) => {
+  const {userId} = auth();
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -88,7 +95,7 @@ export const updateNew = async (
   const {title, description, body, imageUrl} = validatedFields.data;
 
   try {
-    await db.new.update({
+    await db.report.update({
       where: {
         id: NewId,
       },
@@ -97,6 +104,7 @@ export const updateNew = async (
         body,
         description,
         imageUrl,
+        userId,
       },
     });
     return {success: 'New has been updated!'};

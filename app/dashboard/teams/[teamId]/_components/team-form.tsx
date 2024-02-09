@@ -37,7 +37,6 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
 
   const onSubmit = async (values: z.infer<typeof TeamSchema>) => {
     startTransition(async () => {
-      console.log(values);
       let res;
 
       if (initialData) {

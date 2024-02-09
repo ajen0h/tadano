@@ -4,17 +4,32 @@ import {db} from '@/lib/db';
 import {auth} from '@clerk/nextjs/server';
 import {revalidatePath} from 'next/cache';
 
-export const likeVoteByUserIdAndNewId = async (newId: string) => {
+export const getNewVoteByUser = async (newId: string) => {
+  const {userId} = auth();
+
+  if (userId) {
+    const votesByUser = await db.reportVotes.findFirst({
+      where: {
+        userId,
+        reportId: newId,
+      },
+    });
+    return votesByUser;
+  }
+  return null;
+};
+
+export const likeVoteByUserIdAndNewId = async (reportId: string) => {
   const session = auth();
   if (!session.userId) {
     return {error: 'User not found!'};
   }
   try {
-    const userVotes = await db.newVotes.findUnique({
+    const userVotes = await db.reportVotes.findUnique({
       where: {
-        userId_newId: {
+        userId_reportId: {
           userId: session.userId,
-          newId,
+          reportId,
         },
       },
     });
@@ -30,43 +45,42 @@ export const likeVoteByUserIdAndNewId = async (newId: string) => {
   }
 };
 
-export const likeVote = async (newId: string) => {
+export const likeVote = async (reportId: string) => {
   try {
-    console.log(newId);
     const session = auth();
     if (!session.userId) {
       return {error: 'User not found 👀!'};
     }
 
-    const existsNewVotesUserAndNew = await db.newVotes.findUnique({
+    const existsNewVotesUserAndNew = await db.reportVotes.findUnique({
       where: {
-        userId_newId: {
+        userId_reportId: {
           userId: session.userId,
-          newId,
+          reportId,
         },
       },
     });
 
     if (!existsNewVotesUserAndNew) {
       //si no existe
-      await db.newVotes.create({
+      await db.reportVotes.create({
         data: {
           userId: session.userId,
-          newId,
+          reportId,
         },
       });
     } else {
-      await db.newVotes.delete({
+      await db.reportVotes.delete({
         where: {
-          userId_newId: {
+          userId_reportId: {
             userId: session.userId,
-            newId,
+            reportId,
           },
         },
       });
     }
 
-    revalidatePath(`test/new/${newId}`);
+    revalidatePath(`news`);
     return {success: 'Email sent!'};
   } catch (error) {
     console.error('Registration failed:', error);

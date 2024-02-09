@@ -20,7 +20,7 @@ model User {
   CommentVotes CommentVotes[]
   Comments     Comment[]
   Order        Order[]
-  News         New[]
+  Reports      Report[]
 }
 
 model Product {
@@ -102,10 +102,10 @@ model SurveyVotes {
 }
 
 model Comment {
-  id    String  @id @default(uuid())
-  body  String
-  new   New?    @relation(fields: [newId], references: [id])
-  newId String?
+  id     String  @id @default(uuid())
+  body   String
+  report Report? @relation(fields: [reportId], references: [id])
+  reportId  String?
 
   vote CommentVotes[]
 
@@ -126,28 +126,28 @@ model CommentVotes {
   @@id([userId, commentId])
 }
 
-model New {
-  id          String     @id @default(uuid())
+model Report {
+  id          String        @id @default(uuid())
   title       String
   description String
-  body        String     @db.Text
+  body        String        @db.Text
   imageUrl    String
   comments    Comment[]
-  NewVotes    NewVotes[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  User        User?      @relation(fields: [userId], references: [id])
+  ReportVotes ReportVotes[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  User        User?         @relation(fields: [userId], references: [id])
   userId      String?
 }
 
-model NewVotes {
+model ReportVotes {
   userId    String
-  newId     String
-  new       New      @relation(fields: [newId], references: [id])
+  reportId     String
+  report    Report   @relation(fields: [reportId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@id([userId, newId])
+  @@id([userId, reportId])
 }
 
 model Team {

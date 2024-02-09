@@ -16,13 +16,12 @@ import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
-import {New} from '@prisma/client';
 import ImageUpload from '@/components/ui/image-upload';
-import {createTeam, updateTeam} from '@/actions/teams';
+import { Report } from '@prisma/client';
 import {createNew, updateNew} from '@/actions/news';
 
 interface NewFormPorps {
-  initialData: New | null;
+  initialData: Report | null;
 }
 
 export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
@@ -34,12 +33,12 @@ export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
       title: '',
       imageUrl: '',
       body: '',
+      description:""
     },
   });
 
   const onSubmit = async (values: z.infer<typeof NewSchema>) => {
     startTransition(async () => {
-      console.log(values);
       let res;
 
       if (initialData) {
@@ -68,6 +67,19 @@ export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
                 <FormLabel>Title</FormLabel>
                 <FormControl>
                   <Input disabled={pending} placeholder="Title" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Input disabled={pending} placeholder="Description" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

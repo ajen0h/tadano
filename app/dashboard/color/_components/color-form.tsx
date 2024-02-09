@@ -34,7 +34,6 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
 
   const onSubmit = async (values: z.infer<typeof ColorSchema>) => {
     startTransition(async () => {
-      console.log(values);
       let res;
       if (initialData) {
         res = await updateColor(initialData.id, values);
