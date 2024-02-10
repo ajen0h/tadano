@@ -44,7 +44,7 @@ model Product {
 
 model Image {
   id        String   @id @default(uuid())
-  image     String
+  url     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Product   Product? @relation(fields: [productId], references: [id])

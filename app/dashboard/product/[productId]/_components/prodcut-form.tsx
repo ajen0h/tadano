@@ -13,11 +13,11 @@ import {
 import {Input} from '@/components/ui/input';
 import {ProductSchema} from '@/schema';
 import {useForm} from 'react-hook-form';
-import {z} from 'zod';
+import {string, z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
-import {Category, Color, Image, Product, Size} from '@prisma/client';
+import {Category, Color, Image,  Size} from '@prisma/client';
 import {
   Select,
   SelectContent,
@@ -28,14 +28,26 @@ import {
 import ImageUpload from '@/components/ui/image-upload';
 import {createProduct, updateProduct} from '@/actions/products';
 
+interface Product {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+  cantidad: string;
+  sizeId: string;
+  colorId: string;
+  categoryId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  images: Image[];
+}
+
 interface ProductFormProps {
-  initialData: Product & {
-    images: Image[]
-  } | null;
+  initialData: Product 
   categories: Category[];
   colors: Color[];
   sizes: Size[];
-};
+}
 
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
@@ -44,32 +56,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   colors,
 }) => {
   const [pending, startTransition] = useTransition();
-
-  const defaultValues = initialData
-    ? {
-        ...initialData,
-        price: parseFloat(String(initialData?.price)),
-      }
-    : {
-        name: '',
-        description: '',
-        images: [],
-        price: 0,
-        cantidad:0,
-        categoryId: '',
-        colorId: '',
-        sizeId: '',
-      };
-
   const form = useForm<z.infer<typeof ProductSchema>>({
     resolver: zodResolver(ProductSchema),
-    
+    defaultValues: initialData || {
+      name: '',
+      description: '',
+      images: [],
+      price: '',
+      cantidad: '',
+      categoryId: '',
+      colorId: '',
+      sizeId: '',
+    },
   });
 
   const onSubmit = async (values: z.infer<typeof ProductSchema>) => {
     startTransition(async () => {
-
-       let res;
+      let res;
 
       if (initialData) {
         res = await updateProduct(initialData.id, values);

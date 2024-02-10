@@ -40,6 +40,7 @@ export const createProduct = async (values: z.infer<typeof ProductSchema>) => {
   const {name, description, price, images, cantidad, categoryId, colorId, sizeId} =
     validatedFields.data;
 
+    const cantidadNumber=parseFloat(cantidad)
   console.log('Hola', images[0].url);
 
   try {
@@ -51,11 +52,11 @@ export const createProduct = async (values: z.infer<typeof ProductSchema>) => {
         categoryId,
         colorId,
         sizeId,
-        cantidad,
+        cantidad:cantidadNumber,
         images: {
           createMany: {
             data: [
-              ...images.map((image: {url: string}) => ({image: image.url})),
+              ...images.map((image: {url: string}) => ({url: image.url})),
             ],
           },
         },

@@ -21,11 +21,28 @@ import {
 } from '@/components/ui/select';
 import {PlayerSchema} from '@/schema';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {Player, Team} from '@prisma/client';
+import {Team} from '@prisma/client';
 import React, {useTransition} from 'react';
 import {useForm} from 'react-hook-form';
 import toast, {Toaster} from 'react-hot-toast';
 import {z} from 'zod';
+
+interface Player {
+  id: string;
+  name: string;
+  age: string;
+  description: string;
+  imageUrl: string;
+  height: string;
+  weight: string;
+  dorsal: string;
+  goals: string;
+  assists: string;
+  saves: string;
+  position: string;
+  country: string;
+  teamId: string;
+}
 
 interface PlayerFormProps {
   initialData: Player | null;
@@ -38,15 +55,15 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
     resolver: zodResolver(PlayerSchema),
     defaultValues: initialData || {
       name: '',
-      age: 0,
+      age: '',
       description: '',
       imageUrl: '',
-      height: 0,
-      weight: 0,
-      dorsal: 0,
-      goals: 0,
-      assists: 0,
-      saves: 0,
+      height: '',
+      weight: '',
+      dorsal: '',
+      goals: '',
+      assists: '',
+      saves: '',
       position: '',
       country: '',
       teamId: '',
@@ -73,7 +90,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
 
   return (
     <>
-      {/* <Form {...form}>
+      <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
@@ -269,7 +286,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="teamId"
@@ -305,7 +322,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
           <Button disabled={pending}>Create</Button>
         </form>
       </Form>
-      <Toaster position="top-center" reverseOrder={false} /> */}
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };

@@ -52,18 +52,18 @@ export const createPlayer = async (values: z.infer<typeof PlayerSchema>) => {
     await db.player.create({
       data: {
         name,
-        age,
+        age: parseInt(age),
         description,
         imageUrl,
-        assists,
+        assists: parseInt(assists),
         country,
-        dorsal,
-        goals,
-        height,
+        dorsal: parseInt(dorsal),
+        goals: parseInt(goals),
+        height: parseFloat(height),
         position,
-        saves,
+        saves: parseInt(saves),
         teamId,
-        weight,
+        weight: parseFloat(weight),
       },
     });
     return {success: 'Player has been created!'};
@@ -119,22 +119,22 @@ export const updatePlayer = async (
       },
       data: {
         name,
-        age,
+        age: parseInt(age),
         description,
         imageUrl,
-        assists,
+        assists: parseInt(assists),
         country,
-        dorsal,
-        goals,
-        height,
+        dorsal: parseInt(dorsal),
+        goals: parseInt(goals),
+        height: parseFloat(height),
         position,
-        saves,
+        saves: parseInt(saves),
         teamId,
-        weight,
+        weight: parseFloat(weight),
       },
     });
     return {success: 'Player has been updated!'};
-  } catch (error:any) {
+  } catch (error: any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
         return {error: "Player's name exist!"};

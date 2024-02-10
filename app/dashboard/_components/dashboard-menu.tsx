@@ -14,10 +14,10 @@ import {
 import {Separator} from '@radix-ui/react-separator';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import { useState } from 'react';
+import {useState} from 'react';
 
 export function DashboardMenu() {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const linksWeb = [
@@ -37,11 +37,9 @@ export function DashboardMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-      
-          <Menu className='cursor-pointer'/>
-        
+        <Menu className="cursor-pointer" />
       </SheetTrigger>
-      <SheetContent side={"left"}>
+      <SheetContent side={'left'}>
         <aside className="h-full flex flex-col ">
           <div className="grid">
             <p className="p-4 text-[0.75rem] opacity-60">Web</p>
@@ -54,6 +52,7 @@ export function DashboardMenu() {
                 } justify-start rounded-none  `}
                 variant={'ghost'}
                 key={link.name}
+                onClick={() => setOpen(false)}
                 asChild>
                 <Link href={link.href}>{link.name}</Link>
               </Button>
@@ -71,6 +70,7 @@ export function DashboardMenu() {
                 } justify-start rounded-none  `}
                 variant={'ghost'}
                 key={link.name}
+                onClick={() => setOpen(false)}
                 asChild>
                 <Link href={link.href}>{link.name}</Link>
               </Button>

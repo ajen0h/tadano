@@ -43,7 +43,7 @@ export const ProductCard = ({product}: any) => {
                 <Image
                   key={product.images[0].id}
                   fill
-                  src={`${product.images[0].image}`}
+                  src={`${product.images[0].url}`}
                   alt="image"
                   className="aspect-square object-cover rounded-md"
                 />
