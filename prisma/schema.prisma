@@ -26,16 +26,16 @@ model User {
 model Product {
   id          String    @id @default(uuid())
   name        String
-  price       Decimal
+  price       Float
   description String
   cantidad    Int
   images      Image[]
-  size        Size?     @relation(fields: [sizeId], references: [id])
-  sizeId      String?
-  color       Color?    @relation(fields: [colorId], references: [id])
-  colorId     String?
-  category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  String?
+  size        Size     @relation(fields: [sizeId], references: [id])
+  sizeId      String
+  color       Color    @relation(fields: [colorId], references: [id])
+  colorId     String
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
 
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
@@ -184,8 +184,8 @@ model Player {
   age         Int
   description String
   imageUrl    String
-  height      Decimal
-  weight      Decimal
+  height      Float
+  weight      Float
   dorsal      Int
   goals       Int      @default(0)
   assists     Int      @default(0)
@@ -194,8 +194,8 @@ model Player {
   country     String   @default("Spain")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  Team        Team?    @relation(fields: [teamId], references: [id])
-  teamId      String?
+  Team        Team    @relation(fields: [teamId], references: [id])
+  teamId      String
 }
 
 model Order {

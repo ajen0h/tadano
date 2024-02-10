@@ -31,19 +31,19 @@ import {createProduct, updateProduct} from '@/actions/products';
 interface Product {
   id: string;
   name: string;
-  price: string;
+  price: number;
   description: string;
-  cantidad: string;
+  cantidad: number;
   sizeId: string;
   colorId: string;
-  categoryId: string;
+  categoryId: string ;
   createdAt: Date;
   updatedAt: Date;
   images: Image[];
 }
 
 interface ProductFormProps {
-  initialData: Product 
+  initialData: Product | null
   categories: Category[];
   colors: Color[];
   sizes: Size[];
@@ -62,8 +62,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       name: '',
       description: '',
       images: [],
-      price: '',
-      cantidad: '',
+      price: 0,
+      cantidad: 0,
       categoryId: '',
       colorId: '',
       sizeId: '',
