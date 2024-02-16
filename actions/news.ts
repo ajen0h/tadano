@@ -117,3 +117,20 @@ export const updateNew = async (
     return {error: 'Anything wrong!'};
   }
 };
+
+
+export const getNewsInfinity = async (limit: number,pageParam:string) => {
+  try {
+    const news = await db.report.findMany({
+      take: limit,
+      skip: (parseInt(pageParam) - 1) * limit, // skip should start from 0 for page 1
+      orderBy: {
+        createdAt: 'desc',
+      }, 
+    })
+    return news
+  } catch (error) {
+    console.error('Registration failed:', error);
+    return { error: 'Registration failed.' };
+  }
+};

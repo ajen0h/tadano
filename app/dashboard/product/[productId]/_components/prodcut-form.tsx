@@ -17,7 +17,7 @@ import {string, z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
-import {Category, Color, Image,  Size} from '@prisma/client';
+import {Category, Color, Image, Product, Size} from '@prisma/client';
 import {
   Select,
   SelectContent,
@@ -28,7 +28,7 @@ import {
 import ImageUpload from '@/components/ui/image-upload';
 import {createProduct, updateProduct} from '@/actions/products';
 
-interface Product {
+/* interface Product {
   id: string;
   name: string;
   price: number;
@@ -41,9 +41,13 @@ interface Product {
   updatedAt: Date;
   images: Image[];
 }
-
+ */
 interface ProductFormProps {
-  initialData: Product | null
+  initialData:
+    | (Product & {
+        images: Image[];
+      })
+    | null;
   categories: Category[];
   colors: Color[];
   sizes: Size[];

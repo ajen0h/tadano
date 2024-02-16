@@ -31,15 +31,36 @@ export const getProductById = async (productId: string) => {
   return product;
 };
 
+export const getProductByCategory = async (categoryName: string) => {
+  const product = await db.product.findMany({
+    where: {
+      category: {
+        name: categoryName,
+      },
+    },
+    include: {
+      images: true,
+    },
+  });
+  return product;
+};
+
 export const createProduct = async (values: z.infer<typeof ProductSchema>) => {
   const validatedFields = ProductSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
   }
 
-  const {name, description, price, images, cantidad, categoryId, colorId, sizeId} =
-    validatedFields.data;
-
+  const {
+    name,
+    description,
+    price,
+    images,
+    cantidad,
+    categoryId,
+    colorId,
+    sizeId,
+  } = validatedFields.data;
 
   console.log('Hola', images[0].url);
 
@@ -55,9 +76,7 @@ export const createProduct = async (values: z.infer<typeof ProductSchema>) => {
         cantidad,
         images: {
           createMany: {
-            data: [
-              ...images.map((image: {url: string}) => ({url: image.url})),
-            ],
+            data: [...images.map((image: {url: string}) => ({url: image.url}))],
           },
         },
       },

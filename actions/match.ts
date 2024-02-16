@@ -8,6 +8,22 @@ export const getMatch = async () => {
   const match = await db.match.findMany();
   return match;
 };
+export const getMatchFinished = async () => {
+  const match = await db.match.findMany({
+    where:{
+      isFinish:true
+    }
+  });
+  return match;
+};
+export const getMatchNotFinished = async () => {
+  const match = await db.match.findMany({
+    where:{
+      isFinish:false
+    }
+  });
+  return match;
+};
 
 export const getMatchById = async (matchId: string) => {
   const match = await db.match.findUnique({

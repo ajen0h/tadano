@@ -4,16 +4,20 @@ import {Button} from '@/components/ui/button';
 import useCart from '@/hooks/use-cart';
 import {Heart} from 'lucide-react';
 import Image from 'next/image';
+import {Image as PrismaImage, Product} from '@prisma/client';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Product} from '@prisma/client';
+
 import {useRouter} from 'next/navigation';
+import Link from 'next/link';
 
-interface ProductProps{
-
+interface ProductProps {
+  product: Product & {
+    images: PrismaImage[];
+  };
 }
 
-export const ProductCard = ({product}: any) => {
+export const ProductCard = ({product}: ProductProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();
@@ -33,9 +37,8 @@ export const ProductCard = ({product}: any) => {
   };
 
   return (
-    <>
-      <div className="bg-white group cursor-pointer rounded-xl space-y-4">
-        <h1>Hola</h1>
+    <><Link href={`/products/${product.id}`}>
+      <div className="bg-white group cursor-pointer rounded-xl space-y-4 hover:shadow-xl">
         <div className="aspect-square  bg-gray-100 relative">
           <div>
             {product.images[0] ? (
@@ -46,29 +49,30 @@ export const ProductCard = ({product}: any) => {
                   src={`${product.images[0].url}`}
                   alt="image"
                   className="aspect-square object-cover rounded-md"
-                />
+                  />
               </>
             ) : (
               <>No hay</>
             )}
           </div>
         </div>
-        <div className="grid grid-cols-1 px-5 lg:p-0">
-          <div className="flex flex-col justify-start items-start lg:justify-center lg:items-center text-xl lg:text-lg relative">
+        <div className="grid grid-cols-1  px-5 lg:p-0">
+          <div className="flex flex-col justify-start items-start  text-sm relative">
             <div>{product.name}</div>
             <div className="font-bold text-destructive">{product.price} €</div>
-            <Heart className="absolute top-0 right-12 w-9 h-9 sm:right-5 md:right-4 md:w-7 md:h-7" />
           </div>
         </div>
-        <Button
+        {/* <Button
           onClick={() => {
             //Añadir la imagen
             cart.increment(product.id, product.name);
           }}>
           Añadir
-        </Button>
+        </Button> */}
       </div>
-      <Button onClick={() => checkout()}>Stripe</Button>
+      </Link>
+      {/*       <Button onClick={() => checkout()}>Stripe</Button>
+       */}
     </>
   );
 };
