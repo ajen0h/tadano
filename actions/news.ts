@@ -9,7 +9,11 @@ export const getNews = async () => {
   const news = await db.report.findMany({
     include: {
       comments: true,
-      ReportVotes: true,
+      ReportVotes: {
+        select:{
+          reportId:true,userId:true
+        }
+      },
       User:true
     },
   });

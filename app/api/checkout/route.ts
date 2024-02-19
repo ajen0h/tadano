@@ -9,8 +9,14 @@ interface DataProps {
   cantidad: number;
 }
 
+export async function GET(){
+  console.log("object");
+  return NextResponse.json("{ url: session.url }");
+  
+}
+
 export async function POST(req: NextRequest) {
-  const {userId} = auth();
+ /*  const {userId} = auth();
   const data: DataProps[] = await req.json();
 
   //Busca todos lo productos que le pasamos
@@ -75,5 +81,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return NextResponse.json({ url: session.url });
+  return NextResponse.json({ url: session.url }); */
+  return NextResponse.json("{ url: session.url }");
 }

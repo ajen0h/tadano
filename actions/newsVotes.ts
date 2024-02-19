@@ -16,7 +16,7 @@ export const getNewVoteByUser = async (newId: string) => {
     });
     return votesByUser;
   }
-  return null;
+  return [];
 };
 
 export const likeVoteByUserIdAndNewId = async (reportId: string) => {
@@ -62,23 +62,29 @@ export const likeVote = async (reportId: string) => {
     });
 
     if (!existsNewVotesUserAndNew) {
-      //si no existe
-      await db.reportVotes.create({
-        data: {
-          userId: session.userId,
-          reportId,
-        },
-      });
-    } else {
-      await db.reportVotes.delete({
-        where: {
-          userId_reportId: {
+      try {
+        //si no existe
+        await db.reportVotes.create({
+          data: {
             userId: session.userId,
             reportId,
           },
-        },
-      });
+        });
+        revalidatePath('/news');
+        return {message: 'Unliked Post.'};
+      } catch (error) {
+        return {message: 'Database Error: Failed to Unlike Post.'};
+      }
     }
+
+    await db.reportVotes.delete({
+      where: {
+        userId_reportId: {
+          userId: session.userId,
+          reportId,
+        },
+      },
+    });
 
     revalidatePath(`news`);
     return {success: 'Email sent!'};

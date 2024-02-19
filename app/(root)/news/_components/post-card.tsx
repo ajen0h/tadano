@@ -15,14 +15,10 @@ interface ReportData {
   updatedAt: Date;
   userId: string | null;
   comments: Comment[];
-  ReportVotes: ReportVotes[];
-  User: User | null;
-}
-
-interface ReportData1
-  extends Omit<Report, 'comments' | 'ReportVotes' | 'User'> {
-  comments: Comment[];
-  ReportVotes: ReportVotes[];
+  ReportVotes: {
+    userId: string;
+    reportId: string;
+  }[];
   User: User | null;
 }
 
@@ -31,7 +27,6 @@ interface PostCardProps {
 }
 
 export const PostCard = async ({reportData}: PostCardProps) => {
-  const voteByUser = await getNewVoteByUser(reportData.id);
   return (
     <article className="hover:shadow-lg transition rounded-2xl cursor-pointer">
       <Link href={`/news/${reportData.id}`}>
@@ -67,7 +62,10 @@ export const PostCard = async ({reportData}: PostCardProps) => {
         </div>
 
         <div className="w-full flex justify-end items-center">
-          <SaveNewButton newId={reportData.id} vote={voteByUser} />
+          <SaveNewButton
+            newId={reportData.id}
+            report={reportData.ReportVotes}
+          />
         </div>
       </div>
     </article>
