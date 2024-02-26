@@ -29,48 +29,51 @@ export const ProductCard = ({product}: ProductProps) => {
     return null;
   }
 
-  
-
   return (
     <>
-      <Link href={`/products/${product.id}`}>
-        <div className="bg-white group cursor-pointer rounded-xl space-y-4 hover:shadow-xl">
-          <div className="aspect-square  bg-gray-100 relative">
-            <div>
-              {product.images[0] ? (
-                <>
-                  <Image
-                    key={product.images[0].id}
-                    fill
-                    src={`${product.images[0].url}`}
-                    alt="image"
-                    className="aspect-square object-cover rounded-md"
-                  />
-                </>
-              ) : (
-                <>No hay</>
-              )}
+      <div className="flex flex-col gap-2">
+        <Link href={`/products/${product.id}`}>
+          <div className="bg-white group cursor-pointer rounded-xl hover:shadow-xl">
+            <div className="aspect-square  bg-gray-100 relative">
+              <div>
+                {product.images[0] ? (
+                  <>
+                    <Image
+                      key={product.images[0].id}
+                      fill
+                      src={`${product.images[0].url}`}
+                      alt="image"
+                      className="aspect-square object-cover rounded-md"
+                    />
+                  </>
+                ) : (
+                  <>No hay</>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1  px-5 lg:p-0">
-            <div className="flex flex-col justify-start items-start  text-sm relative">
-              <div>{product.name}</div>
-              <div className="font-bold text-destructive">
-                {product.price} €
+            <div className="grid grid-cols-1 px-5 py-4">
+              <div className="flex flex-col justify-start items-start  text-sm relative">
+                <div>{product.name}</div>
+                <div className="font-bold text-destructive">
+                  {product.price} €
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Link>
-      <Button
-        onClick={() => {
-          //Añadir la imagen
-          cart.increment(product.id, product.name,product.images[0].url);
-        }}>
-        Añadir
-      </Button>
-
-      
+          <Button
+          
+            variant={'outline'}
+            className="w-full"
+            onClick={(e: React.SyntheticEvent) => {
+              //Añadir la imagen
+              e.stopPropagation();
+              e.preventDefault()
+              cart.increment(product.id, product.name, product.images[0].url);
+            }}>
+            Añadir
+          </Button>
+        </Link>
+      </div>
     </>
   );
 };
