@@ -4,7 +4,7 @@ import {Button} from '@/components/ui/button';
 import useCart from '@/hooks/use-cart';
 import {Heart} from 'lucide-react';
 import Image from 'next/image';
-import {Image as PrismaImage, Product} from '@prisma/client';
+import {Category, Color, Image as PrismaImage, Product, Size} from '@prisma/client';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
@@ -14,10 +14,13 @@ import Link from 'next/link';
 interface ProductProps {
   product: Product & {
     images: PrismaImage[];
+    size:Size,
+    color: Color,
+    category: Category,
   };
 }
 
-export const ProductCard = ({product}: ProductProps) => {
+export const ProductCard = ({product}: any) => {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();

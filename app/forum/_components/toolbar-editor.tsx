@@ -1,7 +1,20 @@
 'use client';
 import {useCurrentEditor} from '@tiptap/react';
 import React, {useCallback} from 'react';
-import {FaBold, FaHeading, FaItalic, FaStrikethrough} from 'react-icons/fa';
+import {
+  FaAlignCenter,
+  FaAlignJustify,
+  FaAlignLeft,
+  FaAlignRight,
+  FaBold,
+  FaHeading,
+  FaItalic,
+  FaLink,
+  FaListUl,
+  FaQuoteLeft,
+  FaRegImage,
+  FaStrikethrough,
+} from 'react-icons/fa';
 import {MdFormatListBulleted, MdFormatListNumbered} from 'react-icons/md';
 export const ToolBarEditor = ({editor}: any) => {
   /* const {editor} = useCurrentEditor();
@@ -42,7 +55,6 @@ export const ToolBarEditor = ({editor}: any) => {
   }
   return (
     <div className="flex gap-3">
-      ToolBarEditor!
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}>
@@ -66,49 +78,46 @@ export const ToolBarEditor = ({editor}: any) => {
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}>
-        <MdFormatListBulleted />
+        <FaListUl />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive('orderedList') ? 'is-active' : ''}>
-        <MdFormatListNumbered />
+        <MdFormatListNumbered className='w-5 h-5' />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={editor.isActive('blockquote') ? 'is-active' : ''}>
-        toggleBlockquote
+        <FaQuoteLeft />
       </button>
       <button
         onClick={() => editor.chain().focus().setTextAlign('left').run()}
         className={editor.isActive({textAlign: 'left'}) ? 'is-active' : ''}>
-        left
+        <FaAlignLeft />
       </button>
       <button
         onClick={() => editor.chain().focus().setTextAlign('center').run()}
         className={editor.isActive({textAlign: 'center'}) ? 'is-active' : ''}>
-        center
+        <FaAlignCenter />
       </button>
       <button
         onClick={() => editor.chain().focus().setTextAlign('right').run()}
         className={editor.isActive({textAlign: 'right'}) ? 'is-active' : ''}>
-        right
+        <FaAlignRight />
       </button>
       <button
         onClick={() => editor.chain().focus().setTextAlign('justify').run()}
         className={editor.isActive({textAlign: 'justify'}) ? 'is-active' : ''}>
-        justify
+        <FaAlignJustify />
       </button>
       <button
         onClick={setLink}
         className={editor.isActive('link') ? 'is-active' : ''}>
-        setLink
+        <FaLink />
       </button>
-      <button
-        onClick={() => editor.chain().focus().unsetLink().run()}
-        disabled={!editor.isActive('link')}>
-        unsetLink
+      <button onClick={addImage}>
+        <FaRegImage />
       </button>
-      <button onClick={addImage}>setImage</button>
     </div>
   );
 };

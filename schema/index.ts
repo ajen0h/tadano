@@ -47,10 +47,13 @@ export const NewSchema = z.object({
 export const CommentSchema = z.object({
   body: z.string().min(1),
 });
+export const TicketSchema = z.object({
+  matchId: z.string(),
+});
 
 export const MatchSchema = z.object({
   league: z.string().min(1),
-  date: z.date(),
+  date: z.string(),
   stadium: z.string().min(1),
   visitingGoals: z.coerce.number().min(0),
   localGoals: z.coerce.number().min(0),

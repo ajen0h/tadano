@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google';
 import './globals.css';
 import {ClerkProvider} from '@clerk/nextjs';
 import {QueryProvider} from '@/lib/query-provider';
+import {NavBar} from '@/components/navbar/navbar';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -17,9 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='!scroll-smooth'>
+    <html lang="en" className="!scroll-smooth">
       <ClerkProvider>
         <body className={inter.className}>
+          <NavBar />
           <QueryProvider>{children}</QueryProvider>
         </body>
       </ClerkProvider>

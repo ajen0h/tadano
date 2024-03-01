@@ -1,78 +1,97 @@
-'use client';
-
+import {getTicketByUser} from '@/actions/ticket';
+import {PdfDownload} from '@/app/pdf/_components/pdf-generated';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
+import {Match, Team} from '@prisma/client';
+import {Suspense} from 'react';
+import LoadingPage from '../loading';
 
-const MatchCard = () => {
-  const finalizado = false;
+interface MatchProps {
+  match: Match & {
+    localTeam: Team;
+    visitingTeam: Team;
+  };
+}
+
+const MatchCard = async ({match}: MatchProps) => {
+  const ticketUser = await getTicketByUser(match.id);
+
+  const day = match.date.split(/-|:|T|Z/g)[2];
+  const hour = match.date.split(/-|:|T|Z/g)[3];
+  const minute = match.date.split(/-|:|T|Z/g)[4];
+  const month = match.date.split(/-|:|T|Z/g)[1];
+  console.log(day);
   return (
-    <section>
-      <Card  >
-        <nav className="grid grid-cols-2 bg-black p-2 ">
-          <div className="grid grid-cols-[auto_2fr] gap-4 p-3 text-white">
-            <h1 className="font-bold text-5xl">13</h1>
-            <div className="grid grid-cols-1">
-              <h2 className="font-bold">13</h2>
-              <p className="text-sm">Feb</p>
-            </div>
+    <Suspense fallback={<LoadingPage />}>
+      <section className="border-b p-5">
+        <section className="grid grid-cols-3 gap-3 ">
+          <div className="flex flex-col justify-center items-center gap-3">
+            <div
+              className={`bg-center bg-no-repeat bg-cover w-[60px] h-[60px]`}
+              style={{
+                backgroundImage: `url(${match.localTeam.imageUrl})`,
+              }}></div>
+            <p className="text-sm font-bold text-center">
+              {match.localTeam.name}
+            </p>
           </div>
-          <div className="p-2">
-            {!finalizado ? (
+
+          <div className="grid grid-cols-1 place-content-center text-center">
+            <h1 className="font-bold text-sm">{match.league}</h1>
+            <p>Thu 07 Mar</p>
+            {!match.isFinish ? (
               <>
-                <h1 className="font-bold text-xl text-end text-white">
-                  Proximo Partido
-                </h1>
+                <h2 className="font-bold">
+                  {hour}:{minute}
+                </h2>
               </>
             ) : (
               <>
-                <h1 className="font-bold text-xl text-end text-white">
-                  Partido Finalizado
-                </h1>
-              </>
-            )}
-          </div>
-        </nav>
-        <section className="grid grid-cols-3 gap-3 place-items-center border-b p-3 ">
-          <div
-            className={`bg-[url('/tanjiro.jpg')] bg-center bg-no-repeat bg-cover rounded-full w-[100px] h-[100px]`}></div>
-          {/*  <img
-              src={`/tanjiro.jpg`}
-              
-              alt="logo"
-            /> */}
-
-          <div className="grid grid-cols-1 place-content-center text-center gap-1">
-            <h1 className="font-bold text-2xl">Santander</h1>
-            <p className="text-[0.6rem]">Inicio del partido CET</p>
-            {!finalizado ? (
-              <>
-                <h2 className="font-bold text-5xl">21:00</h2>
-              </>
-            ) : (
-              <>
-                <h2 className="font-bold text-5xl">0 - 0</h2>
+                <h2 className="font-bold text-2xl">
+                  {match.localGoals} - {match.visitingGoals}
+                </h2>
               </>
             )}
 
-            <p className="text-xl font-extrabold mt-2">0 - 0</p>
-
-            <p className="text-[0.8rem]">Estadio El carmen</p>
+            <p className="text-[0.8rem]">{match.stadium}</p>
           </div>
-          <div
-            className={`bg-[url('/tanjiro.jpg')] bg-center bg-no-repeat bg-cover rounded-full w-[100px] h-[100px]`}></div>
+          <div className="flex flex-col justify-center items-center gap-3">
+            <div
+              className={`bg-center bg-no-repeat bg-cover w-[60px] h-[60px]`}
+              style={{
+                backgroundImage: `url(${match.visitingTeam.imageUrl})`,
+              }}></div>
 
-          {/* <img
-              src={`/tanjiro.jpg`}
-              
-              alt="logo"
-            />
-             */}
+            <p className="text-sm font-bold text-center">
+              {match.visitingTeam.name}
+            </p>
+          </div>
         </section>
-        <div className="w-full">
-          <Button className="w-full rounded-b-lg rounded-t-none">Buy ticket 2</Button>
-        </div>
-      </Card>
-    </section>
+        <section>
+          <div className="p-4 flex justify-center items-center ">
+            {!match.isFinish ? (
+              <>
+                {!ticketUser ? (
+                  <>
+                    <Button asChild className='rounded-full'>
+                      <PdfDownload date={match.date} matchId={match.id} />
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button disabled className='rounded-full'>Match is finish</Button>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <Button disabled className='rounded-full'>Match is finish</Button>
+              </>
+            )}
+          </div>
+        </section>
+      </section>
+    </Suspense>
   );
 };
 

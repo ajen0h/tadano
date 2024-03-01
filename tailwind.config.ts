@@ -14,10 +14,15 @@ const config = {
       center: true,
       padding: '1rem',
       screens: {
-        '2xl': '1700px',
+        '2xl': '1400px',
       },
+      
     },
-    
+
+    content:{
+          
+    },
+
     backgroundImage: {
       hero: 'linear-gradient(to right bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%) ,url(/banner.jpg)',
       bannerNews:

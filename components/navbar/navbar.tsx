@@ -4,29 +4,37 @@ import {SignedIn, SignedOut, UserButton} from '@clerk/nextjs';
 import {MenuMobil} from './menu-mobil';
 import {Button} from '../ui/button';
 import Link from 'next/link';
+import {UserMenu} from './user-menu';
 
 export const NavBar = () => {
   const navLinks = [
     {
-      name: 'Home',
-      href: '/',
+      name: 'News',
+      href: '/news',
       icon: '',
     },
     {
-      name: 'About',
-      href: '/about',
+      name: 'Fixtures',
+      href: '/fixtures',
       icon: '',
     },
     {
-      name: 'Test',
-      href: '/test',
+      name: 'Forum',
+      href: '/forum',
+      icon: '',
+    },
+    {
+      name: 'Store',
+      href: '/store',
       icon: '',
     },
   ];
   return (
     <header className="top-0 z-30 w-full">
-      <main className="container mx-auto flex flex-row justify-between items-center text-black border-b border-black py-4">
-        <div>Logo</div>
+      <main className="mx-auto flex flex-row justify-between items-center text-black border-b border-black py-4 px-5">
+        <div>
+          <Link href={'/'}>Logo</Link>
+        </div>
         <nav className="hidden md:block">
           <ul className="flex flex-row">
             {navLinks.map((link) => (
@@ -37,9 +45,7 @@ export const NavBar = () => {
                   asChild
                   className="justify-start px-4">
                   <Link href={link.href}>
-                    <h3 className="font-semibold text-md">
-                      {link.name}
-                    </h3>
+                    <h3 className="font-semibold text-md">{link.name}</h3>
                   </Link>
                 </Button>
               </li>
@@ -57,12 +63,13 @@ export const NavBar = () => {
             </SignedOut>
           </div>
           <SignedIn>
-            <UserButton
+            {/* <UserButton
               afterSignOutUrl="/"
               appearance={{
                 elements: {userButtonAvatarBox: {width: 35, height: 35}},
               }}
-            />
+            /> */}
+            <UserMenu />
           </SignedIn>
           <div className="md:hidden block">
             <MenuMobil />

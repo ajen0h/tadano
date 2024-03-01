@@ -40,7 +40,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
     defaultValues: initialData || {
       league: '',
       stadium: '',
-      date: new Date(),
+      date: "",
       visitingGoals: 0,
       localGoals: 0,
       visitingTeamId: '',
@@ -50,7 +50,8 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof MatchSchema>) => {
-    startTransition(async () => {
+    console.log(values);
+     startTransition(async () => {
       let res;
       if (initialData) {
         res = await updateMatch(initialData.id, values);
@@ -103,7 +104,11 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
               <FormItem>
                 <FormLabel>Date</FormLabel>
                 <FormControl>
-                    <Input type='datetime-local'/>
+                  <Input
+                    type="datetime-local"
+                    {...field}
+                    
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

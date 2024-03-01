@@ -94,3 +94,20 @@ export const updateCategory = async (
     return {error: 'Anything wrong!'};
   }
 };
+
+
+export const InfinityCategoryInitial = async () => {
+  const initialItems = await db.category.findMany({
+    take: 5, // Tomamos solo los primeros 5 elementos inicialmente
+  });
+  return initialItems;
+};
+
+export const InfinityCategory = async (itemLength: number) => {
+  const categories = await db.category.findMany({
+    // Opciones de consulta para paginación
+    skip: itemLength,
+    take: 2, // Por ejemplo, cargar 10 elementos a la vez
+  });
+  return categories;
+};

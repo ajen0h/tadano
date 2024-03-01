@@ -22,6 +22,7 @@ model User {
   Order        Order[]
   Reports      Report[]
   Thread       Thread[]
+  Ticket       Ticket[]
 }
 
 model Product {
@@ -176,20 +177,32 @@ model Team {
 }
 
 model Match {
-  id             String   @id @default(uuid())
+  id             String  @id @default(uuid())
   league         String
-  date           DateTime
+  date           String
   stadium        String
-  visitingGoals  Int      @default(0)
-  localGoals     Int      @default(0)
-  visitingTeam   Team     @relation("Visiting", fields: [visitingTeamId], references: [id])
-  localTeam      Team     @relation("Local", fields: [localTeamId], references: [id])
+  visitingGoals  Int     @default(0)
+  localGoals     Int     @default(0)
+  visitingTeam   Team    @relation("Visiting", fields: [visitingTeamId], references: [id])
+  localTeam      Team    @relation("Local", fields: [localTeamId], references: [id])
   visitingTeamId String
   localTeamId    String
-  isFinish       Boolean  @default(false)
+  isFinish       Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Ticket    Ticket[]
+}
+
+model Ticket {
+  userId    String
+  matchId   String
+  match     Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, matchId])
 }
 
 model Player {

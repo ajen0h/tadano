@@ -6,7 +6,7 @@ import { HeaderStore } from './_components/header';
 const StoreLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <div className="h-full ">
-      <HeaderStore/>
+      {/* <HeaderStore/> */}
       
       <section>
         <div className="h-[70vh] bg-bannerStore bg-center bg-cover bg-no-repeat ">

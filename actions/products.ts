@@ -128,3 +128,36 @@ export const updateProduct = async (
     return {error: 'Anything wrong!'};
   }
 };
+export const InfinityProductInitial = async () => {
+  const initialItems = await db.product.findMany({
+    include: {
+      images: true,
+      category: true,
+      color: true,
+      size: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 1, // Tomamos solo los primeros 5 elementos inicialmente
+  });
+  return initialItems;
+};
+
+export const InfinityProduct = async (itemLength: number) => {
+  const categories = await db.product.findMany({
+    include: {
+      images: true,
+      category: true,
+      color: true,
+      size: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    // Opciones de consulta para paginación
+    skip: itemLength,
+    take: 1, // Por ejemplo, cargar 10 elementos a la vez
+  });
+  return categories;
+};

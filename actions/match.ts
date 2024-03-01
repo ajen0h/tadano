@@ -5,7 +5,12 @@ import {Prisma} from '@prisma/client';
 import {z} from 'zod';
 
 export const getMatch = async () => {
-  const match = await db.match.findMany();
+  const match = await db.match.findMany({
+    include:{
+      localTeam:true,
+      visitingTeam:true
+    }
+  });
   return match;
 };
 export const getMatchFinished = async () => {

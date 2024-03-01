@@ -6,6 +6,7 @@ import {getColor} from '@/actions/color';
 import {ProductCard} from './_components/product-card';
 import {Button} from '@/components/ui/button';
 import Link from 'next/link';
+import { Store } from './_components/store';
 
 const StorePage = async () => {
   const products = await getProducts();
@@ -14,16 +15,7 @@ const StorePage = async () => {
 
   return (
     <>
-      <section>
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4">
-            {products.map((product) => (
-           
-              <ProductCard key={product.id} product={product} />
-            ))}
-            
-          </div>
-        </section>
-      
+      <Store/>
     </>
   );
 };

@@ -15,18 +15,23 @@ export const MenuMobil = () => {
   const {user} = useUser();
   const navLinks = [
     {
-      name: 'Home',
-      href: '/',
-      icon: <GoHome className="w-4 h-4" />,
-    },
-    {
-      name: 'About',
-      href: '/about',
+      name: 'News',
+      href: '/news',
       icon: '',
     },
     {
-      name: 'Test',
-      href: '/test',
+      name: 'Fixtures',
+      href: '/fixtures',
+      icon: '',
+    },
+    {
+      name: 'Forum',
+      href: '/forum',
+      icon: '',
+    },
+    {
+      name: 'Store',
+      href: '/store',
       icon: '',
     },
   ];
