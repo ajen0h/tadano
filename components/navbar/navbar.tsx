@@ -5,6 +5,7 @@ import {MenuMobil} from './menu-mobil';
 import {Button} from '../ui/button';
 import Link from 'next/link';
 import {UserMenu} from './user-menu';
+import {Menu, ShoppingBagIcon, User} from 'lucide-react';
 
 export const NavBar = () => {
   const navLinks = [
@@ -30,50 +31,29 @@ export const NavBar = () => {
     },
   ];
   return (
-    <header className="top-0 z-30 w-full">
-      <main className="mx-auto flex flex-row justify-between items-center text-black border-b border-black py-4 px-5">
-        <div>
-          <Link href={'/'}>Logo</Link>
+    <header className="top-0 z-30 w-full border">
+      <main className="grid grid-cols-3 py-5">
+        <div className="flex flex-row justify-center items-center gap-3">
+          <div className="flex md:hidden justify-center items-center">
+            <MenuMobil/>
+          </div>
+          <div className="hidden md:block font-bold text-xl">Logo</div>
         </div>
-        <nav className="hidden md:block">
-          <ul className="flex flex-row">
+        <div className="col-start-2 flex flex-row justify-center items-center font-bold text-xl md:hidden">
+          Logo
+        </div>
+        <div className="hidden md:block ">
+          <main className="h-full flex justify-center items-center gap-5 text-sm ">
             {navLinks.map((link) => (
-              <li key={link.name}>
-                <Button
-                  variant={'ghost'}
-                  key={link.name}
-                  asChild
-                  className="justify-start px-4">
-                  <Link href={link.href}>
-                    <h3 className="font-semibold text-md">{link.name}</h3>
-                  </Link>
-                </Button>
-              </li>
+              <Link key={link.name} href={link.href}>
+                {link.name}
+              </Link>
             ))}
-          </ul>
-        </nav>
-
-        <div className="flex flex-row items-center justify-center gap-4">
-          <div className="hidden md:flex gap-2">
-            <SignedOut>
-              <Button variant={'ghost'} size={'sm'}>
-                <Link href={'/sign-in'}>Sign In</Link>
-              </Button>
-              <Button size={'sm'}>Sign Out</Button>
-            </SignedOut>
-          </div>
-          <SignedIn>
-            {/* <UserButton
-              afterSignOutUrl="/"
-              appearance={{
-                elements: {userButtonAvatarBox: {width: 35, height: 35}},
-              }}
-            /> */}
-            <UserMenu />
-          </SignedIn>
-          <div className="md:hidden block">
-            <MenuMobil />
-          </div>
+          </main>
+        </div>
+        <div className="col-start-3 flex flex-row justify-center items-center gap-4">
+          <UserMenu/>
+          <ShoppingBagIcon />
         </div>
       </main>
     </header>

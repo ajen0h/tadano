@@ -10,12 +10,12 @@ import Link from '@tiptap/extension-link';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import Blockquote from '@tiptap/extension-blockquote';
-import TextareaAutosize from 'react-textarea-autosize';
 import {ToolBarEditor} from './toolbar-editor';
 import '../styles.css';
 import {CreateThread} from '@/actions/thread';
 export const Editor = () => {
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -40,13 +40,16 @@ export const Editor = () => {
   const handleChangeTitle = (e: any) => {
     setTitle(e.target.value);
   };
+  const handleChangeDescription = (e: any) => {
+    setDescription(e.target.value);
+  };
   if (!editor) {
     return null;
   }
 
   const savePost = async () => {
     const body = editor.getHTML();
-    await CreateThread({title, body});
+    await CreateThread({title, body,description});
   };
   return (
     <div>
@@ -54,6 +57,11 @@ export const Editor = () => {
         name="title"
         placeholder="Thread Title"
         onChange={handleChangeTitle}
+      />
+      <Input
+        name="description"
+        placeholder="Description"
+        onChange={handleChangeDescription}
       />
       <div className="bg-slate-600 p-5">
         <ToolBarEditor editor={editor} />

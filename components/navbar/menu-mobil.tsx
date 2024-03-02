@@ -9,6 +9,7 @@ import {GoHome} from 'react-icons/go';
 import {RxExit} from 'react-icons/rx';
 import { LogoutButton } from './sing-out';
 import { useState } from 'react';
+import { Menu } from 'lucide-react';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false)
@@ -40,9 +41,9 @@ export const MenuMobil = () => {
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-          <HiMenuAlt3 className="h-6 w-6" />
+          <Menu />
         </SheetTrigger>
-        <SheetContent className="flex flex-col rounded-xl">
+        <SheetContent side={"left"} className="flex flex-col rounded-xl">
           <SignedIn>
             <div className="flex flex-row justify-start items-center gap-3">
               <UserButton

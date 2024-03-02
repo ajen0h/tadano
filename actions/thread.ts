@@ -7,18 +7,21 @@ import {z} from 'zod';
 const threadSchema = z.object({
   title: z.string(),
   body: z.string(),
+  description: z.string(),
 });
 
 type ThreadType = z.infer<typeof threadSchema>;
 
 export const CreateThread = async (values: ThreadType) => {
   const {userId} = auth();
+  if(!userId) return {error: 'Registration failed.'};
   try {
     const createThread = await db.thread.create({
       data: {
         title: values.title,
         body: values.body,
-        //userId: userId,
+        description:values.description,
+        userId: userId,
       },
     });
     return {success: 'Thread Created!'};
@@ -37,7 +40,6 @@ export const getThreads = async () => {
   return threads;
 };
 export const getThread = async (threadId: string) => {
-    
   const thread = await db.thread.findUnique({
     where: {
       id: threadId,
@@ -46,6 +48,6 @@ export const getThread = async (threadId: string) => {
       User: true,
     },
   });
- 
+
   return thread;
 };

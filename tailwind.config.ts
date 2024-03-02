@@ -12,15 +12,13 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '1rem',
-      screens: {
-        '2xl': '1400px',
-      },
-      
-    },
-
-    content:{
-          
+        padding: '1rem',
+        screens: {
+          sm: '640px', // Para dispositivos pequeños (sm)
+          md: '768px', // Para dispositivos medianos (md)
+          lg: '1024px', // Para dispositivos grandes (lg)
+          '2xl': '1400px', // Para dispositivos extra grandes (2xl)
+        },
     },
 
     backgroundImage: {
@@ -32,6 +30,11 @@ const config = {
     },
 
     extend: {
+      scale: {
+        '108': '1.08',
+        '175': '1.75',
+      },
+      
       colors: {
         fondo: '#0f0f0f',
         negro: '#000000',
