@@ -33,11 +33,11 @@ export const SheetCart = () => {
 
   const checkout = async () => {
     const res = await axios.post(
-      `${process.env.FRONTEND_STORE_URL}api/checkout`,cart.items);
+      `http://localhost:3000/api/checkout`,cart.items);
     console.log(res);
-    /* if (res.data) {
+    if (res.data) {
       router.push(res.data.url);
-    } */
+    }
   };
 
   return (

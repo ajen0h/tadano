@@ -4,7 +4,7 @@ import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
 import {Match, Team} from '@prisma/client';
 import {Suspense} from 'react';
-import LoadingPage from '../loading';
+
 
 interface MatchProps {
   match: Match & {
@@ -22,7 +22,7 @@ const MatchCard = async ({match}: MatchProps) => {
   const month = match.date.split(/-|:|T|Z/g)[1];
   console.log(day);
   return (
-    <Suspense fallback={<LoadingPage />}>
+  
       <section className="border-b p-5">
         <section className="grid grid-cols-3 gap-3 ">
           <div className="flex flex-col justify-center items-center gap-3">
@@ -91,7 +91,6 @@ const MatchCard = async ({match}: MatchProps) => {
           </div>
         </section>
       </section>
-    </Suspense>
   );
 };
 

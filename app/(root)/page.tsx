@@ -1,11 +1,10 @@
-import Hero from "./_components/hero";
-import Match from "./_components/match";
-
+import Hero from '../(root)/_components/hero';
+import Match from '../(root)/_components/match';
 export default function Home() {
   return (
     <>
-      <Hero/>   
-      <Match/>   
+      <Hero />
+      <Match />
     </>
   );
 }

@@ -13,12 +13,11 @@ import Blockquote from '@tiptap/extension-blockquote';
 import {ToolBarEditor} from './toolbar-editor';
 import '../styles.css';
 import {CreateThread} from '@/actions/thread';
-
 interface EditorProps {
   onChange: (value:string) => void;
   body: string;
 }
-export const Editor = ({onChange, body}: EditorProps) => {
+export const EditorComments = ({onChange, body}: EditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -50,9 +49,9 @@ export const Editor = ({onChange, body}: EditorProps) => {
 
   return (
     <div>
-      <div className="bg-slate-600 p-5">
+      <div className="p-5 border">
         <ToolBarEditor editor={editor} />
-        <EditorContent editor={editor} />
+        <EditorContent editor={editor} className='editor-input-comment' />
       </div>
 
       {/* <article className="grid lg:grid-cols-[1fr_auto]">

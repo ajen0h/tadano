@@ -1,26 +1,21 @@
 'use server';
 
 import {db} from '@/lib/db';
+import {ThreadSchema} from '@/schema';
 import {auth} from '@clerk/nextjs';
 import {z} from 'zod';
 
-const threadSchema = z.object({
-  title: z.string(),
-  body: z.string(),
-  description: z.string(),
-});
-
-type ThreadType = z.infer<typeof threadSchema>;
+type ThreadType = z.infer<typeof ThreadSchema>;
 
 export const CreateThread = async (values: ThreadType) => {
   const {userId} = auth();
-  if(!userId) return {error: 'Registration failed.'};
+  if (!userId) return {error: 'Registration failed.'};
   try {
     const createThread = await db.thread.create({
       data: {
         title: values.title,
         body: values.body,
-        description:values.description,
+        description: values.description,
         userId: userId,
       },
     });
@@ -50,4 +45,22 @@ export const getThread = async (threadId: string) => {
   });
 
   return thread;
+};
+
+export const likeThread = async (threadId: string) => {
+  const {userId} = auth();
+  if (!userId) return {error: 'User not fount'};
+
+  try {
+    const likeThread = await db.threadVotes.create({
+      data: {
+        threadId,
+        userId,
+      },
+    });
+    return {success: 'Email sent!'};
+  } catch (error) {
+    console.error('Registration failed:', error);
+    return {error: 'Registration failed.'};
+  }
 };

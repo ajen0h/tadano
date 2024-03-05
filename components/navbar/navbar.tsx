@@ -6,6 +6,7 @@ import {Button} from '../ui/button';
 import Link from 'next/link';
 import {UserMenu} from './user-menu';
 import {Menu, ShoppingBagIcon, User} from 'lucide-react';
+import { SheetCart } from '@/app/store/_components/sheet-cart';
 
 export const NavBar = () => {
   const navLinks = [
@@ -53,7 +54,7 @@ export const NavBar = () => {
         </div>
         <div className="col-start-3 flex flex-row justify-center items-center gap-4">
           <UserMenu/>
-          <ShoppingBagIcon />
+          <SheetCart/>
         </div>
       </main>
     </header>

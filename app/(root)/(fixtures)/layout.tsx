@@ -1,9 +1,7 @@
-import { NavbarFixtures } from "./_components/navbar";
+import {NavbarFixtures} from './_components/navbar';
 
-const FixturesLayout = ({children}:{children:React.ReactNode}) => {
-    return ( <div className="md:container">
-        <NavbarFixtures/>
-        {children}</div> );
-}
- 
+const FixturesLayout = ({children}: {children: React.ReactNode}) => {
+  return <div>{children}</div>;
+};
+
 export default FixturesLayout;

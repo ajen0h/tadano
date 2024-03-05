@@ -29,6 +29,7 @@ export const ThreadsCards = ({thread}: ThreadProps) => {
           </div>
         </main>
       </Link>
+      
     </>
   );
 };

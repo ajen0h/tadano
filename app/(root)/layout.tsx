@@ -1,15 +1,7 @@
-import { Footer } from '@/components/footer/footer';
-import {NavBar} from '@/components/navbar/navbar';
-import {Separator} from '@/components/ui/separator';
+import React from "react";
 
-const RootLayout = ({children}: {children: React.ReactNode}) => {
-  return (
-    <div className='h-full'>
-      {/* <NavBar /> */}
-      {children}
-     {/*  <Footer/> */}
-    </div>
-  );
-};
-
+const RootLayout = ({children}:{children:React.ReactNode}) => {
+    return ( <div>{children}</div> );
+}
+ 
 export default RootLayout;

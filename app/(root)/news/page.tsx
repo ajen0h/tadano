@@ -4,10 +4,10 @@ import PostsComponent from './_components/posts';
 
 const NewsPage = async () => {
   return (
-    <main className="px-8 md:px-16">
+    <main className="px-4 lg:px-10 py-6">
       <Banner2 />
-      <PostsComponent />
-      <LoadingButton />
+      {/* <PostsComponent />
+      <LoadingButton /> */}
     </main>
   );
 };

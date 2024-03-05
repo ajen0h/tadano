@@ -40,7 +40,7 @@ export const ProductSchema = z.object({
 });
 export const NewSchema = z.object({
   title: z.string().min(1),
-  description:z.string().min(1),
+  description: z.string().min(1),
   body: z.string().min(1),
   imageUrl: z.string().min(1),
 });
@@ -49,6 +49,11 @@ export const CommentSchema = z.object({
 });
 export const TicketSchema = z.object({
   matchId: z.string(),
+});
+export const ThreadSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+  body: z.string().min(1),
 });
 
 export const MatchSchema = z.object({

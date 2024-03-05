@@ -16,7 +16,7 @@ export async function GET(){
 }
 
 export async function POST(req: NextRequest) {
- /*  const {userId} = auth();
+  const {userId} = auth();
   const data: DataProps[] = await req.json();
 
   //Busca todos lo productos que le pasamos
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
           product_data: {
             name: product.name,
           },
-          unit_amount: product.price.toNumber() * 100,
+          unit_amount: product.price * 100,
         },
       });
     }
@@ -81,6 +81,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return NextResponse.json({ url: session.url }); */
-  return NextResponse.json("{ url: session.url }");
+  return NextResponse.json({ url: session.url });
+  /* return NextResponse.json("{ url: session.url }"); */
 }

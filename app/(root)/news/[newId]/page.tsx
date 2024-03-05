@@ -1,16 +1,16 @@
-import {getNewById} from '@/actions/news';
+import {ArrowBigLeft} from 'lucide-react';
+import { IndividualPost } from './_components/individual-post';
 
 interface NewIdPageProps {
   params: {newId: string};
 }
 
 const NewIdPage = async ({params}: NewIdPageProps) => {
-  const report = await getNewById(params.newId);
   return (
-    <div>
-      <h2>{report?.title}</h2>
-      <p>{report?.body}</p>
-    </div>
+    <main >
+      
+      <IndividualPost/>
+    </main>
   );
 };
 

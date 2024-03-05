@@ -23,6 +23,7 @@ model User {
   Reports      Report[]
   Thread       Thread[]
   Ticket       Ticket[]
+  ThreadVotes  ThreadVotes[]
 }
 
 model Product {
@@ -145,15 +146,27 @@ model Report {
 }
 
 model Thread {
-  id          String    @id @default(uuid())
+  id          String        @id @default(uuid())
   title       String
   description String
-  body        String    @db.Text
+  body        String        @db.Text
   comments    Comment[]
-  User        User      @relation(fields: [userId], references: [id])
+  User        User          @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  ThreadVotes ThreadVotes[]
+}
+
+model ThreadVotes {
+  userId    String
+  threadId  String
+  thread    Thread   @relation(fields: [threadId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, threadId])
 }
 
 model ReportVotes {
