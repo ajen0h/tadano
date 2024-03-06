@@ -2,6 +2,8 @@ import {db} from '@/lib/db';
 import {NextRequest, NextResponse} from 'next/server';
 import Stripe from 'stripe';
 import {stripe} from '@/lib/stripe';
+import { auth } from '@/auth';
+import { Product } from '@prisma/client';
 
 interface DataProps {
   id: string;
@@ -15,7 +17,8 @@ export async function GET(){
 }
 
 export async function POST(req: NextRequest) {
-  
+  const userSession=await auth()
+  if(!userSession?.user?.id) return NextResponse.json({ error: "" })
   const data: DataProps[] = await req.json();
 
   //Busca todos lo productos que le pasamos
@@ -30,7 +33,7 @@ export async function POST(req: NextRequest) {
   //Funciona correctamente
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-  products.map((product: any) => {
+  products.map((product: Product) => {
     const cantidadObj = data.find((cantidad) => cantidad.id === product.id);
     if (cantidadObj) {
       line_items.push({
@@ -40,7 +43,7 @@ export async function POST(req: NextRequest) {
           product_data: {
             name: product.name,
           },
-          unit_amount: product.price * 100,
+          unit_amount: Math.round(product.price * 100) ,
         },
       });
     }
@@ -49,7 +52,7 @@ export async function POST(req: NextRequest) {
   //Crear el order cuando se realice la compra exitosamente
   const order = await db.order.create({
     data: {
-      userId:"",
+      userId:userSession?.user?.id,
       isPaid: false,
       orderItems: {
         createMany: {
@@ -72,8 +75,8 @@ export async function POST(req: NextRequest) {
     phone_number_collection: {
       enabled: true,
     },
-    success_url: `${process.env.FRONTEND_STORE_URL}/store?success=1`,
-    cancel_url: `${process.env.FRONTEND_STORE_URL}/store?canceled=1`,
+    success_url: `${process.env.FRONTEND_STORE_URL}store?success=1`,
+    cancel_url: `${process.env.FRONTEND_STORE_URL}store?canceled=1`,
     metadata: {
       orderId: order.id,
 
@@ -81,5 +84,5 @@ export async function POST(req: NextRequest) {
   });
 
   return NextResponse.json({ url: session.url });
-  /* return NextResponse.json("{ url: session.url }"); */
+ /*  return NextResponse.json("{ url: session.url }"); */
 }
