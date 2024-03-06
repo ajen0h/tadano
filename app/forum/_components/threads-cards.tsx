@@ -15,13 +15,13 @@ export const ThreadsCards = ({thread}: ThreadProps) => {
       <Link href={`/forum/thread/${thread.id}`} className='cursor-pointer hover:scale-105 transition-all'>
         <main className="grid grid-cols-[auto_1fr] gap-5 p-4 border rounded-xl shadow-lg">
           <div className="">
-            <Image
+            {/* <Image
               src={`${thread.User.image_url}`}
               alt={`${thread.User.username}`}
               width={40}
               height={40}
               className="rounded-full"
-            />
+            /> */}
           </div>
           <div className="flex flex-col justify-start items-start">
             <p className="font-bold lg:text-lg xl:text-xl 2xl:text-2xl">{thread.title}</p>

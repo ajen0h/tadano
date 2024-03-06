@@ -23,9 +23,7 @@ import {Editor} from '@/app/forum/_components/editor';
 import {ErrorMessage} from '@hookform/error-message';
 import "@/styles/editor.css"
 interface NewFormPorps {
-  initialData: Report & {
-    User:User
-  } | null;
+  initialData: Report | null;
 }
 
 export const NewForm: React.FC<any> = ({initialData}) => {

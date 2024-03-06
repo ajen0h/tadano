@@ -20,7 +20,7 @@ export const ThreadCard = ({thread}: any) => {
         <p className="opacity-80">{thread.description}</p>
         <div className="flex flex-row justify-start items-center gap-1">
           <User2Icon className="h-4 w-4" />
-          <p className="text-sm">{thread.User.username}</p>
+          {/* <p className="text-sm">{thread.User.}</p> */}
         </div>
       </div>
       <div dangerouslySetInnerHTML={{__html: thread.body}} className="editor" />

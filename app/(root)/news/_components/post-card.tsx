@@ -45,7 +45,7 @@ export const PostCard = async ({reportData}: PostCardProps) => {
           <div className="flex flex-row justify-between items-center gap-3">
             <div className="flex flex-row gap-3">
               <User2Icon />
-              <p>{reportData.User?.username}</p>
+              <p>{reportData.User?.name}</p>
             </div>
             <div>
               <p className="text-sm">{fecha}</p>
