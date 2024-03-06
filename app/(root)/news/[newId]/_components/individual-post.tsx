@@ -21,6 +21,7 @@ export const IndividualPost = ({report}: IndividualPostProps) => {
   const mesNombre = meses[mesIndex]; 
   const dia = fechaPersonalizada.getDate();
   const fecha=`${dia} de ${mesNombre} de ${año}`
+  
   return (
     <article className="border">
       <header className="grid gap-3 lg:gap-6 my-10 px-6">
@@ -29,9 +30,10 @@ export const IndividualPost = ({report}: IndividualPostProps) => {
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row gap-2 items-center">
             <User2Icon className="w-4 h-4 lg:w-5 lg:h-5" />
-            <p className="text-sm lg:text-[1rem]">{report.User.username}</p>
-          </div>
+{/*             <p className="text-sm lg:text-[1rem]">{report.User.username}</p>
+ */}          </div>
           <div>
+            
             <p className="text-sm lg:text-[1rem]">{fecha}</p>
           </div>
         </div>

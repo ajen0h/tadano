@@ -10,11 +10,9 @@ import {
 import Link from 'next/link';
 import {useState} from 'react';
 import {PiUser} from 'react-icons/pi';
-import {useClerk} from '@clerk/nextjs';
 
 export const UserMenu = () => {
   const [open, setOpen] = useState(false);
-  const {signOut} = useClerk();
   return (
     <>
       <DropdownMenu>

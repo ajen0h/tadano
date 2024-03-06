@@ -2,7 +2,6 @@
 
 import {likeVote} from '@/actions/newsVotes';
 import {Button} from '@/components/ui/button';
-import {useSession} from '@clerk/nextjs';
 import {Report} from '@prisma/client';
 import {useOptimistic, useState, useTransition} from 'react';
 import {IoBookmark, IoBookmarkOutline} from 'react-icons/io5';
@@ -21,8 +20,8 @@ interface SaveNewButtonProps {
 }
 
 export const SaveNewButton = ({newId, report}: SaveNewButtonProps) => {
-  const {session} = useSession();
-  const predicate = (like: ReportVotes) =>
+
+ /*  const predicate = (like: ReportVotes) =>
     like.userId === session?.user.id && like.reportId === newId;
 
   const [optimisticLikes, addOptimisticLike] = useOptimistic(
@@ -33,11 +32,11 @@ export const SaveNewButton = ({newId, report}: SaveNewButtonProps) => {
       state.some(predicate)
         ? state.filter((report) => report.userId !== session?.user.id)
         : [...state, newLike]
-  );
+  ); */
 
   return (
     <>
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <form
           action={async (formData: FormData) => {
             const reportId = formData.get('reportId') as string;
@@ -67,7 +66,7 @@ export const SaveNewButton = ({newId, report}: SaveNewButtonProps) => {
             )}
           </Button>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -1,34 +1,30 @@
 'use server';
 
+import {auth} from '@/auth';
 import {db} from '@/lib/db';
-import {auth} from '@clerk/nextjs/server';
 import {revalidatePath} from 'next/cache';
 
 export const getNewVoteByUser = async (newId: string) => {
-  const {userId} = auth();
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
 
-  if (userId) {
-    const votesByUser = await db.reportVotes.findFirst({
-      where: {
-        userId,
-        reportId: newId,
-      },
-    });
-    return votesByUser;
-  }
-  return [];
+  const votesByUser = await db.reportVotes.findFirst({
+    where: {
+      userId: session.user?.id,
+      reportId: newId,
+    },
+  });
+  return votesByUser;
 };
 
 export const likeVoteByUserIdAndNewId = async (reportId: string) => {
-  const session = auth();
-  if (!session.userId) {
-    return {error: 'User not found!'};
-  }
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
     const userVotes = await db.reportVotes.findUnique({
       where: {
         userId_reportId: {
-          userId: session.userId,
+          userId: session.user?.id,
           reportId,
         },
       },
@@ -46,16 +42,13 @@ export const likeVoteByUserIdAndNewId = async (reportId: string) => {
 };
 
 export const likeVote = async (reportId: string) => {
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
-    const session = auth();
-    if (!session.userId) {
-      return {error: 'User not found 👀!'};
-    }
-
     const existsNewVotesUserAndNew = await db.reportVotes.findUnique({
       where: {
         userId_reportId: {
-          userId: session.userId,
+          userId: session.user?.id,
           reportId,
         },
       },
@@ -66,7 +59,7 @@ export const likeVote = async (reportId: string) => {
         //si no existe
         await db.reportVotes.create({
           data: {
-            userId: session.userId,
+            userId: session.user?.id,
             reportId,
           },
         });
@@ -80,7 +73,7 @@ export const likeVote = async (reportId: string) => {
     await db.reportVotes.delete({
       where: {
         userId_reportId: {
-          userId: session.userId,
+          userId: session.user?.id,
           reportId,
         },
       },

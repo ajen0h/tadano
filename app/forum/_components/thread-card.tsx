@@ -3,7 +3,6 @@
 import {Thread, User} from '@prisma/client';
 import '../styles.css';
 import {HeartIcon, User2Icon} from 'lucide-react';
-import {useSession} from '@clerk/nextjs';
 import {FormComment} from './form-comment';
 import Image from 'next/image';
 
@@ -13,7 +12,7 @@ interface ThreadProps {
   };
 }
 export const ThreadCard = ({thread}: any) => {
-  const {session} = useSession();
+  
   return (
     <section className="border p-5 ">
       <div className="flex flex-col gap-3 mb-5">
@@ -30,7 +29,7 @@ export const ThreadCard = ({thread}: any) => {
         <p>4 Likes</p>
       </div>
       <section className="py-4">
-        {session ? (
+        {/* {session ? (
           <main className='grid md:grid-cols-[auto_1fr] gap-3'>
             <Image
               src={`${session.user.imageUrl}`}
@@ -43,7 +42,7 @@ export const ThreadCard = ({thread}: any) => {
           </main>
         ) : (
           <>No existe</>
-        )}
+        )} */}
       </section>
     </section>
   );

@@ -10,20 +10,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model User {
-  id           String         @id
-  first_name   String?
-  image_url    String?
-  email        String?
-  last_name    String?
-  username     String?
-  CommentVotes CommentVotes[]
-  Comments     Comment[]
-  Order        Order[]
-  Reports      Report[]
-  Thread       Thread[]
-  Ticket       Ticket[]
-  ThreadVotes  ThreadVotes[]
+  id            String         @id @default(uuid())
+  name          String?
+  email         String?        @unique
+  image         String?
+  emailVerified DateTime?
+  password      String?
+  role          UserRole       @default(USER)
+  Account       Account[]
+  CommentVotes  CommentVotes[]
+  Comments      Comment[]
+  Order         Order[]
+  Reports       Report[]
+  Thread        Thread[]
+  Ticket        Ticket[]
+  ThreadVotes   ThreadVotes[]
+  ReportVotes   ReportVotes[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
 model Product {
@@ -107,17 +134,17 @@ model SurveyVotes {
 model Comment {
   id       String  @id @default(uuid())
   body     String
-  report   Report? @relation(fields: [reportId], references: [id])
-  reportId String?
+  report   Report @relation(fields: [reportId], references: [id])
+  reportId String
 
   vote CommentVotes[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User?    @relation(fields: [userId], references: [id])
-  userId    String?
-  Thread    Thread?  @relation(fields: [threadId], references: [id])
-  threadId  String?
+  User      User    @relation(fields: [userId], references: [id])
+  userId    String
+  Thread    Thread  @relation(fields: [threadId], references: [id])
+  threadId  String
 }
 
 model CommentVotes {
@@ -151,7 +178,7 @@ model Thread {
   description String
   body        String        @db.Text
   comments    Comment[]
-  User        User          @relation(fields: [userId], references: [id])
+  User        User        @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
@@ -171,6 +198,7 @@ model ThreadVotes {
 
 model ReportVotes {
   userId    String
+  user      User     @relation(fields: [userId], references: [id])
   reportId  String
   report    Report   @relation(fields: [reportId], references: [id])
   createdAt DateTime @default(now())
@@ -248,8 +276,8 @@ model Order {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model OrderItem {

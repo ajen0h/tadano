@@ -17,16 +17,18 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import ImageUpload from '@/components/ui/image-upload';
-import {Report} from '@prisma/client';
+import {Report, User} from '@prisma/client';
 import {createNew, updateNew} from '@/actions/news';
 import {Editor} from '@/app/forum/_components/editor';
 import {ErrorMessage} from '@hookform/error-message';
 import "@/styles/editor.css"
 interface NewFormPorps {
-  initialData: Report | null;
+  initialData: Report & {
+    User:User
+  } | null;
 }
 
-export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
+export const NewForm: React.FC<any> = ({initialData}) => {
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof NewSchema>>({

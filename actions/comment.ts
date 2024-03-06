@@ -1,7 +1,7 @@
-'use server';
+/* 'use server';
+import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {CommentSchema} from '@/schema';
-import {auth, currentUser} from '@clerk/nextjs/server';
 import {revalidatePath} from 'next/cache';
 import {z} from 'zod';
 
@@ -23,9 +23,9 @@ export const createComment = async (
   values: z.infer<typeof CommentSchema>,
   newId: string
 ) => {
-  const session = await currentUser();
+  const session = await auth();
 
-  if (!session) {
+  if (!session?.user?.id) {
     return {error: 'User does`t loggin!'};
   }
   const validatedFields = CommentSchema.safeParse(values);
@@ -36,12 +36,11 @@ export const createComment = async (
   const {body} = validatedFields.data;
 
   try {
-    console.log(session);
     await db.comment.create({
       data: {
-        body, 
-        reportId:newId,
-        
+        body,
+        reportId: newId,
+        userId: session.user.id,
       },
     });
 
@@ -72,9 +71,9 @@ export const updateComment = async (
   commentId: string,
   values: z.infer<typeof CommentSchema>
 ) => {
-  const session = auth();
+  const session = await auth();
 
-  if (!session.userId) {
+  if (!session?.user) {
     return {error: 'User does`t loggin!'};
   }
   const validatedFields = CommentSchema.safeParse(values);
@@ -91,8 +90,7 @@ export const updateComment = async (
       },
       data: {
         body,
-       
-        
+        userId: session.user.id,
       },
     });
     if (!updatedComment) {
@@ -105,3 +103,4 @@ export const updateComment = async (
     return {error: "Comment's name exist!"};
   }
 };
+ */

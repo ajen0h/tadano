@@ -1,7 +1,6 @@
 'use server';
 import {db} from '@/lib/db';
 import {SurveySchema} from '@/schema';
-import {auth} from '@clerk/nextjs/server';
 import {Prisma} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
 import {z} from 'zod';
@@ -120,10 +119,7 @@ export const updateSurvey = async (
 
 export const surveyVote = async (values: SurveyVote) => {
   try {
-    const session = auth();
-    if (!session.userId) {
-      return {error: 'You aren`t loggin'};
-    }
+
 
     console.log(values);
     const currentSurvey = await db.survey.findUnique({
@@ -158,7 +154,7 @@ export const surveyVote = async (values: SurveyVote) => {
 
     await db.surveyVotes.create({
       data: {
-        userId: session.userId,
+        userId: "session.userId",
         surveyId: values.surveyId,
       },
     });

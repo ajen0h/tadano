@@ -1,18 +1,18 @@
 'use server';
 
+import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {TicketSchema} from '@/schema';
-import {auth} from '@clerk/nextjs';
 import {revalidatePath} from 'next/cache';
 
 export const CreateTicket = async (matchId: string) => {
-  const {userId} = auth();
-  if (!userId) return {error: 'User not found!'};
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
     await db.ticket.create({
       data: {
         matchId,
-        userId,
+        userId: session.user?.id,
       },
     });
     revalidatePath('/fixtures');
@@ -24,15 +24,15 @@ export const CreateTicket = async (matchId: string) => {
 };
 
 export const getTicketByUser = async (matchId: string) => {
-  const {userId} = auth();
-  if (!userId) return;
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
   const ticketUser = await db.ticket.findUnique({
     where: {
       userId_matchId: {
-        userId,
+        userId: session?.user?.id,
         matchId,
       },
     },
   });
-  return ticketUser
+  return ticketUser;
 };

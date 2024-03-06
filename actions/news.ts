@@ -1,7 +1,7 @@
 'use server';
+import { auth } from '@/auth';
 import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
-import {auth} from '@clerk/nextjs';
 import {Prisma} from '@prisma/client';
 import {z} from 'zod';
 
@@ -31,15 +31,15 @@ export const getNewById = async (newId: string) => {
 };
 
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
-  const {userId} = auth();
 
-  if (!userId) return {error: 'User is not registed!'};
-
+  
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
   }
-
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
+  
   const {title, description, body, imageUrl} = validatedFields.data;
 
   const existingNew = await db.report.findFirst({
@@ -57,7 +57,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
         description,
         body,
         imageUrl,
-        userId,
+        userId:session.user?.id
       },
     });
     return {success: 'New has been created!'};
@@ -85,8 +85,11 @@ export const updateNew = async (
   NewId: string,
   values: z.infer<typeof NewSchema>
 ) => {
-  const {userId} = auth();
-  if (!userId) return {error: 'User is not registed!'};
+
+  const session=await auth()
+  if (!session?.user?.id) return {error: 'User is not registed!'};
+
+
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -104,7 +107,7 @@ export const updateNew = async (
         body,
         description,
         imageUrl,
-        userId,
+        userId:session.user?.id,
       },
     });
     return {success: 'New has been updated!'};

@@ -1,7 +1,7 @@
 'user';
 
 import {db} from '@/lib/db';
-import {clerkClient} from '@clerk/nextjs';
+
 import {User} from '@prisma/client';
 import {string} from 'zod';
 

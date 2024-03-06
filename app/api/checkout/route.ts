@@ -1,5 +1,4 @@
 import {db} from '@/lib/db';
-import {auth} from '@clerk/nextjs';
 import {NextRequest, NextResponse} from 'next/server';
 import Stripe from 'stripe';
 import {stripe} from '@/lib/stripe';
@@ -16,7 +15,7 @@ export async function GET(){
 }
 
 export async function POST(req: NextRequest) {
-  const {userId} = auth();
+  
   const data: DataProps[] = await req.json();
 
   //Busca todos lo productos que le pasamos
@@ -50,7 +49,7 @@ export async function POST(req: NextRequest) {
   //Crear el order cuando se realice la compra exitosamente
   const order = await db.order.create({
     data: {
-      userId,
+      userId:"",
       isPaid: false,
       orderItems: {
         createMany: {

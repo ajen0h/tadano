@@ -1,6 +1,5 @@
 'use client';
 
-import {UserButton} from '@clerk/nextjs';
 import { User2 } from 'lucide-react';
 import {IoBagOutline} from 'react-icons/io5';
 import { SheetCart } from './sheet-cart';

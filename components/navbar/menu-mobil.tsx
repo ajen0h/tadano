@@ -3,17 +3,17 @@ import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
 import {HiMenuAlt3} from 'react-icons/hi';
 import {Separator} from '../ui/separator';
 import Link from 'next/link';
-import {SignedIn, SignedOut, UserButton, useUser} from '@clerk/nextjs';
 import {Button} from '../ui/button';
 import {GoHome} from 'react-icons/go';
 import {RxExit} from 'react-icons/rx';
-import { LogoutButton } from './sing-out';
-import { useState } from 'react';
-import { Menu } from 'lucide-react';
+import {LogoutButton} from './sing-out';
+import {useState} from 'react';
+import {Menu} from 'lucide-react';
+import {useSession} from 'next-auth/react';
 
 export const MenuMobil = () => {
-  const [open, setOpen] = useState(false)
-  const {user} = useUser();
+  const [open, setOpen] = useState(false);
+
   const navLinks = [
     {
       name: 'News',
@@ -37,37 +37,42 @@ export const MenuMobil = () => {
     },
   ];
 
+  const {data: session} = useSession();
+
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
           <Menu />
         </SheetTrigger>
-        <SheetContent side={"left"} className="flex flex-col rounded-xl">
-          <SignedIn>
-            <div className="flex flex-row justify-start items-center gap-3">
-              <UserButton
-                appearance={{
-                  elements: {userButtonAvatarBox: {width: 50, height: 50}}
-                }}
-              />
-              <div className="flex flex-col justify-start">
-                <h1 className="text-lg text-marronnegro font-bold">
-                  {user?.username}
-                </h1>
-                <p className="text-sm text-marronnegro/70 ">
-                  {user?.emailAddresses[0].emailAddress}
-                </p>
+        <SheetContent side={'left'} className="flex flex-col rounded-xl">
+          <>
+            {session && (
+              <div className="flex flex-row justify-start items-center gap-3">
+                <div className="flex flex-col justify-start">
+                  <h1 className="text-lg text-marronnegro font-bold">
+                    {session.user?.name}
+                  </h1>
+                  <p className="text-sm text-marronnegro/70 ">
+                    {session.user?.email}
+                  </p>
+                </div>
               </div>
-            </div>
-          </SignedIn>
-          <SignedOut>
-            <Button variant={'ghost'} >
-              <Link href={'/sign-in'}>Sign In</Link>
-            </Button>
-            <Button>Sign Out</Button>
-          </SignedOut>
-          <SignedOut></SignedOut>
+            )}
+          </>
+          <>
+            {!session ? (
+              <>
+                <Button variant={'ghost'} onClick={() => setOpen(false)}>
+                  <Link href={'/sign-in'}>Sign In</Link>
+                </Button>
+                <Button onClick={() => setOpen(false)}>
+                  <Link href={'/sign-up'}>Sign Up</Link>
+                </Button>
+              </>
+            ) : null}
+          </>
+
           <Separator />
           <div className="flex flex-col gap-2 py-3">
             {navLinks.map((link) => (
@@ -76,7 +81,7 @@ export const MenuMobil = () => {
                 key={link.name}
                 asChild
                 className="justify-start gap-4"
-                onClick={()=>setOpen(false)}>
+                onClick={() => setOpen(false)}>
                 <Link href={link.href}>
                   {link.icon}
                   <h3 className="text-marronnegro font-semibold text-md">
@@ -87,9 +92,9 @@ export const MenuMobil = () => {
             ))}
           </div>
           <div className="h-full flex flex-col justify-end">
-            <SignedIn>
-              <LogoutButton setOpen={setOpen}/>
-            </SignedIn>
+            <>
+              <LogoutButton setOpen={setOpen} />
+            </>
           </div>
         </SheetContent>
       </Sheet>

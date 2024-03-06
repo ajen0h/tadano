@@ -1,12 +1,13 @@
 'use client';
 
-import {SignedIn, SignedOut, UserButton} from '@clerk/nextjs';
 import {MenuMobil} from './menu-mobil';
 import {Button} from '../ui/button';
 import Link from 'next/link';
 import {UserMenu} from './user-menu';
 import {Menu, ShoppingBagIcon, User} from 'lucide-react';
 import { SheetCart } from '@/app/store/_components/sheet-cart';
+import { Session } from 'next-auth';
+import {useSession} from 'next-auth/react';
 
 export const NavBar = () => {
   const navLinks = [
@@ -31,6 +32,8 @@ export const NavBar = () => {
       icon: '',
     },
   ];
+  const session=useSession()
+  console.log(session);
   return (
     <header className="top-0 z-30 w-full border">
       <main className="grid grid-cols-3 py-5">

@@ -55,6 +55,16 @@ export const ThreadSchema = z.object({
   description: z.string().min(1),
   body: z.string().min(1),
 });
+export const SignInSchema = z.object({
+  
+  email: z.string().min(1),
+  password: z.string().min(1),
+});
+export const SignUpSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().min(1),
+  password: z.string().min(1),
+});
 
 export const MatchSchema = z.object({
   league: z.string().min(1),
