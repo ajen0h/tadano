@@ -41,6 +41,11 @@ export const getThread = async (threadId: string) => {
     },
     include: {
       User: true,
+      comments:{
+        include:{
+          User:true
+        }
+      }
     },
   });
 

@@ -3,6 +3,7 @@ import { auth } from '@/auth';
 import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
 import {Prisma} from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import {z} from 'zod';
 
 export const getNews = async () => {
@@ -60,6 +61,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
         userId:session.user?.id
       },
     });
+    revalidatePath("/news")
     return {success: 'New has been created!'};
   } catch (error) {
     return {error: 'Error creating new.'};

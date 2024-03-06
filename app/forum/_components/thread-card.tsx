@@ -1,18 +1,21 @@
 'use client';
 
-import {Thread, User} from '@prisma/client';
-import '../styles.css';
+import {Comment, Thread, User} from '@prisma/client';
+import '@/styles/editor.css';
 import {HeartIcon, User2Icon} from 'lucide-react';
 import {FormComment} from './form-comment';
 import Image from 'next/image';
+import {useSession} from 'next-auth/react';
+import {CommentCard} from './comment-card';
 
 interface ThreadProps {
   thread: Thread & {
     User: User;
+    comments: Comment[];
   };
 }
-export const ThreadCard = ({thread}: any) => {
-  
+export const ThreadCard = ({thread}: ThreadProps) => {
+  const session = useSession();
   return (
     <section className="border p-5 ">
       <div className="flex flex-col gap-3 mb-5">
@@ -29,20 +32,38 @@ export const ThreadCard = ({thread}: any) => {
         <p>4 Likes</p>
       </div>
       <section className="py-4">
-        {/* {session ? (
-          <main className='grid md:grid-cols-[auto_1fr] gap-3'>
-            <Image
-              src={`${session.user.imageUrl}`}
-              alt={`${session.user.username}`}
-              width={50}
-              height={50}
-              className='hidden md:block rounded-full'
-            />
-            <FormComment reportId={thread.id} />
+        {session ? (
+          <main className="grid md:grid-cols-[auto_1fr] gap-3">
+            {session.data?.user?.image ? (
+              <>
+                <Image
+                  src={`${session.data.user.image}`}
+                  alt={`${session.data.user.name}`}
+                  width={50}
+                  height={50}
+                  className="hidden md:block rounded-full"
+                />
+              </>
+            ) : (
+              <>
+                <Image
+                  src={`/tanjiro.jpg`}
+                  alt={`tanjiro`}
+                  width={50}
+                  height={50}
+                  className="hidden md:block rounded-full"
+                />
+              </>
+            )}
+            <FormComment threadId={thread.id} />
           </main>
-        ) : (
-          <>No existe</>
-        )} */}
+        ) : null}
+        <section className="mt-4">
+          <p className="text-2xl font-bold">Comments {thread.comments.length}</p>
+          {thread.comments.map((comment) => (
+            <CommentCard key={comment.id} comment={comment} />
+          ))}
+        </section>
       </section>
     </section>
   );

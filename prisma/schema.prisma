@@ -132,19 +132,15 @@ model SurveyVotes {
 }
 
 model Comment {
-  id       String  @id @default(uuid())
-  body     String
-  report   Report @relation(fields: [reportId], references: [id])
-  reportId String
-
-  vote CommentVotes[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  User      User    @relation(fields: [userId], references: [id])
-  userId    String
-  Thread    Thread  @relation(fields: [threadId], references: [id])
+  id        String         @id @default(uuid())
+  body      String         @db.Text
+  Thread    Thread         @relation(fields: [threadId], references: [id])
   threadId  String
+  vote      CommentVotes[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  User      User           @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model CommentVotes {
@@ -164,11 +160,10 @@ model Report {
   description String
   body        String        @db.Text
   imageUrl    String
-  comments    Comment[]
   ReportVotes ReportVotes[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-  User        User         @relation(fields: [userId], references: [id])
+  User        User          @relation(fields: [userId], references: [id])
   userId      String
 }
 
@@ -178,7 +173,7 @@ model Thread {
   description String
   body        String        @db.Text
   comments    Comment[]
-  User        User        @relation(fields: [userId], references: [id])
+  User        User          @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt

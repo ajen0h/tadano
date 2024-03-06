@@ -1,4 +1,4 @@
-/* 'use server';
+'use server';
 import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {CommentSchema} from '@/schema';
@@ -21,7 +21,7 @@ export const getCommentById = async (commentId: string) => {
 
 export const createComment = async (
   values: z.infer<typeof CommentSchema>,
-  newId: string
+  threadId: string
 ) => {
   const session = await auth();
 
@@ -36,22 +36,23 @@ export const createComment = async (
   const {body} = validatedFields.data;
 
   try {
+    
     await db.comment.create({
       data: {
         body,
-        reportId: newId,
+        threadId,
         userId: session.user.id,
       },
     });
 
-    revalidatePath(`new/${newId}`);
-
+    revalidatePath(`forum/thread/${threadId}`);
     return {success: 'Comment has been created!'};
   } catch (error) {
+    console.log(error);
     return {error: 'Error creating comment.'};
   }
 };
-
+/*
 export const deleteComment = async (commentId: string) => {
   try {
     await db.comment.delete({

@@ -7,14 +7,13 @@ import Heading from '@tiptap/extension-heading';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import {Button} from '@/components/ui/button';
-import {Input} from '@/components/ui/input';
+import Youtube from '@tiptap/extension-youtube'
 import Blockquote from '@tiptap/extension-blockquote';
 import {ToolBarEditor} from './toolbar-editor';
-import '../styles.css';
+import '@/styles/editor.css';
 import {CreateThread} from '@/actions/thread';
 interface EditorProps {
-  onChange: (value:string) => void;
+  onChange: (value: string) => void;
   body: string;
 }
 export const EditorComments = ({onChange, body}: EditorProps) => {
@@ -24,6 +23,9 @@ export const EditorComments = ({onChange, body}: EditorProps) => {
       Heading,
       BulletList,
       Blockquote,
+      Youtube.configure({
+        controls: false,
+      }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
@@ -36,30 +38,22 @@ export const EditorComments = ({onChange, body}: EditorProps) => {
         inline: true,
       }),
     ],
-    content: '<h1><b>Hello World! 🌎️</b></h1>',
-    onUpdate({editor}){
-      onChange(editor.getHTML())
-    }
+    content:'',
+    onUpdate({editor}) {
+      onChange(editor.getHTML());
+    },
   });
 
   if (!editor) {
     return null;
   }
 
-
   return (
     <div>
       <div className="p-5 border">
         <ToolBarEditor editor={editor} />
-        <EditorContent editor={editor} className='editor-input-comment' />
+        <EditorContent editor={editor} className="editor-input-comment" placeholder='Comentario' />
       </div>
-
-      {/* <article className="grid lg:grid-cols-[1fr_auto]">
-        <div
-          dangerouslySetInnerHTML={{__html: editor.getHTML()}}
-          className="editor"
-        />
-      </article> */}
     </div>
   );
 };

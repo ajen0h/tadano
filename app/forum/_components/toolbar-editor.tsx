@@ -1,7 +1,7 @@
 'use client';
 import {Toggle} from '@/components/ui/toggle';
-import {useCurrentEditor} from '@tiptap/react';
-import React, {useCallback} from 'react';
+import {VideoIcon, VideoOffIcon} from 'lucide-react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {
   FaAlignCenter,
   FaAlignJustify,
@@ -15,13 +15,21 @@ import {
   FaQuoteLeft,
   FaRegImage,
   FaStrikethrough,
+  FaVideo,
 } from 'react-icons/fa';
-import {MdFormatListBulleted, MdFormatListNumbered} from 'react-icons/md';
+import {MdFormatListNumbered} from 'react-icons/md';
 export const ToolBarEditor = ({editor}: any) => {
-  /* const {editor} = useCurrentEditor();
-  if (!editor) {
-    return null
-  } */
+  
+  const addYoutubeVideo = () => {
+    const url = prompt('Enter YouTube URL');
+    if (url) {
+      editor.commands.setYoutubeVideo({
+        src: url,
+        width: 640,
+        height: 480,
+      });
+    }
+  };
 
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href;
@@ -55,20 +63,16 @@ export const ToolBarEditor = ({editor}: any) => {
     return null;
   }
   return (
-    <div className="flex gap-3">
+    <div className="border border-solid rounded-xl grid grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-3 mb-6">
       <Toggle
         pressed={editor.isActive('bold')}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}>
         <FaBold />
       </Toggle>
-      {/* <button
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className={editor.isActive('bold') ? 'is-active' : ''}>
-        <FaBold />
-      </button> */}
+
       <Toggle
         onPressedChange={() => editor.chain().focus().toggleItalic().run()}
-        pressed={editor.isActive('italic') }>
+        pressed={editor.isActive('italic')}>
         <FaItalic />
       </Toggle>
       <Toggle
@@ -77,52 +81,63 @@ export const ToolBarEditor = ({editor}: any) => {
         <FaStrikethrough />
       </Toggle>
       <Toggle
-        onPressedChange={() => editor.chain().focus().toggleHeading({level: 1}).run()}
-        pressed={editor.isActive('heading', {level: 1}) }>
+        onPressedChange={() =>
+          editor.chain().focus().toggleHeading({level: 1}).run()
+        }
+        pressed={editor.isActive('heading', {level: 1})}>
         <FaHeading />
       </Toggle>
       <Toggle
         onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
-        pressed={editor.isActive('bulletList') }>
+        pressed={editor.isActive('bulletList')}>
         <FaListUl />
       </Toggle>
       <Toggle
         onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
-        pressed={editor.isActive('orderedList') }>
+        pressed={editor.isActive('orderedList')}>
         <MdFormatListNumbered className="w-5 h-5" />
       </Toggle>
       <Toggle
         onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
-        pressed={editor.isActive('blockquote') }>
+        pressed={editor.isActive('blockquote')}>
         <FaQuoteLeft />
       </Toggle>
       <Toggle
-        onPressedChange={() => editor.chain().focus().setTextAlign('left').run()}
-        pressed={editor.isActive({textAlign: 'left'}) }>
+        onPressedChange={() =>
+          editor.chain().focus().setTextAlign('left').run()
+        }
+        pressed={editor.isActive({textAlign: 'left'})}>
         <FaAlignLeft />
       </Toggle>
       <Toggle
-        onPressedChange={() => editor.chain().focus().setTextAlign('center').run()}
-        pressed={editor.isActive({textAlign: 'center'}) }>
+        onPressedChange={() =>
+          editor.chain().focus().setTextAlign('center').run()
+        }
+        pressed={editor.isActive({textAlign: 'center'})}>
         <FaAlignCenter />
       </Toggle>
       <Toggle
-        onPressedChange={() => editor.chain().focus().setTextAlign('right').run()}
+        onPressedChange={() =>
+          editor.chain().focus().setTextAlign('right').run()
+        }
         pressed={editor.isActive({textAlign: 'right'})}>
         <FaAlignRight />
       </Toggle>
       <Toggle
-        onPressedChange={() => editor.chain().focus().setTextAlign('justify').run()}
-        pressed={editor.isActive({textAlign: 'justify'}) }>
+        onPressedChange={() =>
+          editor.chain().focus().setTextAlign('justify').run()
+        }
+        pressed={editor.isActive({textAlign: 'justify'})}>
         <FaAlignJustify />
       </Toggle>
-      <Toggle
-        onPressedChange={setLink}
-        pressed={editor.isActive('link')}>
+      <Toggle onPressedChange={setLink} pressed={editor.isActive('link')}>
         <FaLink />
       </Toggle>
       <Toggle onPressedChange={addImage}>
         <FaRegImage />
+      </Toggle>
+      <Toggle onPressedChange={addYoutubeVideo}>
+        <FaVideo />
       </Toggle>
     </div>
   );

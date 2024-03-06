@@ -139,7 +139,7 @@ export const InfinityProductInitial = async () => {
     orderBy: {
       createdAt: 'desc',
     },
-    take: 1, // Tomamos solo los primeros 5 elementos inicialmente
+    take: 5, // Tomamos solo los primeros 5 elementos inicialmente
   });
   return initialItems;
 };

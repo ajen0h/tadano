@@ -7,6 +7,8 @@ import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Blockquote from '@tiptap/extension-blockquote';
+import Youtube from '@tiptap/extension-youtube'
+import Paragraph from '@tiptap/extension-paragraph'
 import {ToolBarEditor} from './toolbar-editor';
 import '@/styles/editor.css';
 
@@ -21,6 +23,8 @@ export const Editor = ({onChange, body}: EditorProps) => {
       Heading,
       BulletList,
       Blockquote,
+      Paragraph,
+      Youtube,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
@@ -48,7 +52,7 @@ export const Editor = ({onChange, body}: EditorProps) => {
     <div>
       <div className="p-5">
         <ToolBarEditor editor={editor} />
-        <EditorContent editor={editor} className='editor' />
+        <EditorContent editor={editor} className='editor-input-comment' />
       </div>
     </div>
   );

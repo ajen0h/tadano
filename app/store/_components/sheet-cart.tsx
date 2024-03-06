@@ -11,20 +11,18 @@ import {
 } from '@/components/ui/sheet';
 import useCart from '@/hooks/use-cart';
 import axios from 'axios';
+import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
 import {IoBagOutline} from 'react-icons/io5';
 
 export const SheetCart = () => {
+  const session = useSession();
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();
   useEffect(() => {
     setIsMounted(true);
-    console.log(cart.items.length);
-    console.log(cart.items);
-    console.log(cart.itemsStripe);
-    console.log(process.env.FRONTEND_STORE_URL);
   }, [cart.items]);
 
   if (!isMounted) {
@@ -33,12 +31,13 @@ export const SheetCart = () => {
 
   const checkout = async () => {
     const res = await axios.post(
-      `${process.env.FRONTEND_STORE_URL}api/checkout`,cart.items);
-    console.log(res);
+      `${process.env.FRONTEND_STORE_URL}api/checkout`,
+      cart.items
+    );
+
     if (res.data) {
       router.push(res.data.url);
     }
-   
   };
 
   return (
@@ -75,13 +74,23 @@ export const SheetCart = () => {
         <SheetFooter>
           {cart.items.length > 0 ? (
             <>
-              <Button className="w-full" onClick={() => checkout()}>
-                Stripe
-              </Button>
+              {session.data?.user ? (
+                <>
+                  <Button className="w-full" onClick={() => checkout()}>
+                    Stripe
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    className="w-full bg-green-500"
+                    onClick={() => router.push('/sign-in')}>
+                    Sign In
+                  </Button>
+                </>
+              )}
             </>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </SheetFooter>
       </SheetContent>
     </Sheet>

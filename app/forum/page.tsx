@@ -6,9 +6,7 @@ import { ButtonCreateThread } from './_components/button-create-thread';
 
 const ForumPage = async () => {
   const threads = await getThreads();
-  if (threads.length <= 0) {
-    return <>No hay</>;
-  }
+
   return (
     <main className="container grid lg:grid-cols-[1fr_300px] gap-5 lg:gap-20 mt-16">
       <ButtonCreateThread/>

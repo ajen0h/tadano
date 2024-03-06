@@ -6,8 +6,6 @@ import { ButtonCategories } from './button-categories';
 
 export const MenuCategories = async () => {
   const categories = await getCategory();
-
-  
   return (
 
    <>

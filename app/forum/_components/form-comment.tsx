@@ -2,24 +2,33 @@
 
 import {Controller, useForm} from 'react-hook-form';
 import {Button} from '@/components/ui/button';
-import { EditorComments } from './editor-comments';
+import {EditorComments} from './editor-comments';
 
-import { z } from 'zod';
-import { CommentSchema } from '@/schema';
+import {z} from 'zod';
+import {CommentSchema} from '@/schema';
+import {createComment} from '@/actions/comment';
+import toast from 'react-hot-toast';
+import {useTransition} from 'react';
 
-interface FormCommentProps{
-    reportId:string
+interface FormCommentProps {
+  threadId: string;
 }
 
-export const FormComment = ({reportId}:FormCommentProps) => {
+export const FormComment = ({threadId}: FormCommentProps) => {
+  const [pending, startTransition] = useTransition();
   const form = useForm({
-    defaultValues:{
-        body:""
-    }
+    defaultValues: {
+      body: '',
+    },
   });
-  const onSubmit = async (values: z.infer<typeof CommentSchema >) => {
-
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof CommentSchema>) => {
+    startTransition(async () => {
+      const res = await createComment(values, threadId);
+      console.log(res);
+      if (res) {
+        toast.success(`${res.success}`);
+      }
+    });
   };
   return (
     <div>
@@ -32,7 +41,9 @@ export const FormComment = ({reportId}:FormCommentProps) => {
             <EditorComments onChange={field.onChange} body={field.value} />
           )}
         />
-        <Button className='w-full mt-3'>Save!</Button>
+        <Button disabled={pending} className="w-full mt-3">
+          Post!
+        </Button>
       </form>
     </div>
   );

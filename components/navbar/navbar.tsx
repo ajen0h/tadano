@@ -33,7 +33,6 @@ export const NavBar = () => {
     },
   ];
   const session=useSession()
-  console.log(session);
   return (
     <header className="top-0 z-30 w-full border">
       <main className="grid grid-cols-3 py-5">
