@@ -11,15 +11,17 @@ import {
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import {NewSchema, TeamSchema} from '@/schema';
-import {useForm} from 'react-hook-form';
+import {Controller, useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import ImageUpload from '@/components/ui/image-upload';
-import { Report } from '@prisma/client';
+import {Report} from '@prisma/client';
 import {createNew, updateNew} from '@/actions/news';
-
+import {Editor} from '@/app/forum/_components/editor';
+import {ErrorMessage} from '@hookform/error-message';
+import "@/styles/editor.css"
 interface NewFormPorps {
   initialData: Report | null;
 }
@@ -33,7 +35,7 @@ export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
       title: '',
       imageUrl: '',
       body: '',
-      description:""
+      description: '',
     },
   });
 
@@ -79,20 +81,11 @@ export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Description" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="body"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Body</FormLabel>
-                <FormControl>
-                  <Input disabled={pending} placeholder="Body" {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder="Description"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,6 +107,16 @@ export const NewForm: React.FC<NewFormPorps> = ({initialData}) => {
               </FormItem>
             )}
           />
+          <Controller
+            control={form.control}
+            name="body"
+            defaultValue=""
+            render={({field}) => (
+              <Editor onChange={field.onChange} body={field.value} />
+            )}
+          />
+          <ErrorMessage errors={form.formState.errors} name="body" />
+
           <Button disabled={pending}>Create</Button>
         </form>
       </Form>

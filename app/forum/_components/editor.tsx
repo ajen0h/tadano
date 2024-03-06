@@ -1,5 +1,4 @@
 'use client';
-import {useState} from 'react';
 import {EditorContent, useEditor} from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import BulletList from '@tiptap/extension-bullet-list';
@@ -7,12 +6,9 @@ import Heading from '@tiptap/extension-heading';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import {Button} from '@/components/ui/button';
-import {Input} from '@/components/ui/input';
 import Blockquote from '@tiptap/extension-blockquote';
 import {ToolBarEditor} from './toolbar-editor';
-import '../styles.css';
-import {CreateThread} from '@/actions/thread';
+import '@/styles/editor.css';
 
 interface EditorProps {
   onChange: (value:string) => void;
@@ -37,7 +33,7 @@ export const Editor = ({onChange, body}: EditorProps) => {
         inline: true,
       }),
     ],
-    content: '<h1><b>Hello World! 🌎️</b></h1>',
+    content: body,
     onUpdate({editor}){
       onChange(editor.getHTML())
     }
@@ -50,17 +46,10 @@ export const Editor = ({onChange, body}: EditorProps) => {
 
   return (
     <div>
-      <div className="bg-slate-600 p-5">
+      <div className="p-5">
         <ToolBarEditor editor={editor} />
-        <EditorContent editor={editor} />
+        <EditorContent editor={editor} className='editor' />
       </div>
-
-      {/* <article className="grid lg:grid-cols-[1fr_auto]">
-        <div
-          dangerouslySetInnerHTML={{__html: editor.getHTML()}}
-          className="editor"
-        />
-      </article> */}
     </div>
   );
 };

@@ -20,7 +20,7 @@ const NewIdLayout = ({children}: {children: React.ReactNode}) => {
           <p className="uppercase font-bold lg:text-lg">Magazine</p>
         </div>
       </header>
-      <div className="grid lg:grid-cols-[1fr_400px] gap-6 ">
+      <div className="grid xl:grid-cols-[1fr_400px] 2xl:grid-cols-[1fr_500px] gap-6 ">
         <div>{children}</div>
 
         {/* Aside Noticias */}
@@ -32,8 +32,9 @@ const NewIdLayout = ({children}: {children: React.ReactNode}) => {
           </header>
 
           {/* Posts lateral */}
+
           <article className=" border-b py-6 px-4 hover:cursor-pointer hover:shadow-lg grid grid-cols-2 gap-3">
-            <div className="h-full relative">
+            <div className="h-[100px] relative">
               <Image
                 src={'/tanjiro.jpg'}
                 alt=""
@@ -48,7 +49,7 @@ const NewIdLayout = ({children}: {children: React.ReactNode}) => {
             </div>
           </article>
           <article className=" border-b py-6 px-4 hover:cursor-pointer hover:shadow-lg grid grid-cols-2 gap-3">
-            <div className="h-full relative">
+            <div className="h-[100px] relative">
               <Image
                 src={'/tanjiro.jpg'}
                 alt=""

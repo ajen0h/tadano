@@ -8,38 +8,33 @@ import {z} from 'zod';
 export const getNews = async () => {
   const news = await db.report.findMany({
     include: {
-      comments: true,
-      ReportVotes: {
-        select:{
-          reportId:true,userId:true
-        }
-      },
-      User:true
+      User: true,
     },
   });
   return news;
 };
 export const getNewById = async (newId: string) => {
-  const newFound = await db.report.findUnique({
-    where: {
-      id: newId,
-    },
-    include: {
-      comments: {
-        orderBy: {
-          createdAt: 'desc',
-        },
+  try {
+    const newFound = await db.report.findUnique({
+      where: {
+        id: newId,
       },
-
-      ReportVotes: true,
-      User:true
-    },
-  });
-  return newFound;
+      include: {
+        ReportVotes: true,
+        User: true,
+      },
+    });
+    return newFound
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
   const {userId} = auth();
+
+  if (!userId) return {error: 'User is not registed!'};
+
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -91,6 +86,7 @@ export const updateNew = async (
   values: z.infer<typeof NewSchema>
 ) => {
   const {userId} = auth();
+  if (!userId) return {error: 'User is not registed!'};
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -122,19 +118,18 @@ export const updateNew = async (
   }
 };
 
-
-export const getNewsInfinity = async (limit: number,pageParam:string) => {
+export const getNewsInfinity = async (limit: number, pageParam: string) => {
   try {
     const news = await db.report.findMany({
       take: limit,
       skip: (parseInt(pageParam) - 1) * limit, // skip should start from 0 for page 1
       orderBy: {
         createdAt: 'desc',
-      }, 
-    })
-    return news
+      },
+    });
+    return news;
   } catch (error) {
     console.error('Registration failed:', error);
-    return { error: 'Registration failed.' };
+    return {error: 'Registration failed.'};
   }
 };

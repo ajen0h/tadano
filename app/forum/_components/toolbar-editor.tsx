@@ -1,4 +1,5 @@
 'use client';
+import {Toggle} from '@/components/ui/toggle';
 import {useCurrentEditor} from '@tiptap/react';
 import React, {useCallback} from 'react';
 import {
@@ -55,69 +56,74 @@ export const ToolBarEditor = ({editor}: any) => {
   }
   return (
     <div className="flex gap-3">
-      <button
+      <Toggle
+        pressed={editor.isActive('bold')}
+        onPressedChange={() => editor.chain().focus().toggleBold().run()}>
+        <FaBold />
+      </Toggle>
+      {/* <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}>
         <FaBold />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-        className={editor.isActive('italic') ? 'is-active' : ''}>
+      </button> */}
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+        pressed={editor.isActive('italic') }>
         <FaItalic />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleStrike().run()}
-        className={editor.isActive('strike') ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleStrike().run()}
+        pressed={editor.isActive('strike')}>
         <FaStrikethrough />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({level: 1}).run()}
-        className={editor.isActive('heading', {level: 1}) ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleHeading({level: 1}).run()}
+        pressed={editor.isActive('heading', {level: 1}) }>
         <FaHeading />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleBulletList().run()}
-        className={editor.isActive('bulletList') ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+        pressed={editor.isActive('bulletList') }>
         <FaListUl />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        className={editor.isActive('orderedList') ? 'is-active' : ''}>
-        <MdFormatListNumbered className='w-5 h-5' />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={editor.isActive('blockquote') ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        pressed={editor.isActive('orderedList') }>
+        <MdFormatListNumbered className="w-5 h-5" />
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
+        pressed={editor.isActive('blockquote') }>
         <FaQuoteLeft />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setTextAlign('left').run()}
-        className={editor.isActive({textAlign: 'left'}) ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().setTextAlign('left').run()}
+        pressed={editor.isActive({textAlign: 'left'}) }>
         <FaAlignLeft />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setTextAlign('center').run()}
-        className={editor.isActive({textAlign: 'center'}) ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().setTextAlign('center').run()}
+        pressed={editor.isActive({textAlign: 'center'}) }>
         <FaAlignCenter />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setTextAlign('right').run()}
-        className={editor.isActive({textAlign: 'right'}) ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().setTextAlign('right').run()}
+        pressed={editor.isActive({textAlign: 'right'})}>
         <FaAlignRight />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-        className={editor.isActive({textAlign: 'justify'}) ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={() => editor.chain().focus().setTextAlign('justify').run()}
+        pressed={editor.isActive({textAlign: 'justify'}) }>
         <FaAlignJustify />
-      </button>
-      <button
-        onClick={setLink}
-        className={editor.isActive('link') ? 'is-active' : ''}>
+      </Toggle>
+      <Toggle
+        onPressedChange={setLink}
+        pressed={editor.isActive('link')}>
         <FaLink />
-      </button>
-      <button onClick={addImage}>
+      </Toggle>
+      <Toggle onPressedChange={addImage}>
         <FaRegImage />
-      </button>
+      </Toggle>
     </div>
   );
 };
