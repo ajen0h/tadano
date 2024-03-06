@@ -3,7 +3,7 @@
 import {Controller, useForm} from 'react-hook-form';
 import {Button} from '@/components/ui/button';
 import { EditorComments } from './editor-comments';
-import { createComment } from '@/actions/comment';
+
 import { z } from 'zod';
 import { CommentSchema } from '@/schema';
 
@@ -18,7 +18,7 @@ export const FormComment = ({reportId}:FormCommentProps) => {
     }
   });
   const onSubmit = async (values: z.infer<typeof CommentSchema >) => {
-    /* await createComment({values.body,reportId}); */
+
     console.log(values);
   };
   return (
