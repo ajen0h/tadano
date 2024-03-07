@@ -1,7 +1,7 @@
 'use client';
 
 import {Button} from '@/components/ui/button';
-import useCart from '@/hooks/use-cart';
+import useCart from '@/hooks/use-cart-original';
 import { Category, Color, Image, Size,Product } from '@prisma/client';
 import {useEffect, useState} from 'react';
 

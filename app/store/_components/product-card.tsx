@@ -1,7 +1,7 @@
 'use client';
 
 import {Button} from '@/components/ui/button';
-import useCart from '@/hooks/use-cart';
+import useCart from '@/hooks/use-cart-original';
 import {Heart} from 'lucide-react';
 import Image from 'next/image';
 import {Category, Color, Image as PrismaImage, Product, Size} from '@prisma/client';

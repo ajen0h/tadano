@@ -10,6 +10,8 @@ import {
 import Link from 'next/link';
 import {useState} from 'react';
 import {PiUser} from 'react-icons/pi';
+import {LogoutButton} from './sing-out';
+import {useSession} from 'next-auth/react';
 
 export const UserMenu = () => {
   const [open, setOpen] = useState(false);
@@ -27,6 +29,9 @@ export const UserMenu = () => {
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href={'/dashboard'}>Dashboard</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <LogoutButton setOpen={setOpen} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

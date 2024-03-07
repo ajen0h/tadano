@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import useCart from '@/hooks/use-cart';
+import useCart from '@/hooks/use-cart-original';
 import axios from 'axios';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
@@ -43,7 +43,7 @@ export const SheetCart = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button asChild>
+        <Button variant={"ghost"}>
           <IoBagOutline className="h-6 w-6" />
         </Button>
       </SheetTrigger>
