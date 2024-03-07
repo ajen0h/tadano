@@ -6,7 +6,11 @@ import {revalidatePath} from 'next/cache';
 import {z} from 'zod';
 
 export const getComment = async () => {
-  const comment = await db.comment.findMany();
+  const comment = await db.comment.findMany({
+    orderBy:{
+      createdAt:"desc"
+    }
+  });
   return comment;
 };
 

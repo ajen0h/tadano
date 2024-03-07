@@ -10,8 +10,10 @@ import {ErrorMessage} from '@hookform/error-message';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {ThreadSchema} from '@/schema';
 import {z} from 'zod';
+import { useRouter } from 'next/navigation';
 
 export const ThreadForm = () => {
+  const ruter=useRouter()
   const form = useForm({
     resolver: zodResolver(ThreadSchema),
     defaultValues: {
@@ -22,7 +24,10 @@ export const ThreadForm = () => {
   });
   const onSubmit = async (values: z.infer<typeof ThreadSchema>) => {
     console.log(values);
-    await CreateThread(values);
+    const res=await CreateThread(values);
+    if(res.success){
+      ruter.push("/forum")
+    }
   };
   return (
     <div>

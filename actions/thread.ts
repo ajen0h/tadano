@@ -20,7 +20,8 @@ export const CreateThread = async (values: ThreadType) => {
         userId: session.user?.id,
       },
     });
-    return {success: 'Thread Created!'};
+    revalidatePath("/forum")
+    return {success:"Thread created!"}
   } catch (error) {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};
@@ -32,6 +33,9 @@ export const getThreads = async () => {
     include: {
       User: true,
     },
+    orderBy:{
+      createdAt:"desc"
+    }
   });
   return threads;
 };

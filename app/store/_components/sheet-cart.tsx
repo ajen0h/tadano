@@ -12,6 +12,7 @@ import {
 import useCart from '@/hooks/use-cart-original';
 import axios from 'axios';
 import {useSession} from 'next-auth/react';
+import Image from 'next/image';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
 import {IoBagOutline} from 'react-icons/io5';
@@ -23,6 +24,7 @@ export const SheetCart = () => {
   const router = useRouter();
   useEffect(() => {
     setIsMounted(true);
+    console.log(cart.items);
   }, [cart.items]);
 
   if (!isMounted) {
@@ -43,7 +45,7 @@ export const SheetCart = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant={"ghost"}>
+        <Button variant={'ghost'}>
           <IoBagOutline className="h-6 w-6" />
         </Button>
       </SheetTrigger>
@@ -53,20 +55,36 @@ export const SheetCart = () => {
           <SheetDescription>
             {cart.items.map((item) => (
               <div key={item.id}>
-                <h1>{item.name}</h1>
-                <p>cantidad: {item.cantidad}</p>
-                <Button
-                  onClick={() => {
-                    cart.decrement(item.id);
-                  }}>
-                  decrement
-                </Button>
-                <Button
-                  onClick={() => {
-                    cart.incremetCantidad(item.id);
-                  }}>
-                  increment
-                </Button>
+                <header className="grid grid-cols-2">
+                  <div className="relative h-[60px]">
+                    <Image
+                      src={`${item.image}`}
+                      alt={`${item.name}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className='text-center w-full text-xl font-bold'>{item.name}</p>
+                    <div className="flex flex-row justify-center items-center gap-3">
+                      <Button
+                        variant={'ghost'}
+                        onClick={() => {
+                          cart.decrement(item.id);
+                        }}>
+                        -
+                      </Button>
+                      <p>{item.cantidad}</p>
+                      <Button
+                        variant={'ghost'}
+                        onClick={() => {
+                          cart.incremetCantidad(item.id);
+                        }}>
+                        +
+                      </Button>
+                    </div>
+                  </div>
+                </header>
               </div>
             ))}
           </SheetDescription>

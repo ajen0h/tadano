@@ -1,10 +1,10 @@
 'use server';
-import { auth } from '@/auth';
+import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
 import {Prisma} from '@prisma/client';
-import { revalidatePath } from 'next/cache';
-import {z} from 'zod';
+import {revalidatePath} from 'next/cache';
+import {string, z} from 'zod';
 
 export const getNews = async () => {
   const news = await db.report.findMany({
@@ -25,22 +25,20 @@ export const getNewById = async (newId: string) => {
         User: true,
       },
     });
-    return newFound
+    return newFound;
   } catch (error) {
     console.log(error);
   }
 };
 
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
-
-  
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
   }
-  const session=await auth()
+  const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
-  
+
   const {title, description, body, imageUrl} = validatedFields.data;
 
   const existingNew = await db.report.findFirst({
@@ -58,10 +56,10 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
         description,
         body,
         imageUrl,
-        userId:session.user?.id
+        userId: session.user?.id,
       },
     });
-    revalidatePath("/news")
+    revalidatePath('/news');
     return {success: 'New has been created!'};
   } catch (error) {
     return {error: 'Error creating new.'};
@@ -87,10 +85,8 @@ export const updateNew = async (
   NewId: string,
   values: z.infer<typeof NewSchema>
 ) => {
-
-  const session=await auth()
+  const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
-
 
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
@@ -109,7 +105,7 @@ export const updateNew = async (
         body,
         description,
         imageUrl,
-        userId:session.user?.id,
+        userId: session.user?.id,
       },
     });
     return {success: 'New has been updated!'};
@@ -136,5 +132,16 @@ export const getNewsInfinity = async (limit: number, pageParam: string) => {
   } catch (error) {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};
+  }
+};
+
+export const getRandomNews = async () => {
+  try {
+    const randomsNew = await db.report.findMany({
+      take: 3,
+    });
+    return randomsNew;
+  } catch (error) {
+    console.error('Registration failed:', error);
   }
 };
