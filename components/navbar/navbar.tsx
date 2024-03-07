@@ -8,7 +8,7 @@ import {Session} from 'next-auth';
 import {useSession} from 'next-auth/react';
 import {auth} from '@/auth';
 import {PiUser} from 'react-icons/pi';
-import { AuthButtons } from './auth-buttons';
+import {AuthButtons} from './auth-buttons';
 
 export const NavBar = async () => {
   const navLinks = [
@@ -41,10 +41,12 @@ export const NavBar = async () => {
           <div className="flex lg:hidden justify-center items-center">
             <MenuMobil />
           </div>
-          <div className="hidden lg:block font-bold text-xl">Logo</div>
+          <div className="hidden lg:block font-bold text-xl">
+            <Link href={'/'}>Logo</Link>
+          </div>
         </div>
         <div className="col-start-2 flex flex-row justify-center items-center font-bold text-xl lg:hidden">
-          Logo
+          <Link href={'/'}>Logo</Link>
         </div>
         <div className="hidden lg:block ">
           <main className="h-full flex justify-center items-center gap-5 text-sm ">
@@ -62,7 +64,7 @@ export const NavBar = async () => {
             </>
           ) : (
             <div className="hidden lg:block ">
-              <AuthButtons/>
+              <AuthButtons />
             </div>
           )}
 

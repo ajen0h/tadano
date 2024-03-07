@@ -1,13 +1,13 @@
 import {Button} from '@/components/ui/button';
 import {MenuCategories} from './_components/menu-categories';
 import Link from 'next/link';
-import { HeaderStore } from './_components/header';
+import {HeaderStore} from './_components/header';
 
 const StoreLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <div className="h-full ">
       {/* <HeaderStore/> */}
-      
+
       <section>
         <div className="h-[70vh] bg-bannerStore bg-center bg-cover bg-no-repeat ">
           <div className="h-full flex flex-col justify-center items-start px-9 text-white">
@@ -29,7 +29,7 @@ const StoreLayout = ({children}: {children: React.ReactNode}) => {
         </div>
       </section>
       <main className="px-7">
-        <section  id="discover">
+        <section id="discover">
           <div className="flex flex-col justify-center items-center py-9 gap-2">
             <h2 className="text-3xl font-bold">New Arrivals</h2>
             <p className="text-center w-[50%]">

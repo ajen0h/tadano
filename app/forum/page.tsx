@@ -11,7 +11,7 @@ const ForumPage = async () => {
   const session = await auth();
 
   return (
-    <main className="container grid lg:grid-cols-[1fr_300px] gap-5 lg:gap-20 mt-16">
+    <main className="container grid lg:grid-cols-[1fr_300px] gap-5 lg:gap-20 mt-16 ">
       {session?.user?.id ? (
         <>
           <ButtonCreateThread />

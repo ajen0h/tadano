@@ -10,6 +10,7 @@ import {LogoutButton} from './sing-out';
 import {useState} from 'react';
 import {Menu} from 'lucide-react';
 import {useSession} from 'next-auth/react';
+import Image from 'next/image';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
@@ -49,6 +50,9 @@ export const MenuMobil = () => {
           <>
             {session && (
               <div className="flex flex-row justify-start items-center gap-3">
+                <div className='relative h-[40px] w-[40px]'>
+                  <Image src={`${session.user?.image}`} alt={`${session.user?.name}`} fill className='rounded-full'/>
+                </div>
                 <div className="flex flex-col justify-start">
                   <h1 className="text-lg text-marronnegro font-bold">
                     {session.user?.name}

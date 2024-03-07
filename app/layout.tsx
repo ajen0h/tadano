@@ -5,6 +5,7 @@ import {QueryProvider} from '@/lib/query-provider';
 import {NavBar} from '@/components/navbar/navbar';
 import {auth} from '@/auth';
 import {SessionProvider} from 'next-auth/react';
+import {Footer} from '@/components/footer/footer';
 
 const inter = Inter({subsets: ['latin']});
 

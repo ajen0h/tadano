@@ -10,7 +10,7 @@ const FixturesPage = async () => {
   const matches = await getMatch();
 
   return (
-    <main>
+    <main >
       {/* Banner */}
       <section>
         <div className="h-[400px] relative">

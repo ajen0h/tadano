@@ -50,6 +50,9 @@ export const getThread = async (threadId: string) => {
         include: {
           User: true,
         },
+        orderBy:{
+          createdAt:"desc"
+        }
       },
       ThreadVotes: true,
     },

@@ -10,6 +10,7 @@ import axios from 'axios';
 
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
+import toast, {Toaster} from 'react-hot-toast';
 
 interface ProductProps {
   product: Product & {
@@ -72,11 +73,13 @@ export const ProductCard = ({product}: any) => {
               e.stopPropagation();
               e.preventDefault()
               cart.increment(product.id, product.name, product.images[0].url);
+              toast.success("Product added")
             }}>
             Añadir
           </Button>
         </Link>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };

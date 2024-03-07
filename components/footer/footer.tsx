@@ -4,7 +4,7 @@ import {Button} from '../ui/button';
 
 export const Footer = () => {
   return (
-    <section className="bg-black text-white p-8 rounded-t-2xl">
+    <section className="bg-black text-white p-8 rounded-t-2xl flex flex-col justify-end items-center">
       <div className="flex flex-col justify-center items-center gap-3">
         <h2 className="text-xl font-bold lg:text-2xl">
           Lets get started on something great
