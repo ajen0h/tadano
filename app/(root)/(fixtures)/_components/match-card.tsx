@@ -150,7 +150,7 @@ const MatchCard = async ({match}: MatchProps) => {
                     </>
                   ) : (
                     <>
-                        <ModalAuth/>
+                        <ModalAuth title='Hola'/>
                       
                     </>
                   )}
