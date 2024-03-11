@@ -1,42 +1,44 @@
-"use client"
+'use client';
 import {MenuMobil} from './menu-mobil';
-import {Button} from '../ui/button';
 import Link from 'next/link';
 import {UserMenu} from './user-menu';
-import {Menu, ShoppingBagIcon, User} from 'lucide-react';
-import {SheetCart} from '@/app/store/_components/sheet-cart';
-import {Session} from 'next-auth';
+import {SheetCart} from '@/app/[lang]/store/_components/sheet-cart';
 import {useSession} from 'next-auth/react';
-import {auth} from '@/auth';
-import {PiUser} from 'react-icons/pi';
 import {AuthButtons} from './auth-buttons';
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
+import {useDictionary} from '@/lib/dictionary-provider';
 
 export const NavBar = () => {
+  const dictionary = useDictionary();
+  const session = useSession();
+  const pathname = usePathname();
+  console.log("<><",dictionary.Links);
+
+  const path = pathname.split(/\/(?:es|en)\//)[1];
+  const lang = pathname.split('/')[1];
   const navLinks = [
     {
-      name: 'News',
+      name: `${dictionary.Links.News}`,
       href: '/news',
       icon: '',
     },
     {
-      name: 'Fixtures',
+      name: `${dictionary.Links["Fixtures"]}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: 'Forum',
+      name: `${dictionary.Links["Forum"]}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: 'Store',
+      name: `${dictionary.Links["Store"]}`,
       href: '/store',
       icon: '',
     },
   ];
-  const session = useSession();
-  const pathname=usePathname()
+
   console.log(pathname);
   return (
     <header className="top-0 z-30 w-full border">
@@ -55,7 +57,14 @@ export const NavBar = () => {
         <div className="hidden lg:block ">
           <main className="h-full flex justify-center items-center gap-5 text-sm ">
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className={`${link.href===pathname ? "font-bold border-b-2 border-black" :""}`}>
+              <Link
+                key={link.name}
+                href={`${lang}${link.href}`}
+                className={`${
+                  link.href === pathname
+                    ? 'font-bold border-b-2 border-black'
+                    : ''
+                }`}>
                 {link.name}
               </Link>
             ))}
@@ -75,6 +84,10 @@ export const NavBar = () => {
           <SheetCart />
         </div>
       </main>
+      <div className="flex flex-row justify-center items-center gap-3">
+        <Link href={`/es/${path ? path : ''}`}>Español</Link>
+        <Link href={`/en/${path ? path : ''}`}>Ingles</Link>
+      </div>
     </header>
   );
 };

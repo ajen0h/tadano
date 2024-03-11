@@ -11,6 +11,7 @@ import {useState} from 'react';
 import {Menu} from 'lucide-react';
 import {useSession} from 'next-auth/react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,11 @@ export const MenuMobil = () => {
   ];
 
   const {data: session} = useSession();
-
+  const pathname = usePathname();
+ 
+  const path = pathname.split(/\/(?:es|en)\//)[1];
+  const lang = pathname.split("/")[1]
+  console.log(">>",lang);
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -86,7 +91,7 @@ export const MenuMobil = () => {
                 asChild
                 className="justify-start gap-4"
                 onClick={() => setOpen(false)}>
-                <Link href={link.href}>
+                <Link href={`${lang}${link.href}`}>
                   {link.icon}
                   <h3 className="text-marronnegro font-semibold text-md">
                     {link.name}

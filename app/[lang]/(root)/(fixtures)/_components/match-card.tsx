@@ -1,5 +1,5 @@
 import {getTicketByUser} from '@/actions/ticket';
-import {PdfDownload} from '@/app/pdf/_components/pdf-generated';
+import {PdfDownload} from '@/app/[lang]/pdf/_components/pdf-generated';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
 import {Match, Team} from '@prisma/client';

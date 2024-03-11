@@ -5,7 +5,9 @@ import {QueryProvider} from '@/lib/query-provider';
 import {NavBar} from '@/components/navbar/navbar';
 import {auth} from '@/auth';
 import {SessionProvider} from 'next-auth/react';
-import {Footer} from '@/components/footer/footer';
+import DictionaryProvider from '@/lib/dictionary-provider';
+import {getDictionary} from '@/actions/dictionary';
+import { Locale } from '@/i18n.config';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -16,17 +18,23 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params: {lang, locale},
 }: Readonly<{
   children: React.ReactNode;
+  params: {lang: Locale; locale: string};
 }>) {
   const session = await auth();
+  const dictionary = await getDictionary(lang);
+
   return (
     <SessionProvider session={session}>
-      <html lang="es">
-        <body className={inter.className} suppressHydrationWarning={true}>
-          <NavBar />
-          <QueryProvider>{children}</QueryProvider>
-        </body>
+      <html lang={locale}>
+        <DictionaryProvider dictionary={dictionary}>
+          <body className={inter.className}>
+            <NavBar />
+            <QueryProvider>{children}</QueryProvider>
+          </body>
+        </DictionaryProvider>
       </html>
     </SessionProvider>
   );
