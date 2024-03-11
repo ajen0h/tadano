@@ -1,13 +1,16 @@
+"use client"
 import {useRouter} from 'next/navigation';
 import {Button} from '../ui/button';
 import {RxExit} from 'react-icons/rx';
 import {signOut} from 'next-auth/react';
+import { useLang } from '@/hooks/use-lang';
 
 interface LogoutButtonProps {
   setOpen: (value: boolean) => void;
 }
 
 export const LogoutButton = ({setOpen}: LogoutButtonProps) => {
+  const {lang,path}=useLang()
   return (
     <>
       <Button
@@ -15,7 +18,7 @@ export const LogoutButton = ({setOpen}: LogoutButtonProps) => {
         className="justify-start gap-4"
         onClick={() => {
           signOut({
-            callbackUrl: '/',
+            callbackUrl: `/${lang}`,
           });
           setOpen(false);
         }}>

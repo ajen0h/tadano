@@ -11,40 +11,41 @@ import {useState} from 'react';
 import {Menu} from 'lucide-react';
 import {useSession} from 'next-auth/react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
+import {useLang} from '@/hooks/use-lang';
+import {useDictionary} from '@/lib/dictionary-provider';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
+  const dictionary = useDictionary();
 
+  const {lang, path} = useLang();
+  console.log(path);
   const navLinks = [
     {
-      name: 'News',
+      name: `${dictionary.Links.News}`,
       href: '/news',
       icon: '',
     },
     {
-      name: 'Fixtures',
+      name: `${dictionary.Links['Fixtures']}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: 'Forum',
+      name: `${dictionary.Links['Forum']}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: 'Store',
+      name: `${dictionary.Links['Store']}`,
       href: '/store',
       icon: '',
     },
   ];
 
   const {data: session} = useSession();
-  const pathname = usePathname();
- 
-  const path = pathname.split(/\/(?:es|en)\//)[1];
-  const lang = pathname.split("/")[1]
-  console.log(">>",lang);
+
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -55,8 +56,13 @@ export const MenuMobil = () => {
           <>
             {session && (
               <div className="flex flex-row justify-start items-center gap-3">
-                <div className='relative h-[40px] w-[40px]'>
-                  <Image src={`${session.user?.image}`} alt={`${session.user?.name}`} fill className='rounded-full'/>
+                <div className="relative h-[40px] w-[40px]">
+                  <Image
+                    src={`${session.user?.image}`}
+                    alt={`${session.user?.name}`}
+                    fill
+                    className="rounded-full"
+                  />
                 </div>
                 <div className="flex flex-col justify-start">
                   <h1 className="text-lg text-marronnegro font-bold">
@@ -73,10 +79,10 @@ export const MenuMobil = () => {
             {!session ? (
               <>
                 <Button variant={'ghost'} onClick={() => setOpen(false)}>
-                  <Link href={'/sign-in'}>Sign In</Link>
+                  <Link href={`${lang}/sign-in`}>Sign In</Link>
                 </Button>
                 <Button onClick={() => setOpen(false)}>
-                  <Link href={'/sign-up'}>Sign Up</Link>
+                  <Link href={`${lang}/sign-up`}>Sign Up</Link>
                 </Button>
               </>
             ) : null}
@@ -91,7 +97,7 @@ export const MenuMobil = () => {
                 asChild
                 className="justify-start gap-4"
                 onClick={() => setOpen(false)}>
-                <Link href={`${lang}${link.href}`}>
+                <Link href={`/${lang}${link.href}`}>
                   {link.icon}
                   <h3 className="text-marronnegro font-semibold text-md">
                     {link.name}

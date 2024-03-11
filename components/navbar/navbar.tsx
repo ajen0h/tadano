@@ -7,15 +7,14 @@ import {useSession} from 'next-auth/react';
 import {AuthButtons} from './auth-buttons';
 import {usePathname} from 'next/navigation';
 import {useDictionary} from '@/lib/dictionary-provider';
+import {Locale} from '@/i18n.config';
+import {useLang} from '@/hooks/use-lang';
 
 export const NavBar = () => {
   const dictionary = useDictionary();
   const session = useSession();
-  const pathname = usePathname();
-  console.log("<><",dictionary.Links);
-
-  const path = pathname.split(/\/(?:es|en)\//)[1];
-  const lang = pathname.split('/')[1];
+  const {lang, path} = useLang();
+  console.log(path);
   const navLinks = [
     {
       name: `${dictionary.Links.News}`,
@@ -23,23 +22,22 @@ export const NavBar = () => {
       icon: '',
     },
     {
-      name: `${dictionary.Links["Fixtures"]}`,
+      name: `${dictionary.Links['Fixtures']}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: `${dictionary.Links["Forum"]}`,
+      name: `${dictionary.Links['Forum']}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: `${dictionary.Links["Store"]}`,
+      name: `${dictionary.Links['Store']}`,
       href: '/store',
       icon: '',
     },
   ];
 
-  console.log(pathname);
   return (
     <header className="top-0 z-30 w-full border">
       <main className="grid grid-cols-3 py-5">
@@ -48,20 +46,20 @@ export const NavBar = () => {
             <MenuMobil />
           </div>
           <div className="hidden lg:block font-bold text-xl">
-            <Link href={'/'}>Logo</Link>
+            <Link href={`/${lang}/`}>Logo</Link>
           </div>
         </div>
         <div className="col-start-2 flex flex-row justify-center items-center font-bold text-xl lg:hidden">
-          <Link href={'/'}>Logo</Link>
+          <Link href={`/${lang}/`}>Logo</Link>
         </div>
         <div className="hidden lg:block ">
           <main className="h-full flex justify-center items-center gap-5 text-sm ">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                href={`${lang}${link.href}`}
+                href={`/${lang}${link.href}`}
                 className={`${
-                  link.href === pathname
+                  link.href === `/${path}`
                     ? 'font-bold border-b-2 border-black'
                     : ''
                 }`}>
