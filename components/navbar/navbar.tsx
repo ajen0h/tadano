@@ -1,3 +1,4 @@
+"use client"
 import {MenuMobil} from './menu-mobil';
 import {Button} from '../ui/button';
 import Link from 'next/link';
@@ -9,8 +10,9 @@ import {useSession} from 'next-auth/react';
 import {auth} from '@/auth';
 import {PiUser} from 'react-icons/pi';
 import {AuthButtons} from './auth-buttons';
+import { usePathname } from 'next/navigation';
 
-export const NavBar = async () => {
+export const NavBar = () => {
   const navLinks = [
     {
       name: 'News',
@@ -33,7 +35,9 @@ export const NavBar = async () => {
       icon: '',
     },
   ];
-  const session = await auth();
+  const session = useSession();
+  const pathname=usePathname()
+  console.log(pathname);
   return (
     <header className="top-0 z-30 w-full border">
       <main className="grid grid-cols-3 py-5">
@@ -51,14 +55,14 @@ export const NavBar = async () => {
         <div className="hidden lg:block ">
           <main className="h-full flex justify-center items-center gap-5 text-sm ">
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href}>
+              <Link key={link.name} href={link.href} className={`${link.href===pathname ? "font-bold border-b-2 border-black" :""}`}>
                 {link.name}
               </Link>
             ))}
           </main>
         </div>
         <div className="col-start-3 flex flex-row justify-center items-center gap-4">
-          {session?.user?.id ? (
+          {session?.data?.user?.id ? (
             <>
               <UserMenu />
             </>

@@ -51,32 +51,38 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
         )}
       </div>
       <section className="py-4">
-        {session ? (
-          <main className="grid md:grid-cols-[auto_1fr] gap-3">
-            {session.user?.image ? (
-              <>
-                <Image
-                  src={`${session.user.image}`}
-                  alt={`${session.user.name}`}
-                  width={50}
-                  height={50}
-                  className="hidden md:block rounded-full"
-                />
-              </>
-            ) : (
-              <>
-                <Image
-                  src={`/tanjiro.jpg`}
-                  alt={`tanjiro`}
-                  width={50}
-                  height={50}
-                  className="hidden md:block rounded-full"
-                />
-              </>
-            )}
-            <FormComment threadId={thread.id} />
-          </main>
+        {session?.user?.id ? (
+          <>
+            <main className="grid md:grid-cols-[auto_1fr] gap-3">
+              {session?.user?.image ? (
+                <>
+                  <div className="relative h-[60px] w-[60px]">
+                    <Image
+                      src={`${session.user.image}`}
+                      alt={`${session.user.name}`}
+                      fill
+                      className="hidden md:block rounded-full object-cover"
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="relative h-[60px] w-[60px]">
+                    <Image
+                      src={`/tanjiro.jpg`}
+                      alt={`tanjiro`}
+                      fill
+                      className="hidden md:block rounded-full object-cover"
+                    />
+                  </div>
+                </>
+              )}
+
+              <FormComment threadId={thread.id} />
+            </main>
+          </>
         ) : null}
+
         <section className="mt-4">
           <p className="text-2xl font-bold">
             Comments {thread.comments.length}

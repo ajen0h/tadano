@@ -2,6 +2,8 @@ import {Button} from '@/components/ui/button';
 import {MenuCategories} from './_components/menu-categories';
 import Link from 'next/link';
 import {HeaderStore} from './_components/header';
+import { Input } from '@/components/ui/input';
+import { PiMagnifyingGlass } from 'react-icons/pi';
 
 const StoreLayout = ({children}: {children: React.ReactNode}) => {
   return (
@@ -38,6 +40,10 @@ const StoreLayout = ({children}: {children: React.ReactNode}) => {
             </p>
           </div>
         </section>
+        {/* <section className='flex flex-row items-center gap-3 justify-center mb-4'>
+          <PiMagnifyingGlass className='w-6 h-6'/>
+          <Input type='Text' placeholder='Search...' className=' md:w-[40%] '/>
+        </section> */}
         <MenuCategories />
         {children}
       </main>

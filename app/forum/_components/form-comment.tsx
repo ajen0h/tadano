@@ -9,12 +9,15 @@ import {CommentSchema} from '@/schema';
 import {createComment} from '@/actions/comment';
 import toast from 'react-hot-toast';
 import {useTransition} from 'react';
+import {useSession} from 'next-auth/react';
+import {ModalAuth} from '@/components/modal-auth';
 
 interface FormCommentProps {
   threadId: string;
 }
 
 export const FormComment = ({threadId}: FormCommentProps) => {
+  const session = useSession();
   const [pending, startTransition] = useTransition();
   const form = useForm({
     defaultValues: {
@@ -41,9 +44,12 @@ export const FormComment = ({threadId}: FormCommentProps) => {
             <EditorComments onChange={field.onChange} body={field.value} />
           )}
         />
-        <Button disabled={pending} className="w-full mt-3">
-          Post!
-        </Button>
+
+        <>
+          <Button disabled={pending} className="w-full mt-3">
+            Post!
+          </Button>
+        </>
       </form>
     </div>
   );

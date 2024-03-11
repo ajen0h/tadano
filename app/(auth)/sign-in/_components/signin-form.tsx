@@ -70,7 +70,7 @@ export const SignInForm = () => {
           <Button disabled={pending}>Create</Button>
         </form>
       </Form>
-      <ButtonGoogle/>
+      <ButtonGoogle pathname='/'/>
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );

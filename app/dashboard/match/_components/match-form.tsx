@@ -46,6 +46,8 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
       visitingTeamId: '',
       localTeamId: '',
       isFinish: false,
+      capacity:0
+      
     },
   });
 
@@ -213,6 +215,24 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
               </FormItem>
             )}
           />
+            <FormField
+            control={form.control}
+            name="capacity"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Capacity</FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    disabled={pending}
+                    placeholder="0"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="isFinish"
@@ -230,6 +250,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
               </FormItem>
             )}
           />
+         
 
           <Button disabled={pending}>Create</Button>
         </form>

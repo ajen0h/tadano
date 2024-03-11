@@ -9,6 +9,7 @@ import Image from 'next/image';
 import {SiGooglemaps} from 'react-icons/si';
 import {auth} from '@/auth';
 import Link from 'next/link';
+import { ModalAuth } from '@/components/modal-auth';
 
 interface MatchProps {
   match: Match & {
@@ -149,9 +150,8 @@ const MatchCard = async ({match}: MatchProps) => {
                     </>
                   ) : (
                     <>
-                      <Button disabled className="rounded-full w-full" asChild>
-                        <Link href={"/sign-in"}>Get Ticket</Link>
-                      </Button>
+                        <ModalAuth/>
+                      
                     </>
                   )}
                 </>

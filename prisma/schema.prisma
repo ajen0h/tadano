@@ -214,21 +214,21 @@ model Team {
 }
 
 model Match {
-  id             String  @id @default(uuid())
+  id             String   @id @default(uuid())
   league         String
   date           String
   stadium        String
-  visitingGoals  Int     @default(0)
-  localGoals     Int     @default(0)
-  visitingTeam   Team    @relation("Visiting", fields: [visitingTeamId], references: [id])
-  localTeam      Team    @relation("Local", fields: [localTeamId], references: [id])
+  visitingGoals  Int      @default(0)
+  localGoals     Int      @default(0)
+  visitingTeam   Team     @relation("Visiting", fields: [visitingTeamId], references: [id])
+  localTeam      Team     @relation("Local", fields: [localTeamId], references: [id])
   visitingTeamId String
   localTeamId    String
-  isFinish       Boolean @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Ticket    Ticket[]
+  isFinish       Boolean  @default(false)
+  capacity       Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  Ticket         Ticket[]
 }
 
 model Ticket {

@@ -54,6 +54,7 @@ export const createMatch = async (values: z.infer<typeof MatchSchema>) => {
     stadium,
     visitingGoals,
     visitingTeamId,
+    capacity
   } = validatedFields.data;
 
   try {
@@ -68,6 +69,7 @@ export const createMatch = async (values: z.infer<typeof MatchSchema>) => {
         stadium,
         visitingGoals,
         visitingTeamId,
+        capacity
       },
     });
     return {success: 'Match has been created!'};
@@ -109,6 +111,7 @@ export const updateMatch = async (
     stadium,
     visitingGoals,
     visitingTeamId,
+    capacity
   } = validatedFields.data;
 
   try {
@@ -125,6 +128,7 @@ export const updateMatch = async (
         stadium,
         visitingGoals,
         visitingTeamId,
+        capacity,
       },
     });
     return {success: 'Match has been updated!'};
