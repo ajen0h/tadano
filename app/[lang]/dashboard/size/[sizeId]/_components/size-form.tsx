@@ -18,12 +18,15 @@ import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import {Size} from '@prisma/client';
 import { createSize, updateSize } from '@/actions/size';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 interface SizeFormPorps {
   initialData: Size | null;
 }
 
 export const SizeForm: React.FC<SizeFormPorps> = ({initialData}) => {
+  const dictionary=useDictionary()
+
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof SizeSchema>>({
@@ -61,9 +64,9 @@ export const SizeForm: React.FC<SizeFormPorps> = ({initialData}) => {
             name="name"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Size"]["Name"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Size"]["Name"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -74,15 +77,15 @@ export const SizeForm: React.FC<SizeFormPorps> = ({initialData}) => {
             name="value"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Vaule</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Size"]["Value"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Vaule" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Size"]["Value"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{dictionary.General["Create"]}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

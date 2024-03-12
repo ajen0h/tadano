@@ -2,13 +2,14 @@
 
 import {Button} from '@/components/ui/button';
 import {Separator} from '@/components/ui/separator';
-import {link} from 'fs';
+import { useLang } from '@/hooks/use-lang';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
+
 
 export const SideBar = () => {
-  const pathname = usePathname();
-
+const {lang,path}=useLang()
+const splitPath=path.split("/")
+const mainPath=splitPath.slice(0, 2).join("/");
   const linksWeb = [
     {name: 'Match', href: '/dashboard/match'},
     {name: 'New', href: '/dashboard/new'},
@@ -38,12 +39,12 @@ export const SideBar = () => {
         {linksWeb.map((link) => (
           <Button
             className={`${
-              pathname === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
+              `/${mainPath}` === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
             } justify-start rounded-none  `}
             variant={'ghost'}
             key={link.name}
             asChild>
-            <Link href={link.href}>{link.name}</Link>
+            <Link href={`/${lang}/${link.href}`}>{link.name}</Link>
           </Button>
         ))}
       </div>
@@ -53,12 +54,12 @@ export const SideBar = () => {
         {linksStore.map((link) => (
           <Button
             className={`${
-              pathname === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
+              `/${mainPath}` === link.href ? 'bg-pink-400 opacity-100' : 'opacity-60'
             } justify-start rounded-none  `}
             variant={'ghost'}
             key={link.name}
             asChild>
-            <Link href={link.href}>{link.name}</Link>
+            <Link href={`/${lang}/${link.href}`}>{link.name}</Link>
           </Button>
         ))}
       </div>

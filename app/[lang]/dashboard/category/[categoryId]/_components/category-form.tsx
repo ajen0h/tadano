@@ -18,12 +18,14 @@ import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import {Category} from '@prisma/client';
 import {createCategory, updateCategory} from '@/actions/category';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 interface CategoryFormPorps {
   initialData: Category | null;
 }
 
 export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CategorySchema>>({
@@ -61,9 +63,9 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
               name="name"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Category"]["Name"]}</FormLabel>
                   <FormControl>
-                    <Input disabled={pending} placeholder="Name" {...field} />
+                    <Input disabled={pending} placeholder={dictionary.Dashboard["Category"]["Name"]} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -71,7 +73,7 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
             />
           </div>
 
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{dictionary.General["Create"]}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

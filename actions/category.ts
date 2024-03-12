@@ -2,6 +2,7 @@
 import {db} from '@/lib/db';
 import {CategorySchema} from '@/schema';
 import {Prisma} from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import {z} from 'zod';
 
 export const getCategory = async () => {
@@ -84,6 +85,7 @@ export const updateCategory = async (
         name,
       },
     });
+    revalidatePath("/dashboard/category")
     return {success: 'Category has been updated!'};
   } catch (error: any) {
     if (error.constructor.name === Prisma.PrismaClientKnownRequestError.name) {

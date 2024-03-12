@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/select';
 import ImageUpload from '@/components/ui/image-upload';
 import {createProduct, updateProduct} from '@/actions/products';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 /* interface Product {
   id: string;
@@ -59,6 +60,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   sizes,
   colors,
 }) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof ProductSchema>>({
     resolver: zodResolver(ProductSchema),
@@ -103,7 +105,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             name="images"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Images</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Product"]["Images"]}</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value.map((image) => image.url)}
@@ -126,11 +128,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="name"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Name"]}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={pending}
-                      placeholder="Product name"
+                      placeholder={dictionary.Dashboard["Product"]["Name"]}
                       {...field}
                     />
                   </FormControl>
@@ -143,11 +145,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="description"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Description"]}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={pending}
-                      placeholder="Description"
+                      placeholder={dictionary.Dashboard["Product"]["Description"]}
                       {...field}
                     />
                   </FormControl>
@@ -161,7 +163,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="price"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Price</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Price"]}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -179,7 +181,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="cantidad"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Cantidad</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Quantity"]}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -197,7 +199,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="categoryId"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Category"]}</FormLabel>
                   <Select
                     disabled={pending}
                     onValueChange={field.onChange}
@@ -207,7 +209,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a category"
+                          placeholder={dictionary.Dashboard["Product"]["Select a category"]}
                         />
                       </SelectTrigger>
                     </FormControl>
@@ -228,7 +230,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="sizeId"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Size</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Size"]}</FormLabel>
                   <Select
                     disabled={pending}
                     onValueChange={field.onChange}
@@ -238,7 +240,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a size"
+                          placeholder={dictionary.Dashboard["Product"]["Select a size"]}
                         />
                       </SelectTrigger>
                     </FormControl>
@@ -259,7 +261,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="colorId"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Color</FormLabel>
+                  <FormLabel>{dictionary.Dashboard["Product"]["Color"]}</FormLabel>
                   <Select
                     disabled={pending}
                     onValueChange={field.onChange}
@@ -269,7 +271,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a color"
+                          placeholder={dictionary.Dashboard["Product"]["Select a color"]}
                         />
                       </SelectTrigger>
                     </FormControl>
@@ -287,7 +289,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
           </div>
           <Button disabled={pending} className="ml-auto" type="submit">
-            Create
+          {dictionary.General["Create"]}
           </Button>
         </form>
       </Form>

@@ -23,7 +23,6 @@ export const ThreadForm = () => {
     },
   });
   const onSubmit = async (values: z.infer<typeof ThreadSchema>) => {
-    console.log(values);
     const res=await CreateThread(values);
     if(res.success){
       ruter.push("/forum")

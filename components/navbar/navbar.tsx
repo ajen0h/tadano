@@ -14,7 +14,6 @@ export const NavBar = () => {
   const dictionary = useDictionary();
   const session = useSession();
   const {lang, path} = useLang();
-  console.log(path);
   const navLinks = [
     {
       name: `${dictionary.Links.News}`,

@@ -27,6 +27,7 @@ import {z} from 'zod';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Checkbox} from '@/components/ui/checkbox';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 interface MatchFormProps {
   initialData: Match | null;
@@ -34,6 +35,7 @@ interface MatchFormProps {
 }
 
 export const MatchForm = ({initialData, teams}: MatchFormProps) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof MatchSchema>>({
     resolver: zodResolver(MatchSchema),
@@ -52,7 +54,6 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof MatchSchema>) => {
-    console.log(values);
      startTransition(async () => {
       let res;
       if (initialData) {
@@ -78,9 +79,9 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="league"
             render={({field}) => (
               <FormItem>
-                <FormLabel>League</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["League"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="League" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Match"]["League"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,9 +92,9 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="stadium"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Stadium</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Stadium"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Stadium" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Match"]["Stadium"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,7 +105,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="date"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Date</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Date"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="datetime-local"
@@ -121,7 +122,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="localGoals"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Local Goles</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Local Goles"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -139,7 +140,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="visitingGoals"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Visiting Goles</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Visiting Goles"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -158,7 +159,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="localTeamId"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Local Team</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Local Team"]}</FormLabel>
                 <Select
                   disabled={pending}
                   onValueChange={field.onChange}
@@ -168,7 +169,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
                     <SelectTrigger>
                       <SelectValue
                         defaultValue={field.value}
-                        placeholder="Select a team"
+                        placeholder={dictionary.Dashboard["Match"]["Select a team"]}
                       />
                     </SelectTrigger>
                   </FormControl>
@@ -189,7 +190,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="visitingTeamId"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Visiting Team</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Visiting Team"]}</FormLabel>
                 <Select
                   disabled={pending}
                   onValueChange={field.onChange}
@@ -199,7 +200,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
                     <SelectTrigger>
                       <SelectValue
                         defaultValue={field.value}
-                        placeholder="Select a team"
+                        placeholder={dictionary.Dashboard["Match"]["Select a team"]}
                       />
                     </SelectTrigger>
                   </FormControl>
@@ -220,7 +221,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="capacity"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Capacity</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Capacity"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -238,7 +239,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
             name="isFinish"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Finished</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Match"]["Finished"]}</FormLabel>
                 <FormControl>
                   <Checkbox
                     id="isFree"
@@ -252,7 +253,7 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
           />
          
 
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{dictionary.General["Create"]}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

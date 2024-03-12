@@ -20,7 +20,6 @@ export const MenuMobil = () => {
   const dictionary = useDictionary();
 
   const {lang, path} = useLang();
-  console.log(path);
   const navLinks = [
     {
       name: `${dictionary.Links.News}`,

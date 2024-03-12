@@ -1,14 +1,26 @@
-import {getTeam} from '@/actions/teams';
-import {PlayerForm} from './[playerId]/_components/player-form';
+import {columns} from './_components/colums';
+import { getPlayer } from '@/actions/player';
+import { Button } from '@/components/ui/button';
+import { DataTable } from '@/components/data-table';
+import Link from 'next/link';
+import { Player } from '@prisma/client';
 
-const PlayerPage = async () => {
-  const teams = await getTeam();
-  return (
-    <div>
-      PlayerPage!
-      <PlayerForm initialData={null} teams={teams} />
-    </div>
-  );
+async function getData(): Promise<Player[]> {
+  // Fetch data from your API here.
+  const players = await getPlayer();
+  return players;
+}
+const PlayerPage = async({params:{lang}}:{params:{lang:string}}) => {
+  const dictionary=await import( `@/app/dictionaries/${lang}.json`).then(m=>m.default)
+ const data=await getData()
+    return ( <>
+        <section className="container mx-auto py-10">
+        <Button asChild>
+            <Link href={`/dashboard/player/create`}>{dictionary.Dashboard["Player"]["Create Player"]}</Link>
+        </Button>
+        <DataTable columns={columns} data={data} inputPlaceholder={dictionary.Dashboard["Player"]["Filter Name..."]}filterValue='name' />
+      </section>
+    </> );
 };
 
 export default PlayerPage;

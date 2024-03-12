@@ -9,7 +9,6 @@ import { CreateThread } from '@/actions/thread';
 export const FormEditor = () => {
   const form = useForm();
   const onSubmit = async (values: any) => {
-    console.log(values);
     await CreateThread(values);
   };
   return (

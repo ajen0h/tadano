@@ -1,4 +1,11 @@
 {
+  "General": {
+    "Create": "Create",
+    "Update": "Update",
+    "Upload an Image": "Upload an Image",
+    "Go back":"Go back"
+  },
+
   "News": {
     "News and Updates": "News and Updates",
     "Follow whats brand new in digital design": "Follow whats brand new in digital design",
@@ -16,5 +23,84 @@
     "News": "News",
     "Forum": "Forum",
     "Store": "Store"
+  },
+  "Dashboard": {
+    "Match": {
+      "Create Match": "Create Match",
+      "Filter Dates...": "Filter Dates...",
+      "League": "League",
+      "Stadium": "Stadium",
+      "Date": "Date",
+      "Local Goles": "Local Goles",
+      "Visiting Goles": "Visiting Goles",
+      "Local Team": "Local Team",
+      "Visiting Team": "Visiting Team",
+      "Capacity": "Capacity",
+      "Finished": "Finished",
+      "Select a team": "Select a team"
+    },
+    "News": {
+      "Create New": "Create New",
+      "Filter Title...": "Filter Title...",
+      "Title": "Title",
+      "Description": "Description",
+      "ImageUrl": "ImageUrl"
+    },
+    "Player": {
+      "Create Player": "Create Player",
+      "Filter Name...": "Filter Name...",
+      "Name": "Name",
+      "Age": "Age",
+      "Description": "Description",
+      "Height": "Height",
+      "Weight": "Weight",
+      "Dorsal": "Dorsal",
+      "Goals": "Goals",
+      "Assists": "Assists",
+      "Saves": "Saves",
+      "Position": "Position",
+      "Country": "Country",
+      "Local Team": "Local Team",
+      "Select a team": "Select a team"
+    },
+    
+    "Team": {
+      "Create Team": "Create Team",
+      "Filter Name...": "Filter Name...",
+      "Name": "Name",
+      "ImageUrl": "ImageUrl"
+    },
+    "Color": {
+      "Create Color": "Create Color",
+      "Filter Name...": "Filter Name...",
+      "Name": "Name",
+      "Value": "Value"
+    },
+    "Category": {
+      "Create Category": "Create Category",
+      "Filter Names...": "Filter Names...",
+      "Name": "Name"
+    },
+    "Size": {
+      "Create Size": "Create Size",
+      "Filter Name...": "Filter Name...",
+      "Name": "Name",
+      "Value": "Value"
+    },
+    "Product": {
+      "Create Product": "Create Product",
+      "Filter Name...": "Filter Name...",
+      "Images": "Images",
+      "Name": "Name",
+      "Description": "Description",
+      "Price": "Price",
+      "Quantity": "Quantity",
+      "Category": "Category",
+      "Select a category": "Select a category",
+      "Size": "Size",
+      "Select a size": "Select a size",
+      "Color": "Color",
+      "Select a color": "Select a color"
+    }
   }
 }

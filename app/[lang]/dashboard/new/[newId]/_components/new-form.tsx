@@ -22,11 +22,13 @@ import {createNew, updateNew} from '@/actions/news';
 import {Editor} from '@/app/[lang]/forum/_components/editor';
 import {ErrorMessage} from '@hookform/error-message';
 import "@/styles/editor.css"
+import { useDictionary } from '@/lib/dictionary-provider';
 interface NewFormPorps {
   initialData: Report | null;
 }
 
 export const NewForm: React.FC<any> = ({initialData}) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof NewSchema>>({
@@ -66,9 +68,9 @@ export const NewForm: React.FC<any> = ({initialData}) => {
             name="title"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>{dictionary.Dashboard["News"]["Title"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Title" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["News"]["Title"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,11 +81,11 @@ export const NewForm: React.FC<any> = ({initialData}) => {
             name="description"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>{dictionary.Dashboard["News"]["Description"]}</FormLabel>
                 <FormControl>
                   <Input
                     disabled={pending}
-                    placeholder="Description"
+                    placeholder={dictionary.Dashboard["News"]["Description"]}
                     {...field}
                   />
                 </FormControl>

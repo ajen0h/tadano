@@ -10,7 +10,7 @@ interface LogoutButtonProps {
 }
 
 export const LogoutButton = ({setOpen}: LogoutButtonProps) => {
-  const {lang,path}=useLang()
+  const {lang}=useLang()
   return (
     <>
       <Button

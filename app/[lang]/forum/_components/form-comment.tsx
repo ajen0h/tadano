@@ -27,7 +27,6 @@ export const FormComment = ({threadId}: FormCommentProps) => {
   const onSubmit = async (values: z.infer<typeof CommentSchema>) => {
     startTransition(async () => {
       const res = await createComment(values, threadId);
-      console.log(res);
       if (res) {
         toast.success(`${res.success}`);
       }

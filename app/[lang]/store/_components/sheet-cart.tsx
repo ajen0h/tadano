@@ -25,7 +25,6 @@ export const SheetCart = () => {
   const router = useRouter();
   useEffect(() => {
     setIsMounted(true);
-    console.log(cart.items);
   }, [cart.items]);
 
   if (!isMounted) {

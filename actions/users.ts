@@ -3,6 +3,7 @@
 import {db} from '@/lib/db';
 
 import {User} from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import {string} from 'zod';
 
 interface Email {
@@ -39,4 +40,32 @@ export const CreateUser = async (values: UserProps) => {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};
   }
+};
+
+export const DeleteUser = async (userId: string) => {
+  try {
+    const deletedUser=await db.user.delete({
+      where:{
+        id:userId
+      }
+    })
+    revalidatePath("/dashboard/users")
+    return {success:"User deleted!"}
+
+  } catch (error) {
+    console.error('Registration failed:', error);
+    return {error:"Something wrong!"}
+  }
+};
+
+export const getUsersColumn = async () => {
+  const users=await db.user.findMany({
+    select:{
+      id:true,
+      name:true,
+      email:true,
+      image:true
+    }
+  })
+  return users
 };

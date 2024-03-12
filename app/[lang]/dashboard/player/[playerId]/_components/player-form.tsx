@@ -26,6 +26,7 @@ import React, {useTransition} from 'react';
 import {useForm} from 'react-hook-form';
 import toast, {Toaster} from 'react-hot-toast';
 import {z} from 'zod';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 
 interface PlayerFormProps {
@@ -34,6 +35,8 @@ interface PlayerFormProps {
 }
 
 export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
+  const dictionary=useDictionary()
+
   const [pending, startTransition] = useTransition();
   const form = useForm({
     resolver: zodResolver(PlayerSchema),
@@ -81,9 +84,9 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="name"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Name"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Player"]["Name"]}{...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,7 +97,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="age"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Age</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Age"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -112,9 +115,9 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="description"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Description"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Player"]["Description"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -141,7 +144,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="height"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Height</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Height"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -159,7 +162,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="weight"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Weight</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Weight"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -177,7 +180,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="dorsal"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Dorsal</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Dorsal"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -195,7 +198,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="goals"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Goals</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Goals"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -213,7 +216,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="assists"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Assists</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Assists"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -231,7 +234,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="saves"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Saves</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Saves"]}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -249,7 +252,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="position"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Position</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Position"]}</FormLabel>
                 <FormControl>
                   <Input disabled={pending} placeholder="0" {...field} />
                 </FormControl>
@@ -262,7 +265,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="country"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Country</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Country"]}</FormLabel>
                 <FormControl>
                   <Input disabled={pending} placeholder="0" {...field} />
                 </FormControl>
@@ -276,7 +279,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="teamId"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Local Team</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Player"]["Local Team"]}</FormLabel>
                 <Select
                   disabled={pending}
                   onValueChange={field.onChange}
@@ -286,7 +289,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
                     <SelectTrigger>
                       <SelectValue
                         defaultValue={field.value}
-                        placeholder="Select a team"
+                        placeholder={dictionary.Dashboard["Player"]["Select a team"]}
                       />
                     </SelectTrigger>
                   </FormControl>
@@ -303,7 +306,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             )}
           />
 
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{dictionary.General["Create"]}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

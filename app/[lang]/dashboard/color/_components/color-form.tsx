@@ -17,12 +17,14 @@ import {Input} from '@/components/ui/input-dashboard';
 import {Button} from '@/components/ui/button';
 import toast, {Toaster} from 'react-hot-toast';
 import {createColor, updateColor} from '@/actions/color';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 interface ColorFormProps {
   initialData: Color | null;
 }
 
 export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
   const form = useForm({
     resolver: zodResolver(ColorSchema),
@@ -58,7 +60,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
               name="name"
               render={({field}) => (
                 <FormItem>
-                  <p className='text-sm font-semibold mb-2'>Name</p>
+                  <p className='text-sm font-semibold mb-2'>{dictionary.Dashboard["Color"]["Name"]}</p>
                   <FormControl>
                     <Input disabled={pending} placeholder="Entre a color's name" {...field} />
                   </FormControl>
@@ -71,7 +73,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
               name="value"
               render={({field}) => (
                 <FormItem>
-                  <p className='text-sm font-semibold mb-2'>Value</p>
+                  <p className='text-sm font-semibold mb-2'>{dictionary.Dashboard["Color"]["Value"]}</p>
                   <FormControl>
                     <Input disabled={pending} placeholder="Entre a value" {...field} />
                   </FormControl>
@@ -81,7 +83,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
             />
           </div>
 
-          <Button variant={"atm"} disabled={pending}>Create</Button>
+          <Button variant={"atm"} disabled={pending}>{dictionary.General["Create"]}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

@@ -19,12 +19,14 @@ import toast, {Toaster} from 'react-hot-toast';
 import {Team} from '@prisma/client';
 import ImageUpload from '@/components/ui/image-upload';
 import {createTeam, updateTeam} from '@/actions/teams';
+import { useDictionary } from '@/lib/dictionary-provider';
 
 interface TeamFormPorps {
   initialData: Team | null;
 }
 
 export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
+  const dictionary=useDictionary()
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof TeamSchema>>({
@@ -78,9 +80,9 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
             name="name"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{dictionary.Dashboard["Category"]["Name"]}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input disabled={pending} placeholder={dictionary.Dashboard["Category"]["Name"]} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

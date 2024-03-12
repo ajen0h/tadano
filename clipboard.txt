@@ -1,0 +1,10 @@
+async({params:{lang}}:{params:{lang:string}}) => {
+  const dictionary=await import( `@/app/dictionaries/${lang}.json`).then(m=>m.default)
+
+const dictionary=await import( `@/app/dictionaries/${params.lang}.json`).then(m=>m.default)
+
+  {dictionary.Dashboard["Category"]["Name"]}
+
+  {dictionary.General["Go back"]}
+
+  const dictionary=useDictionary()
