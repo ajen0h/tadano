@@ -8,3 +8,5 @@ const dictionary=await import( `@/app/dictionaries/${params.lang}.json`).then(m=
   {dictionary.General["Go back"]}
 
   const dictionary=useDictionary()
+
+Hola
