@@ -1,41 +1,39 @@
 'use client';
 import {MenuMobil} from './menu-mobil';
-import Link from 'next/link';
 import {UserMenu} from './user-menu';
-import {SheetCart} from '@/app/[lang]/store/_components/sheet-cart';
+import {SheetCart} from '@/app/[locale]/store/_components/sheet-cart';
 import {useSession} from 'next-auth/react';
 import {AuthButtons} from './auth-buttons';
-import {usePathname} from 'next/navigation';
-import {useDictionary} from '@/lib/dictionary-provider';
-import {Locale} from '@/i18n.config';
-import {useLang} from '@/hooks/use-lang';
-
+import {useTranslations} from 'next-intl';
+import {Link, usePathname} from '@/navigation';
+import NavigationLink from './navigation-link';
 export const NavBar = () => {
-  const dictionary = useDictionary();
+  const t = useTranslations('Navbar');
   const session = useSession();
-  const {lang, path} = useLang();
   const navLinks = [
     {
-      name: `${dictionary.Links.News}`,
+      name: `${t('News')}`,
       href: '/news',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Fixtures']}`,
+      name: `${t('Fixtures')}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Forum']}`,
+      name: `${t('Forum')}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Store']}`,
+      name: `${t('Store')}`,
       href: '/store',
       icon: '',
     },
   ];
+
+  const pathname = usePathname();
 
   return (
     <header className="top-0 z-30 w-full border">
@@ -45,25 +43,25 @@ export const NavBar = () => {
             <MenuMobil />
           </div>
           <div className="hidden lg:block font-bold text-xl">
-            <Link href={`/${lang}/`}>Logo</Link>
+            <NavigationLink href={`/`}>Logo</NavigationLink>
           </div>
         </div>
         <div className="col-start-2 flex flex-row justify-center items-center font-bold text-xl lg:hidden">
-          <Link href={`/${lang}/`}>Logo</Link>
+          <NavigationLink href={`/`}>Logo</NavigationLink>
         </div>
         <div className="hidden lg:block ">
           <main className="h-full flex justify-center items-center gap-5 text-sm ">
             {navLinks.map((link) => (
-              <Link
+              <NavigationLink
                 key={link.name}
-                href={`/${lang}${link.href}`}
+                href={link.href}
                 className={`${
-                  link.href === `/${path}`
+                  link.href === `${pathname}`
                     ? 'font-bold border-b-2 border-black'
                     : ''
                 }`}>
                 {link.name}
-              </Link>
+              </NavigationLink>
             ))}
           </main>
         </div>
@@ -77,13 +75,15 @@ export const NavBar = () => {
               <AuthButtons />
             </div>
           )}
-
-          <SheetCart />
+          <div className="flex flex-row justify-center items-center gap-1">
+            <SheetCart />
+            <p className='text-xs'>{t('Cart')}</p>
+          </div>
         </div>
       </main>
       <div className="flex flex-row justify-center items-center gap-3">
-        <Link href={`/es/${path ? path : ''}`}>Español</Link>
-        <Link href={`/en/${path ? path : ''}`}>Ingles</Link>
+        {/* <Link href={`/es/${path ? path : ''}`}>Español</Link>
+        <Link href={`/en/${path ? path : ''}`}>Ingles</Link> */}
       </div>
     </header>
   );

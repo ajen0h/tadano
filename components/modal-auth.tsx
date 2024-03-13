@@ -30,28 +30,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {login, register} from '@/actions/auth';
 import {ButtonGoogle} from '@/components/button-google';
 import {usePathname, useRouter} from 'next/navigation';
+import {useTranslations} from 'next-intl';
 
 interface LoginProps {
   form: any;
   pending: boolean;
-  pathname: string;
   onSubmit: (values: z.infer<typeof SignInSchema>) => void;
 }
 
 interface RegisterProps {
   form: any;
   pending: boolean;
-  pathname: string;
   onSubmit: (values: z.infer<typeof SignUpSchema>) => void;
 }
 interface ModalProps {
-  children: React.ReactNode
+  children: React.ReactNode;
   title: string;
-
 }
 
-
-const Modal = ({children,title}: ModalProps) => {
+const Modal = ({children, title}: ModalProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -74,7 +71,8 @@ const Modal = ({children,title}: ModalProps) => {
   );
 };
 
-const LoginForm = ({form, pending, pathname, onSubmit}: LoginProps) => {
+const LoginForm = ({form, pending, onSubmit}: LoginProps) => {
+  const t = useTranslations('Auht');
   return (
     <>
       <Form {...form}>
@@ -84,9 +82,13 @@ const LoginForm = ({form, pending, pathname, onSubmit}: LoginProps) => {
             name="email"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('Email-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Email" {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Email-Placeholder')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,12 +99,12 @@ const LoginForm = ({form, pending, pathname, onSubmit}: LoginProps) => {
             name="password"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('Password-Label')}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
                     disabled={pending}
-                    placeholder="Password"
+                    placeholder={t('Password-Placeholder')}
                     {...field}
                   />
                 </FormControl>
@@ -111,16 +113,18 @@ const LoginForm = ({form, pending, pathname, onSubmit}: LoginProps) => {
             )}
           />
 
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{t('Sign In')}</Button>
         </form>
       </Form>
-      <ButtonGoogle pathname={pathname} />
+      <ButtonGoogle />
       <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
 
-const RegisterForm = ({form, pending, pathname, onSubmit}: RegisterProps) => {
+const RegisterForm = ({form, pending, onSubmit}: RegisterProps) => {
+  const t = useTranslations('Auht');
+
   return (
     <>
       <Form {...form}>
@@ -130,9 +134,13 @@ const RegisterForm = ({form, pending, pathname, onSubmit}: RegisterProps) => {
             name="name"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{t('Name-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Name-Placeholder')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -143,9 +151,13 @@ const RegisterForm = ({form, pending, pathname, onSubmit}: RegisterProps) => {
             name="email"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('Email-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Email" {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Email-Label')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,12 +168,12 @@ const RegisterForm = ({form, pending, pathname, onSubmit}: RegisterProps) => {
             name="password"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('Password-Label')}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
                     disabled={pending}
-                    placeholder="Password"
+                    placeholder={t('Password-Label')}
                     {...field}
                   />
                 </FormControl>
@@ -170,25 +182,23 @@ const RegisterForm = ({form, pending, pathname, onSubmit}: RegisterProps) => {
             )}
           />
 
-          <Button disabled={pending}>Create</Button>
+          <Button disabled={pending}>{t('Register')}</Button>
         </form>
       </Form>
-      <ButtonGoogle pathname={pathname} />
+      <ButtonGoogle />
       <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
 
-interface ModalAuthProps{
-  title:string
+interface ModalAuthProps {
+  title: string;
 }
 
-export const ModalAuth = ({title}:ModalAuthProps) => {
+export const ModalAuth = ({title}: ModalAuthProps) => {
   const [auth, setAuth] = useState(false);
   const [pending, startTransition] = useTransition();
-  const pathname = usePathname();
   const router = useRouter();
-
 
   const formRegitser = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
@@ -202,7 +212,7 @@ export const ModalAuth = ({title}:ModalAuthProps) => {
       const res = await register(values);
       if (res.success) {
         toast.success(`${res.success}`);
-       setAuth(true)
+        setAuth(false);
       } else {
         toast.error(`${res.error}`);
       }
@@ -211,39 +221,32 @@ export const ModalAuth = ({title}:ModalAuthProps) => {
   const onSubmitLogin = async (values: z.infer<typeof SignInSchema>) => {
     startTransition(async () => {
       const res = await login(values);
-      if (res.success) {
-        toast.success(`${res.success}`);
-        router.push(`${pathname}`);
-      } else {
+      if (res?.error) {
         toast.error(`${res.error}`);
       }
     });
   };
 
-
-
   return (
     <>
       <Modal title={title}>
-        {!auth ? (
-          <>
-            <LoginForm
-              form={formLogin}
-              pathname={pathname}
-              onSubmit={onSubmitLogin}
-              pending={pending}
-            />
-            <Button onClick={() => setAuth(false)}>Register</Button>
-          </>
-        ) : (
+        {auth ? (
           <>
             <RegisterForm
               form={formRegitser}
-              pathname={pathname}
               onSubmit={onSubmitRegister}
               pending={pending}
             />
-            <Button onClick={() => setAuth(true)}>Login</Button>
+            <Button onClick={() => setAuth(false)}>Login</Button>
+          </>
+        ) : (
+          <>
+            <LoginForm
+              form={formLogin}
+              onSubmit={onSubmitLogin}
+              pending={pending}
+            />
+            <Button onClick={() => setAuth(true)}>Register</Button>
           </>
         )}
       </Modal>

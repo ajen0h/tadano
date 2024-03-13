@@ -5,6 +5,7 @@ import {getUserByEmail, getUserById} from './actions/auth';
 import {PrismaAdapter} from '@auth/prisma-adapter';
 import {db} from './lib/db';
 import bcrypt from 'bcrypt';
+import {SignInSchema} from './schema';
 export const {
   handlers: {GET, POST},
   auth,
@@ -44,20 +45,21 @@ export const {
     }),
     credentials({
       async authorize(credentials: any) {
-        /* const validatedFields=LoginSchema.safePase(credentials) */
+        const validatedFields = SignInSchema.safeParse(credentials);
+        if (validatedFields.success) {
+          const {email, password} = validatedFields.data;
 
-        const user = await getUserByEmail(credentials.email);
-        if (!user || !user.password) return null;
+          const user = await getUserByEmail(email);
+          if (!user || !user.password) {
+            return null;
+          }
 
-        const passwordMatch = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (passwordMatch) {
-          return user;
+          const passwordMatch = await bcrypt.compare(password, user.password);
+          
+          if (passwordMatch){
+            return user;
+          } 
         }
-
         return null;
       },
     }),

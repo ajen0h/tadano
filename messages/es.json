@@ -1,21 +1,185 @@
 {
-  
-
+  "General": {
+    "Create": "Crear",
+    "Update": "Actualizar",
+    "Upload an Image": "Subir una Imagen",
+    "Go back": "Regresar"
+  },
   "News": {
     "News and Updates": "Noticias y Actualizaciones",
-    "Follow whats brand new in digital design": "Sigue lo más nuevo en diseño digital",
+    "Follow whats brand new in digital design": "Sigue lo último en diseño digital",
     "Dont miss the latest happenings on awwwrds": {
       "Dont miss the": "No te pierdas los",
       "latest": "últimos",
       "happenings on": "acontecimientos en",
       "awwwrds": "awwwrds"
     },
-    "w.news": "w.news"
+    "wnews": "w.news"
   },
   "Links": {
-    "Fixtures": "Partidos",
+    "Fixtures": "Fijaciones",
     "News": "Noticias",
     "Forum": "Foro",
-    "Store": "Tienda"
+    "Store": "Tienda",
+    "Sign In":"Iniciar sesión",
+    "Sign Up":"Registrarse"
+  },
+  "Navbar":{
+    "Fixtures": "Fijaciones",
+    "News": "Noticias",
+    "Forum": "Foro",
+    "Store": "Tienda",
+    "Sign In":"Iniciar sesión",
+    "Sign Up":"Registrarse",
+    "Cart":"Cesta"
+  },
+  "Auht": {
+    "Email-Label": "Correo electrónico",
+    "Email-Placeholder": "Correo electrónico",
+    "Password-Label": "Contraseña",
+    "Password-Placeholder": "Contraseña",
+    "Name-Label": "Nombre de usuario",
+    "Name-Placeholder": "Nombre de usuario",
+    "Sign In": "Iniciar sesión",
+    "Register": "Registrarse"
+  },
+  "Dashboard": {
+    "Match": {
+      "Create Match": "Crear Partido",
+      "Filter Dates": "Filtrar Fechas...",
+      "League-Label": "Liga",
+      "Stadium-Label": "Estadio",
+      "Date-Label": "Fecha",
+      "Local Goles-Label": "Goles Locales",
+      "Visiting Goles-Label": "Goles Visitantes",
+      "Local Team-Label": "Equipo Local",
+      "Visiting Team-Label": "Equipo Visitante",
+      "Capacity-Label": "Capacidad",
+      "Finished-Label": "Finalizado",
+      "League-Placeholder": "Liga",
+      "Stadium-Placeholder": "Estadio",
+      "Date-Placeholder": "Fecha",
+      "Local Goles-Placeholder": "Goles Locales",
+      "Visiting Goles-Placeholder": "Goles Visitantes",
+      "Local Team-Placeholder": "Equipo Local",
+      "Visiting Team-Placeholder": "Equipo Visitante",
+      "Capacity-Placeholder": "Capacidad",
+      "Finished-Placeholder": "Finalizado",
+      "Select a team": "Seleccionar un equipo",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Forum": {
+      "Create Thread": "Crear Hilo",
+      "Filter Title": "Filtrar Título...",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "New": {
+      "Create New": "Crear Nuevo",
+      "Filter Title": "Filtrar Título...",
+      "Title-Placeholder": "Título",
+      "Description-Placeholder": "Descripción",
+      "ImageUrl-Placeholder": "URL de la Imagen",
+      "Title-Label": "Título",
+      "Description-Label": "Descripción",
+      "ImageUrl-Label": "URL de la Imagen",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Player": {
+      "Create Player": "Crear Jugador",
+      "Filter Name": "Filtrar Nombre...",
+      "Name-Placeholder": "Nombre",
+      "Age-Placeholder": "Edad",
+      "Description-Placeholder": "Descripción",
+      "Height-Placeholder": "Altura",
+      "Weight-Placeholder": "Peso",
+      "Dorsal-Placeholder": "Dorsal",
+      "Goals-Placeholder": "Goles",
+      "Assists-Placeholder": "Asistencias",
+      "Saves-Placeholder": "Atajadas",
+      "Position-Placeholder": "Posición",
+      "Country-Placeholder": "País",
+      "Local Team-Placeholder": "Equipo Local",
+      "Name-Label": "Nombre",
+      "Age-Label": "Edad",
+      "Description-Label": "Descripción",
+      "Height-Label": "Altura",
+      "Weight-Label": "Peso",
+      "Dorsal-Label": "Dorsal",
+      "Goals-Label": "Goles",
+      "Assists-Label": "Asistencias",
+      "Saves-Label": "Atajadas",
+      "Position-Label": "Posición",
+      "Country-Label": "País",
+      "Local Team-Label": "Equipo Local",
+      "Select a team": "Seleccionar un equipo",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Teams": {
+      "Create Team": "Crear Equipo",
+      "Filter Names": "Filtrar Nombre...",
+      "Name-Placeholder": "Nombre",
+      "ImageUrl-Placeholder": "URL de la Imagen",
+      "Name-Label": "Nombre",
+      "ImageUrl-Label": "URL de la Imagen",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Color": {
+      "Create Color": "Crear Color",
+      "Filter Name": "Filtrar Nombre...",
+      "Name-Placeholder": "Nombre",
+      "Value-Placeholder": "Valor",
+      "Name-Label": "Nombre",
+      "Value-Label": "Valor",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Category": {
+      "Create Category": "Crear Categoría",
+      "Filter Names": "Filtrar Nombres...",
+      "Name-Label": "Nombre",
+      "Name-Placeholder": "Nombre",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Size": {
+      "Create Size": "Crear Tamaño",
+      "Filter Name": "Filtrar Nombre...",
+      "Name-Placeholder": "Nombre",
+      "Value-Placeholder": "Valor",
+      "Name-Label": "Nombre",
+      "Value-Label": "Valor",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    },
+    "Product": {
+      "Create Product": "Crear Producto",
+      "Filter Name": "Filtrar Nombre...",
+      "Images-Placeholder": "Imágenes",
+      "Name-Placeholder": "Nombre",
+      "Description-Placeholder": "Descripción",
+      "Price-Placeholder": "Precio",
+      "Quantity-Placeholder": "Cantidad",
+      "Category-Placeholder": "Categoría",
+      "Size-Placeholder": "Tamaño",
+      "Color-Placeholder": "Color",
+      "Images-Label": "Imágenes",
+      "Name-Label": "Nombre",
+      "Description-Label": "Descripción",
+      "Price-Label": "Precio",
+      "Quantity-Label": "Cantidad",
+      "Category-Label": "Categoría",
+      "Size-Label": "Tamaño",
+      "Color-Label": "Color",
+      "Select a size": "Seleccionar un tamaño",
+      "Select a color": "Seleccionar un color",
+      "Select a category": "Seleccionar una categoría",
+      "Go back": "Regresar",
+      "Create": "Crear"
+    }
   }
 }

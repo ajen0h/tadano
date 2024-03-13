@@ -12,9 +12,11 @@ import {useState} from 'react';
 import {PiUser} from 'react-icons/pi';
 import {LogoutButton} from './sing-out';
 import {useSession} from 'next-auth/react';
+import NavigationLink from './navigation-link';
 
 export const UserMenu = () => {
   const [open, setOpen] = useState(false);
+  const session = useSession();
   return (
     <>
       <DropdownMenu>
@@ -25,11 +27,19 @@ export const UserMenu = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href={'/profile'}>Profile</Link>
+            <NavigationLink href={'/profile'}>Profile</NavigationLink>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href={'/dashboard'}>Dashboard</Link>
-          </DropdownMenuItem>
+
+          {
+            //@ts-ignore
+            session.data?.user?.role === 'ADMIN' ? (
+              <>
+                <DropdownMenuItem>
+                  <NavigationLink href={'/dashboard'}>Dashboard</NavigationLink>
+                </DropdownMenuItem>
+              </>
+            ) : null
+          }
           <DropdownMenuItem>
             <LogoutButton setOpen={setOpen} />
           </DropdownMenuItem>

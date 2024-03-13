@@ -1,43 +1,38 @@
 'use client';
 import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
-import {HiMenuAlt3} from 'react-icons/hi';
 import {Separator} from '../ui/separator';
 import Link from 'next/link';
 import {Button} from '../ui/button';
-import {GoHome} from 'react-icons/go';
-import {RxExit} from 'react-icons/rx';
 import {LogoutButton} from './sing-out';
 import {useState} from 'react';
 import {Menu} from 'lucide-react';
 import {useSession} from 'next-auth/react';
 import Image from 'next/image';
-import {usePathname} from 'next/navigation';
-import {useLang} from '@/hooks/use-lang';
-import {useDictionary} from '@/lib/dictionary-provider';
+import { useTranslations } from 'next-intl';
+import NavigationLink from './navigation-link';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
-  const dictionary = useDictionary();
+  const t=useTranslations("Links")
 
-  const {lang, path} = useLang();
   const navLinks = [
     {
-      name: `${dictionary.Links.News}`,
+      name: `${t("News")}`,
       href: '/news',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Fixtures']}`,
+      name: `${t("Fixtures")}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Forum']}`,
+      name: `${t("Forum")}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: `${dictionary.Links['Store']}`,
+      name: `${t("Store")}`,
       href: '/store',
       icon: '',
     },
@@ -78,10 +73,10 @@ export const MenuMobil = () => {
             {!session ? (
               <>
                 <Button variant={'ghost'} onClick={() => setOpen(false)}>
-                  <Link href={`${lang}/sign-in`}>Sign In</Link>
+                  <NavigationLink href={`/sign-in`}>Sign In</NavigationLink>
                 </Button>
                 <Button onClick={() => setOpen(false)}>
-                  <Link href={`${lang}/sign-up`}>Sign Up</Link>
+                  <NavigationLink href={`/sign-up`}>Sign Up</NavigationLink>
                 </Button>
               </>
             ) : null}
@@ -96,12 +91,12 @@ export const MenuMobil = () => {
                 asChild
                 className="justify-start gap-4"
                 onClick={() => setOpen(false)}>
-                <Link href={`/${lang}${link.href}`}>
+                <NavigationLink href={`${link.href}`}>
                   {link.icon}
                   <h3 className="text-marronnegro font-semibold text-md">
                     {link.name}
                   </h3>
-                </Link>
+                </NavigationLink>
               </Button>
             ))}
           </div>

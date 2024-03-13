@@ -6,13 +6,24 @@ import {TicketSchema} from '@/schema';
 import {revalidatePath} from 'next/cache';
 
 export const CreateTicket = async (matchId: string) => {
-  const session=await auth()
+  const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
     await db.ticket.create({
       data: {
         matchId,
         userId: session.user?.id,
+      },
+    });
+
+    await db.match.update({
+      where: {
+        id: matchId,
+      },
+      data: {
+        capacity: {
+          decrement: 1,
+        },
       },
     });
     revalidatePath('/fixtures');
@@ -24,7 +35,7 @@ export const CreateTicket = async (matchId: string) => {
 };
 
 export const getTicketByUser = async (matchId: string) => {
-  const session=await auth()
+  const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   const ticketUser = await db.ticket.findUnique({
     where: {

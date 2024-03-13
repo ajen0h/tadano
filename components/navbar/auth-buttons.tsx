@@ -1,20 +1,19 @@
 'use client';
 
-import {usePathname, useRouter} from 'next/navigation';
 import {Button} from '../ui/button';
 import Link from 'next/link';
-import {useLang} from '@/hooks/use-lang';
+import {useTranslations} from 'next-intl';
+import NavigationLink from './navigation-link';
 
 export const AuthButtons = () => {
-  const {lang}=useLang()
-
+  const t = useTranslations('Links');
   return (
     <section className="flex flex-row justify-center items-center gap-3">
       <Button variant={'ghost'} asChild>
-        <Link href={`/${lang}/sign-in`}>Sign In</Link>
+        <NavigationLink href={`/sign-in`}>{t('Sign In')}</NavigationLink>
       </Button>
       <Button asChild>
-        <Link href={`/${lang}/sign-up`}>Sign Up</Link>
+        <NavigationLink href={`/sign-up`}>{t('Sign Up')}</NavigationLink>
       </Button>
     </section>
   );

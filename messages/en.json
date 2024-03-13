@@ -1,4 +1,10 @@
 {
+  "General": {
+    "Create": "Create",
+    "Update": "Update",
+    "Upload an Image": "Upload an Image",
+    "Go back": "Go back"
+  },
   "News": {
     "News and Updates": "News and Updates",
     "Follow whats brand new in digital design": "Follow whats brand new in digital design",
@@ -8,13 +14,176 @@
       "happenings on": "happenings on",
       "awwwrds": "awwwrds"
     },
-    "w.news": "w.news"
+    "wnews": "w.news"
   },
-
   "Links": {
     "Fixtures": "Fixtures",
     "News": "News",
     "Forum": "Forum",
-    "Store": "Store"
+    "Store": "Store",
+    "Sign In":"Sign In",
+    "Sign Up":"Sign Up"
+  },
+  "Navbar":{
+    "Fixtures": "Fixtures",
+    "News": "News",
+    "Forum": "Forum",
+    "Store": "Store",
+    "Sign In":"Sign In",
+    "Sign Up":"Sign Up",
+    "Cart":"Cart"
+  },
+
+  "Auht":{
+    "Email-Label":"Email",
+    "Email-Placeholder":"Email",
+    "Password-Label":"Password",
+    "Password-Placeholder":"Password",
+    "Name-Label":"Username",
+    "Name-Placeholder":"Username",
+    "Sign In":"Sign In",
+    "Register":"Register"
+  },
+
+  "Dashboard": {
+    "Match": {
+      "Create Match": "Create Match",
+      "Filter Dates": "Filter Dates...",
+      "League-Label": "League",
+      "Stadium-Label": "Stadium",
+      "Date-Label": "Date",
+      "Local Goles-Label": "Local Goles",
+      "Visiting Goles-Label": "Visiting Goles",
+      "Local Team-Label": "Local Team",
+      "Visiting Team-Label": "Visiting Team",
+      "Capacity-Label": "Capacity",
+      "Finished-Label": "Finished",
+      "League-Placeholder": "League",
+      "Stadium-Placeholder": "Stadium",
+      "Date-Placeholder": "Date",
+      "Local Goles-Placeholder": "Local Goles",
+      "Visiting Goles-Placeholder": "Visiting Goles",
+      "Local Team-Placeholder": "Local Team",
+      "Visiting Team-Placeholder": "Visiting Team",
+      "Capacity-Placeholder": "Capacity",
+      "Finished-Placeholder": "Finished",
+      "Select a team": "Select a team",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "Forum": {
+      "Create Thread": "Create Thread",
+      "Filter Title": "Filter Title...",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "New": {
+      "Create New": "Create New",
+      "Filter Title": "Filter Title...",
+      "Title-Placeholder": "Title",
+      "Description-Placeholder": "Description",
+      "ImageUrl-Placeholder": "ImageUrl",
+      "Title-Label": "Title",
+      "Description-Label": "Description",
+      "ImageUrl-Label": "ImageUrl",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "Player": {
+      "Create Player": "Create Player",
+      "Filter Name": "Filter Name...",
+      "Name-Placeholder": "Name",
+      "Age-Placeholder": "Age",
+      "Description-Placeholder": "Description",
+      "Height-Placeholder": "Height",
+      "Weight-Placeholder": "Weight",
+      "Dorsal-Placeholder": "Dorsal",
+      "Goals-Placeholder": "Goals",
+      "Assists-Placeholder": "Assists",
+      "Saves-Placeholder": "Saves",
+      "Position-Placeholder": "Position",
+      "Country-Placeholder": "Country",
+      "Local Team-Placeholder": "Local Team",
+      "Name-Label": "Name",
+      "Age-Label": "Age",
+      "Description-Label": "Description",
+      "Height-Label": "Height",
+      "Weight-Label": "Weight",
+      "Dorsal-Label": "Dorsal",
+      "Goals-Label": "Goals",
+      "Assists-Label": "Assists",
+      "Saves-Label": "Saves",
+      "Position-Label": "Position",
+      "Country-Label": "Country",
+      "Local Team-Label": "Local Team",
+      "Select a team": "Select a team",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+
+    "Team": {
+      "Create Team": "Create Team",
+      "Filter Name": "Filter Name...",
+      "Name-Placeholder": "Name",
+      "ImageUrl-Placeholder": "ImageUrl",
+      "Name-Label": "Name",
+      "ImageUrl-Label": "ImageUrl-Placeholder",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "Color": {
+      "Create Color": "Create Color",
+      "Filter Name": "Filter Name...",
+      "Name-Placeholder": "Name",
+      "Value-Placeholder": "Value",
+      "Name-Label": "Name",
+      "Value-Label": "Value",
+    "Go back": "Go back",
+    "Create": "Create"
+
+    },
+    "Category": {
+      "Create Category": "Create Category",
+      "Filter Names": "Filter Names...",
+      "Name-Label": "Name",
+      "Name-Placeholder": "Name",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "Size": {
+      "Create Size": "Create Size",
+      "Filter Name": "Filter Name...",
+      "Name-Placeholder": "Name",
+      "Value-Placeholder": "Value",
+      "Name-Label": "Name",
+      "Value-Label": "Value",
+      "Go back": "Go back",
+      "Create": "Create"
+    },
+    "Product": {
+      "Create Product": "Create Product",
+      "Filter Name": "Filter Name...",
+      "Images-Placeholder": "Images",
+      "Name-Placeholder": "Name",
+      "Description-Placeholder": "Description",
+      "Price-Placeholder": "Price",
+      "Quantity-Placeholder": "Quantity",
+      "Category-Placeholder": "Category",
+      "Size-Placeholder": "Size",
+      "Color-Placeholder": "Color",
+      "Images-Label": "Images",
+      "Name-Label": "Name",
+      "Description-Label": "Description",
+      "Price-Label": "Price",
+      "Quantity-Label": "Quantity",
+      "Category-Label": "Category",
+      "Size-Label": "Size",
+      "Color-Label": "Color",
+      "Select a size": "Select a size",
+      "Select a color": "Select a color",
+      "Select a category": "Select a category",
+      "Go back": "Go back",
+      "Create": "Create"
+    }
   }
 }

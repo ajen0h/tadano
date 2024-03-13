@@ -5,8 +5,12 @@ import {db} from '@/lib/db';
 import {SignInSchema, SignUpSchema} from '@/schema';
 import {z} from 'zod';
 import bcrypt from 'bcrypt';
+import {cookies} from 'next/headers';
+import {AuthError} from 'next-auth';
+import {redirect} from '@/navigation';
 
 export const register = async (values: z.infer<typeof SignUpSchema>) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const {name, email, password} = values;
   const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -33,18 +37,30 @@ export const register = async (values: z.infer<typeof SignUpSchema>) => {
 };
 
 export const login = async (values: z.infer<typeof SignInSchema>) => {
-  const {email, password} = values;
+  const lang=cookies().get("NEXT_LOCALE")?.value
+  const validatedFields = SignInSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Credentials error.'};
+  }
+  const {email, password} = validatedFields.data;
 
-  const loggin = await signIn('credentials', {
-    email,
-    password,
-  });
-if(loggin){
-  return {success: 'Login!'};
-
-}
-
-  return {error: 'Credentials error.'};
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirectTo:`/${lang}/`
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return {error: 'Credentials error.'};
+        default: {
+          return {error: 'Something went wrong!.'};
+        }
+      }
+    }
+  }
 };
 
 export const getUserByEmail = async (email: string) => {
