@@ -19,7 +19,7 @@ import toast, {Toaster} from 'react-hot-toast';
 import ImageUpload from '@/components/ui/image-upload';
 import {Report, User} from '@prisma/client';
 import {createNew, updateNew} from '@/actions/news';
-import {Editor} from '@/app/[lang]/forum/_components/editor';
+import {Editor} from '@/app/[locale]/forum/_components/editor';
 import {ErrorMessage} from '@hookform/error-message';
 import "@/styles/editor.css"
 import { useTranslations } from 'next-intl';
