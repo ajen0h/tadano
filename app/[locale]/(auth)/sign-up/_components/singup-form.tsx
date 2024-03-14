@@ -18,8 +18,10 @@ import {z} from 'zod';
 import 'react-datepicker/dist/react-datepicker.css';
 import {register} from '@/actions/auth';
 import {useRouter} from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export const SingUpForm = () => {
+  const t=useTranslations("SignIn")
   const [pending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof SignUpSchema>>({
@@ -41,15 +43,15 @@ export const SingUpForm = () => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
           <FormField
             control={form.control}
             name="name"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{t("Name-Label")}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Name" {...field} />
+                  <Input disabled={pending}  {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -60,9 +62,9 @@ export const SingUpForm = () => {
             name="email"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("Email-Label")}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Email" {...field} />
+                  <Input disabled={pending} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -73,12 +75,12 @@ export const SingUpForm = () => {
             name="password"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("Password-Label")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
                     disabled={pending}
-                    placeholder="Password"
+                    
                     {...field}
                   />
                 </FormControl>
@@ -87,7 +89,7 @@ export const SingUpForm = () => {
             )}
           />
 
-          <Button disabled={pending}>Create</Button>
+          <Button  className="w-full" disabled={pending}>{t("SignUp")}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

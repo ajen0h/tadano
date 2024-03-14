@@ -8,6 +8,7 @@ import bcrypt from 'bcrypt';
 import {cookies} from 'next/headers';
 import {AuthError} from 'next-auth';
 import {redirect} from '@/navigation';
+import {revalidatePath} from 'next/cache';
 
 export const register = async (values: z.infer<typeof SignUpSchema>) => {
   const lang = cookies().get('NEXT_LOCALE')?.value;
@@ -29,6 +30,7 @@ export const register = async (values: z.infer<typeof SignUpSchema>) => {
         password: hashedPassword,
       },
     });
+
     return {success: 'User created'};
   } catch (error) {
     console.error('Registration failed:', error);
@@ -37,7 +39,7 @@ export const register = async (values: z.infer<typeof SignUpSchema>) => {
 };
 
 export const login = async (values: z.infer<typeof SignInSchema>) => {
-  const lang=cookies().get("NEXT_LOCALE")?.value
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const validatedFields = SignInSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Credentials error.'};
@@ -48,8 +50,9 @@ export const login = async (values: z.infer<typeof SignInSchema>) => {
     await signIn('credentials', {
       email,
       password,
-      redirectTo:`/${lang}/`
     });
+    revalidatePath(`/${lang}/`);
+    return {success: ''};
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

@@ -3,6 +3,7 @@ import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {CommentSchema} from '@/schema';
 import {revalidatePath} from 'next/cache';
+import { cookies } from 'next/headers';
 import {z} from 'zod';
 
 export const getComment = async () => {
@@ -27,6 +28,8 @@ export const createComment = async (
   values: z.infer<typeof CommentSchema>,
   threadId: string
 ) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -49,7 +52,7 @@ export const createComment = async (
       },
     });
 
-    revalidatePath(`forum/thread/${threadId}`);
+    revalidatePath(`/${lang}/forum/thread/${threadId}`);
     return {success: 'Comment has been created!'};
   } catch (error) {
     console.log(error);

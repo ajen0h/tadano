@@ -4,11 +4,14 @@ import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {ThreadSchema} from '@/schema';
 import {revalidatePath} from 'next/cache';
+import { cookies } from 'next/headers';
 import {z} from 'zod';
 
 type ThreadType = z.infer<typeof ThreadSchema>;
 
 export const CreateThread = async (values: ThreadType) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -20,7 +23,9 @@ export const CreateThread = async (values: ThreadType) => {
         userId: session.user?.id,
       },
     });
-    revalidatePath("/forum")
+    
+    revalidatePath(`${lang}/forum`);
+
     return {success:"Thread created!"}
   } catch (error) {
     console.error('Registration failed:', error);
@@ -62,6 +67,7 @@ export const getThread = async (threadId: string) => {
 };
 
 export const likeThread = async (threadId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -92,7 +98,7 @@ export const likeThread = async (threadId: string) => {
       });
     }
 
-    revalidatePath(`/forum/thread/${threadId}`);
+    revalidatePath(`${lang}//forum/thread/${threadId}`);
   } catch (error) {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};

@@ -4,8 +4,11 @@ import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {TicketSchema} from '@/schema';
 import {revalidatePath} from 'next/cache';
+import { cookies } from 'next/headers';
 
 export const CreateTicket = async (matchId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -26,7 +29,7 @@ export const CreateTicket = async (matchId: string) => {
         },
       },
     });
-    revalidatePath('/fixtures');
+    revalidatePath(`${lang}/fixtures`);
     return {success: 'Ticket created!'};
   } catch (error) {
     console.error('Registration failed:', error);

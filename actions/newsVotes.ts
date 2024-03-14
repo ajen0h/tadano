@@ -3,6 +3,7 @@
 import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {revalidatePath} from 'next/cache';
+import { cookies } from 'next/headers';
 
 export const getNewVoteByUser = async (newId: string) => {
   const session=await auth()
@@ -18,6 +19,7 @@ export const getNewVoteByUser = async (newId: string) => {
 };
 
 export const likeVoteByUserIdAndNewId = async (reportId: string) => {
+
   const session=await auth()
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -42,6 +44,7 @@ export const likeVoteByUserIdAndNewId = async (reportId: string) => {
 };
 
 export const likeVote = async (reportId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const session=await auth()
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -63,7 +66,7 @@ export const likeVote = async (reportId: string) => {
             reportId,
           },
         });
-        revalidatePath('/news');
+        revalidatePath(`${lang}/news`);
         return {message: 'Unliked Post.'};
       } catch (error) {
         return {message: 'Database Error: Failed to Unlike Post.'};
@@ -79,7 +82,8 @@ export const likeVote = async (reportId: string) => {
       },
     });
 
-    revalidatePath(`news`);
+    revalidatePath(`${lang}/news`);
+
     return {success: 'Email sent!'};
   } catch (error) {
     console.error('Registration failed:', error);

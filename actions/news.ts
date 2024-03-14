@@ -4,6 +4,7 @@ import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
 import {Prisma} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
+import { cookies } from 'next/headers';
 import {string, z} from 'zod';
 
 export const getNews = async () => {
@@ -32,6 +33,7 @@ export const getNewById = async (newId: string) => {
 };
 
 export const createNew = async (values: z.infer<typeof NewSchema>) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const validatedFields = NewSchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -59,7 +61,7 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
         userId: session.user?.id,
       },
     });
-    revalidatePath('/news');
+    revalidatePath(`${lang}/news`);
     return {success: 'New has been created!'};
   } catch (error) {
     return {error: 'Error creating new.'};
@@ -67,13 +69,14 @@ export const createNew = async (values: z.infer<typeof NewSchema>) => {
 };
 
 export const deleteNew = async (NewId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   try {
     await db.report.delete({
       where: {
         id: NewId,
       },
     });
-
+    revalidatePath(`${lang}/news`);
     return {success: 'New was deleted!'};
   } catch (error) {
     console.error('Registration failed:', error);
@@ -85,6 +88,7 @@ export const updateNew = async (
   NewId: string,
   values: z.infer<typeof NewSchema>
 ) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
 
@@ -108,6 +112,7 @@ export const updateNew = async (
         userId: session.user?.id,
       },
     });
+    revalidatePath(`${lang}/news`);
     return {success: 'New has been updated!'};
   } catch (error: any) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {

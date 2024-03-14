@@ -54,7 +54,7 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
         {session?.user?.id ? (
           <>
             <main className="grid md:grid-cols-[auto_1fr] gap-3">
-              {session?.user?.image ? (
+              {session?.user?.image!==null ? (
                 <>
                   <div className="relative h-[60px] w-[60px]">
                     <Image
@@ -85,7 +85,7 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
 
         <section className="mt-4">
           <p className="text-2xl font-bold">
-            Comments {thread.comments.length}
+            Comments
           </p>
           {thread.comments.map((comment) => (
             <CommentCard key={comment.id} comment={comment} />

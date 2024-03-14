@@ -8,7 +8,7 @@ import {z} from 'zod';
 import {CommentSchema} from '@/schema';
 import {createComment} from '@/actions/comment';
 import toast from 'react-hot-toast';
-import {useTransition} from 'react';
+import {useEffect, useTransition} from 'react';
 import {useSession} from 'next-auth/react';
 import {ModalAuth} from '@/components/modal-auth';
 
@@ -24,10 +24,12 @@ export const FormComment = ({threadId}: FormCommentProps) => {
       body: '',
     },
   });
+
   const onSubmit = async (values: z.infer<typeof CommentSchema>) => {
     startTransition(async () => {
       const res = await createComment(values, threadId);
       if (res) {
+        form.reset();
         toast.success(`${res.success}`);
       }
     });

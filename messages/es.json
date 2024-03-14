@@ -5,6 +5,22 @@
     "Upload an Image": "Subir una Imagen",
     "Go back": "Regresar"
   },
+  "SignIn": {
+    "Create Account": "Create Account",
+    "SignIn": "Iniciar sesión",
+    "SignUp": "Registrarse",
+    "Login": "Acceder",
+    "Email-Label": "Correo electrónico",
+    "Email-Placeholder": "Correo electrónico",
+    "Password-Label": "Contraseña",
+    "Password-Placeholder": "Contraseña",
+    "Name-Label": "Nombre de usuario",
+    "Name-Placeholder": "Nombre de usuario"
+  },
+
+  "Fixtures": {
+    "Schedule and Results": "Calendario y Resultados"
+  },
   "News": {
     "News and Updates": "Noticias y Actualizaciones",
     "Follow whats brand new in digital design": "Sigue lo último en diseño digital",
@@ -76,9 +92,9 @@
       "Select a team": "Seleccionar un equipo",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Match":"Editar Encuentro",
-      "Delete Match":"Borrar Encuentro"
+      "Actions": "Acciones",
+      "Edit Match": "Editar Encuentro",
+      "Delete Match": "Borrar Encuentro"
     },
     "Forum": {
       "Create Thread": "Crear Hilo",
@@ -97,9 +113,9 @@
       "ImageUrl-Label": "URL de la Imagen",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit New":"Editar New",
-      "Delete New":"Borrar New"
+      "Actions": "Acciones",
+      "Edit New": "Editar New",
+      "Delete New": "Borrar New"
     },
     "Player": {
       "Create Player": "Crear Jugador",
@@ -131,9 +147,9 @@
       "Select a team": "Seleccionar un equipo",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Player":"Editar Jugador",
-      "Delete Player":"Borrar Jugador"
+      "Actions": "Acciones",
+      "Edit Player": "Editar Jugador",
+      "Delete Player": "Borrar Jugador"
     },
     "Team": {
       "Create Team": "Crear Equipo",
@@ -144,10 +160,9 @@
       "ImageUrl-Label": "URL de la Imagen",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Team":"Editar Team",
-      "Delete Team":"Borrar Team"
-      
+      "Actions": "Acciones",
+      "Edit Team": "Editar Team",
+      "Delete Team": "Borrar Team"
     },
     "Color": {
       "Create Color": "Crear Color",
@@ -158,9 +173,9 @@
       "Value-Label": "Valor",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Color":"Editar Color",
-      "Delete Color":"Borrar Color"
+      "Actions": "Acciones",
+      "Edit Color": "Editar Color",
+      "Delete Color": "Borrar Color"
     },
     "Category": {
       "Create Category": "Crear Categoría",
@@ -171,8 +186,7 @@
       "Create": "Crear",
       "Actions": "Acciones",
       "Edit Category": "Editar Categoría",
-      "Delete Category":"Borrar Categoría"
-
+      "Delete Category": "Borrar Categoría"
     },
     "Size": {
       "Create Size": "Crear Tamaño",
@@ -183,9 +197,9 @@
       "Value-Label": "Valor",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Size":"Editar Size",
-      "Delete Size":"Borrar Size"
+      "Actions": "Acciones",
+      "Edit Size": "Editar Size",
+      "Delete Size": "Borrar Size"
     },
     "Product": {
       "Create Product": "Crear Producto",
@@ -211,9 +225,9 @@
       "Select a category": "Seleccionar una categoría",
       "Go back": "Regresar",
       "Create": "Crear",
-      "Actions":"Acciones",
-      "Edit Product":"Editar Product",
-      "Delete Product":"Borrar Product"
+      "Actions": "Acciones",
+      "Edit Product": "Editar Product",
+      "Delete Product": "Borrar Product"
     }
   }
 }

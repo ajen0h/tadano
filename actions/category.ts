@@ -2,7 +2,8 @@
 import {db} from '@/lib/db';
 import {CategorySchema} from '@/schema';
 import {Prisma} from '@prisma/client';
-import { revalidatePath } from 'next/cache';
+import {revalidatePath} from 'next/cache';
+import {cookies} from 'next/headers';
 import {z} from 'zod';
 
 export const getCategory = async () => {
@@ -19,10 +20,10 @@ export const getCategoryById = async (categoryId: string) => {
   return category;
 };
 
-
 export const createCategory = async (
   values: z.infer<typeof CategorySchema>
 ) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const validatedFields = CategorySchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -44,6 +45,7 @@ export const createCategory = async (
         name,
       },
     });
+    revalidatePath(`/${lang}/dashboard/category`);
     return {success: 'Category has been created!'};
   } catch (error) {
     return {error: 'Error creating category.'};
@@ -51,12 +53,14 @@ export const createCategory = async (
 };
 
 export const deleteCategory = async (categoryId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   try {
     await db.category.delete({
       where: {
         id: categoryId,
       },
     });
+    revalidatePath(`/${lang}/dashboard/category`);
 
     return {success: 'Category was deleted!'};
   } catch (error) {
@@ -69,6 +73,7 @@ export const updateCategory = async (
   categoryId: string,
   values: z.infer<typeof CategorySchema>
 ) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const validatedFields = CategorySchema.safeParse(values);
   if (!validatedFields.success) {
     return {error: 'Invalid Fields!'};
@@ -85,7 +90,7 @@ export const updateCategory = async (
         name,
       },
     });
-    revalidatePath("/dashboard/category")
+    revalidatePath(`/${lang}/dashboard/category`);
     return {success: 'Category has been updated!'};
   } catch (error: any) {
     if (error.constructor.name === Prisma.PrismaClientKnownRequestError.name) {
@@ -96,7 +101,6 @@ export const updateCategory = async (
     return {error: 'Anything wrong!'};
   }
 };
-
 
 export const InfinityCategoryInitial = async () => {
   const initialItems = await db.category.findMany({

@@ -4,7 +4,21 @@
     "Update": "Update",
     "Upload an Image": "Upload an Image",
     "Go back": "Go back"
-    
+  },
+  "SignIn": {
+    "Create Account": "Create Account",
+    "SignIn": "SignIn",
+    "SignUp": "SignUp",
+    "Login": "Login",
+    "Email-Label": "Email",
+    "Email-Placeholder": "Email",
+    "Password-Label": "Password",
+    "Password-Placeholder": "Password",
+    "Name-Label": "Username",
+    "Name-Placeholder": "Username"
+  },
+  "Fixtures": {
+    "Schedule and Results": "Schedule and Results"
   },
   "News": {
     "News and Updates": "News and Updates",
@@ -52,7 +66,7 @@
     "Body-Label": "Body",
     "Body-Placeholder": "Body",
     "Send": "Send",
-    "Advice-Button":"Advice"
+    "Advice-Button": "Advice"
   },
 
   "Dashboard": {
@@ -80,9 +94,9 @@
       "Select a team": "Select a team",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Match":"Edit Match",
-      "Delete Match":"Delete Match"
+      "Actions": "Actions",
+      "Edit Match": "Edit Match",
+      "Delete Match": "Delete Match"
     },
     "Forum": {
       "Create Thread": "Create Thread",
@@ -101,9 +115,9 @@
       "ImageUrl-Label": "ImageUrl",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit New":"Edit New",
-      "Delete New":"Delete New"
+      "Actions": "Actions",
+      "Edit New": "Edit New",
+      "Delete New": "Delete New"
     },
     "Player": {
       "Create Player": "Create Player",
@@ -135,9 +149,9 @@
       "Select a team": "Select a team",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Player":"Edit Player",
-      "Delete Player":"Delete Player"
+      "Actions": "Actions",
+      "Edit Player": "Edit Player",
+      "Delete Player": "Delete Player"
     },
 
     "Team": {
@@ -149,9 +163,9 @@
       "ImageUrl-Label": "ImageUrl-Placeholder",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Team":"Edit Team",
-      "Delete Team":"Delete Team"
+      "Actions": "Actions",
+      "Edit Team": "Edit Team",
+      "Delete Team": "Delete Team"
     },
     "Color": {
       "Create Color": "Create Color",
@@ -162,9 +176,9 @@
       "Value-Label": "Value",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Color":"Edit Color",
-      "Delete Color":"Delete Color"
+      "Actions": "Actions",
+      "Edit Color": "Edit Color",
+      "Delete Color": "Delete Color"
     },
     "Category": {
       "Create Category": "Create Category",
@@ -173,9 +187,9 @@
       "Name-Placeholder": "Name",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Category":"Edit Category",
-      "Delete Category":"Delete Category"
+      "Actions": "Actions",
+      "Edit Category": "Edit Category",
+      "Delete Category": "Delete Category"
     },
     "Size": {
       "Create Size": "Create Size",
@@ -186,9 +200,9 @@
       "Value-Label": "Value",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Size":"Edit Size",
-      "Delete Size":"Delete Size"
+      "Actions": "Actions",
+      "Edit Size": "Edit Size",
+      "Delete Size": "Delete Size"
     },
     "Product": {
       "Create Product": "Create Product",
@@ -214,9 +228,9 @@
       "Select a category": "Select a category",
       "Go back": "Go back",
       "Create": "Create",
-      "Actions":"Actions",
-      "Edit Product":"Edit Product",
-      "Delete Product":"Delete Product"
+      "Actions": "Actions",
+      "Edit Product": "Edit Product",
+      "Delete Product": "Delete Product"
     }
   }
 }

@@ -19,8 +19,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {login} from '@/actions/auth';
 import {ButtonGoogle} from '@/components/button-google';
 import {useRouter} from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export const SignInForm = () => {
+  const t = useTranslations('SignIn');
   const [pending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof SignInSchema>>({
@@ -34,25 +36,25 @@ export const SignInForm = () => {
         toast.error(`${res.error}`);
       }else{
         toast.success(`LoginIn!`);
-        router.refresh()
-        router.back()
+        console.log("object");
 
       }
     });
   };
 
   return (
-    <div>
+    <div className='w-full'>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
           <FormField
             control={form.control}
             name="email"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("Email-Label")}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder="Email" {...field} />
+                  <Input disabled={pending} 
+                   {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -63,12 +65,12 @@ export const SignInForm = () => {
             name="password"
             render={({field}) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("Password-Label")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
                     disabled={pending}
-                    placeholder="Password"
+                    
                     {...field}
                   />
                 </FormControl>
@@ -77,9 +79,14 @@ export const SignInForm = () => {
             )}
           />
 
-          <Button disabled={pending}>Create</Button>
+          <Button className='w-full' disabled={pending}>{t("SignIn")}</Button>
         </form>
       </Form>
+      <div className='flex flex-row justify-center items-center gap-3 py-4'>
+        <p>------</p>
+        <p>O</p>
+        <p>------</p>
+      </div>
       <ButtonGoogle pathname="/" />
       <Toaster position="top-center" reverseOrder={false} />
     </div>

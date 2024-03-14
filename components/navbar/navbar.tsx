@@ -1,4 +1,4 @@
-'use client';
+
 import {MenuMobil} from './menu-mobil';
 import {UserMenu} from './user-menu';
 import {SheetCart} from '@/app/[locale]/store/_components/sheet-cart';
@@ -7,33 +7,14 @@ import {AuthButtons} from './auth-buttons';
 import {useTranslations} from 'next-intl';
 import {Link, usePathname} from '@/navigation';
 import NavigationLink from './navigation-link';
-export const NavBar = () => {
-  const t = useTranslations('Navbar');
-  const session = useSession();
-  const navLinks = [
-    {
-      name: `${t('News')}`,
-      href: '/news',
-      icon: '',
-    },
-    {
-      name: `${t('Fixtures')}`,
-      href: '/fixtures',
-      icon: '',
-    },
-    {
-      name: `${t('Forum')}`,
-      href: '/forum',
-      icon: '',
-    },
-    {
-      name: `${t('Store')}`,
-      href: '/store',
-      icon: '',
-    },
-  ];
-
-  const pathname = usePathname();
+import { LenguageDropDown } from '../lenguage-dropdown';
+import { getTranslations } from 'next-intl/server';
+import { auth } from '@/auth';
+import { SerchLinkNav } from './serch-link-nav';
+export const NavBar = async () => {
+  const t = await getTranslations('Navbar');
+  const session =await auth();
+ 
 
   return (
     <header className="top-0 z-30 w-full border">
@@ -50,23 +31,10 @@ export const NavBar = () => {
           <NavigationLink href={`/`}>Logo</NavigationLink>
         </div>
         <div className="hidden lg:block ">
-          <main className="h-full flex justify-center items-center gap-5 text-sm ">
-            {navLinks.map((link) => (
-              <NavigationLink
-                key={link.name}
-                href={link.href}
-                className={`${
-                  link.href === `${pathname}`
-                    ? 'font-bold border-b-2 border-black'
-                    : ''
-                }`}>
-                {link.name}
-              </NavigationLink>
-            ))}
-          </main>
+          <SerchLinkNav/>
         </div>
         <div className="col-start-3 flex flex-row justify-center items-center gap-4">
-          {session?.data?.user?.id ? (
+          {session?.user?.id ? (
             <>
               <UserMenu />
             </>
@@ -79,11 +47,12 @@ export const NavBar = () => {
             <SheetCart />
             <p className='text-xs'>{t('Cart')}</p>
           </div>
+          <LenguageDropDown/>
+        </div>
+        <div>
         </div>
       </main>
       <div className="flex flex-row justify-center items-center gap-3">
-        {/* <Link href={`/es/${path ? path : ''}`}>Español</Link>
-        <Link href={`/en/${path ? path : ''}`}>Ingles</Link> */}
       </div>
     </header>
   );

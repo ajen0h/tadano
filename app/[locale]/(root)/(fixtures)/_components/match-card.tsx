@@ -81,7 +81,7 @@ const MatchCard = async ({match}: MatchProps) => {
   return (
     <section className="border-b p-5">
       <section className="px-4 lg:px-10 py-6 bg-gray-200">
-        <p className="uppercase font-semibold mb-3 lg:text-xl">Julio 23</p>
+        {/* <p className="uppercase font-semibold mb-3 lg:text-xl">Julio 23</p> */}
         {/* Card partido */}
         <main className="grid xl:grid-cols-2 gap-3">
           <article className="border bg-gray-300 p-4">
