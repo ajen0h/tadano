@@ -13,8 +13,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import {DeleteUser} from '@/actions/users';
 import toast from 'react-hot-toast';
-import { useTranslations } from 'next-intl';
+import {useTranslations} from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import {deleteCategory} from '@/actions/category';
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
@@ -26,25 +27,27 @@ export type Category = {
 };
 
 const Menu = ({categoryId}: {categoryId: string}) => {
-  const t = useTranslations('Index');
+  const t = useTranslations('Dashboard.Category');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/dashboard/category/${categoryId}`}>Edit Category</NavigationLink>
+        <NavigationLink href={`/dashboard/category/${categoryId}`}>
+          {t('Edit Category')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(categoryId);
+          const res = await deleteCategory(categoryId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Category')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );

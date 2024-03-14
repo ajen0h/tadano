@@ -13,7 +13,7 @@ async function getData(): Promise<Product[]> {
   return products;
 }
 const ProductPage =async({params:{lang}}:{params:{lang:string}}) => {
-  const t = await getTranslations('Dashboard.Player');
+  const t = await getTranslations('Dashboard.Product');
 
   const data = await getData();
   return (

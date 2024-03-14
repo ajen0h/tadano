@@ -12,18 +12,15 @@ async function getData(): Promise<Category[]> {
   return categories;
 }
 const CategoryPage = async () => {
-  const t = await getTranslations('Category');
-
+  const t = await getTranslations('Dashboard');
   const data = await getData();
-
-
   return (
     <>   
       <section className="container mx-auto py-10">
         <Button asChild>
-            <NavigationLink href={`/dashboard/category/create`}>{t("Create Category")}</NavigationLink>
+            <NavigationLink href={`/dashboard/category/create`}>{t("Category.Create Category")}</NavigationLink>
         </Button>
-        <DataTable columns={columns} data={data} inputPlaceholder={t("Filter Names")} filterValue='name' />
+        <DataTable columns={columns} data={data} inputPlaceholder={t("Category.Filter Names")} filterValue='name' />
       </section>
     </>
   );

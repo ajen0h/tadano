@@ -16,7 +16,7 @@ import {useSession} from 'next-auth/react';
 import Image from 'next/image';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
-import {IoBagOutline} from 'react-icons/io5';
+import { BsHandbag } from "react-icons/bs";
 
 export const SheetCart = () => {
   const session = useSession();
@@ -47,7 +47,7 @@ export const SheetCart = () => {
       <Sheet>
         <SheetTrigger>
           <Button variant={'ghost'} className='p-0 m-0'>
-            <IoBagOutline className="h-6 w-6" />
+            <BsHandbag className="h-6 w-6" />
           </Button>
         </SheetTrigger>
         <SheetContent className="flex flex-col justify-between">

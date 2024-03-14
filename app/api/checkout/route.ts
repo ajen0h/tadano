@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 import {stripe} from '@/lib/stripe';
 import { auth } from '@/auth';
 import { Product } from '@prisma/client';
+import { cookies } from 'next/headers';
 
 interface DataProps {
   id: string;
@@ -17,6 +18,7 @@ export async function GET(){
 }
 
 export async function POST(req: NextRequest) {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
   const userSession=await auth()
   if(!userSession?.user?.id) return NextResponse.json({ error: "" })
   const data: DataProps[] = await req.json();
@@ -75,8 +77,8 @@ export async function POST(req: NextRequest) {
     phone_number_collection: {
       enabled: true,
     },
-    success_url: `${process.env.FRONTEND_STORE_URL}store?success=1`,
-    cancel_url: `${process.env.FRONTEND_STORE_URL}store?canceled=1`,
+    success_url: `${process.env.FRONTEND_STORE_URL}/${lang}/store?success=1`,
+    cancel_url: `${process.env.FRONTEND_STORE_URL}/${lang}/store?canceled=1`,
     metadata: {
       orderId: order.id,
 
@@ -84,5 +86,7 @@ export async function POST(req: NextRequest) {
   });
 
   return NextResponse.json({ url: session.url });
- /*  return NextResponse.json("{ url: session.url }"); */
+ 
+ 
+  /* return NextResponse.json("{ url: session.url }"); */
 }

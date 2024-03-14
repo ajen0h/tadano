@@ -17,21 +17,21 @@
     "wnews": "w.news"
   },
   "Links": {
-    "Fixtures": "Fijaciones",
+    "Fixtures": "Equipo",
     "News": "Noticias",
     "Forum": "Foro",
     "Store": "Tienda",
-    "Sign In":"Iniciar sesión",
-    "Sign Up":"Registrarse"
+    "Sign In": "Iniciar sesión",
+    "Sign Up": "Registrarse"
   },
-  "Navbar":{
-    "Fixtures": "Fijaciones",
+  "Navbar": {
+    "Fixtures": "Equipo",
     "News": "Noticias",
     "Forum": "Foro",
     "Store": "Tienda",
-    "Sign In":"Iniciar sesión",
-    "Sign Up":"Registrarse",
-    "Cart":"Cesta"
+    "Sign In": "Iniciar sesión",
+    "Sign Up": "Registrarse",
+    "Cart": "Cesta"
   },
   "Auht": {
     "Email-Label": "Correo electrónico",
@@ -42,6 +42,14 @@
     "Name-Placeholder": "Nombre de usuario",
     "Sign In": "Iniciar sesión",
     "Register": "Registrarse"
+  },
+  "Advice": {
+    "Id-Label": "Id de la notica",
+    "Id-Placeholder": "Id",
+    "Body-Label": "Body",
+    "Body-Placeholder": "Body",
+    "Send": "Enviar",
+    "Advice-Button": "Reporte"
   },
   "Dashboard": {
     "Match": {
@@ -67,7 +75,10 @@
       "Finished-Placeholder": "Finalizado",
       "Select a team": "Seleccionar un equipo",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Match":"Editar Encuentro",
+      "Delete Match":"Borrar Encuentro"
     },
     "Forum": {
       "Create Thread": "Crear Hilo",
@@ -85,7 +96,10 @@
       "Description-Label": "Descripción",
       "ImageUrl-Label": "URL de la Imagen",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit New":"Editar New",
+      "Delete New":"Borrar New"
     },
     "Player": {
       "Create Player": "Crear Jugador",
@@ -116,9 +130,12 @@
       "Local Team-Label": "Equipo Local",
       "Select a team": "Seleccionar un equipo",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Player":"Editar Jugador",
+      "Delete Player":"Borrar Jugador"
     },
-    "Teams": {
+    "Team": {
       "Create Team": "Crear Equipo",
       "Filter Names": "Filtrar Nombre...",
       "Name-Placeholder": "Nombre",
@@ -126,7 +143,11 @@
       "Name-Label": "Nombre",
       "ImageUrl-Label": "URL de la Imagen",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Team":"Editar Team",
+      "Delete Team":"Borrar Team"
+      
     },
     "Color": {
       "Create Color": "Crear Color",
@@ -136,7 +157,10 @@
       "Name-Label": "Nombre",
       "Value-Label": "Valor",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Color":"Editar Color",
+      "Delete Color":"Borrar Color"
     },
     "Category": {
       "Create Category": "Crear Categoría",
@@ -144,7 +168,11 @@
       "Name-Label": "Nombre",
       "Name-Placeholder": "Nombre",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions": "Acciones",
+      "Edit Category": "Editar Categoría",
+      "Delete Category":"Borrar Categoría"
+
     },
     "Size": {
       "Create Size": "Crear Tamaño",
@@ -154,7 +182,10 @@
       "Name-Label": "Nombre",
       "Value-Label": "Valor",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Size":"Editar Size",
+      "Delete Size":"Borrar Size"
     },
     "Product": {
       "Create Product": "Crear Producto",
@@ -179,7 +210,10 @@
       "Select a color": "Seleccionar un color",
       "Select a category": "Seleccionar una categoría",
       "Go back": "Regresar",
-      "Create": "Crear"
+      "Create": "Crear",
+      "Actions":"Acciones",
+      "Edit Product":"Editar Product",
+      "Delete Product":"Borrar Product"
     }
   }
 }

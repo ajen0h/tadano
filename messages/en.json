@@ -4,6 +4,7 @@
     "Update": "Update",
     "Upload an Image": "Upload an Image",
     "Go back": "Go back"
+    
   },
   "News": {
     "News and Updates": "News and Updates",
@@ -21,28 +22,37 @@
     "News": "News",
     "Forum": "Forum",
     "Store": "Store",
-    "Sign In":"Sign In",
-    "Sign Up":"Sign Up"
+    "Sign In": "Sign In",
+    "Sign Up": "Sign Up"
   },
-  "Navbar":{
+  "Navbar": {
     "Fixtures": "Fixtures",
     "News": "News",
     "Forum": "Forum",
     "Store": "Store",
-    "Sign In":"Sign In",
-    "Sign Up":"Sign Up",
-    "Cart":"Cart"
+    "Sign In": "Sign In",
+    "Sign Up": "Sign Up",
+    "Cart": "Cart"
   },
 
-  "Auht":{
-    "Email-Label":"Email",
-    "Email-Placeholder":"Email",
-    "Password-Label":"Password",
-    "Password-Placeholder":"Password",
-    "Name-Label":"Username",
-    "Name-Placeholder":"Username",
-    "Sign In":"Sign In",
-    "Register":"Register"
+  "Auht": {
+    "Email-Label": "Email",
+    "Email-Placeholder": "Email",
+    "Password-Label": "Password",
+    "Password-Placeholder": "Password",
+    "Name-Label": "Username",
+    "Name-Placeholder": "Username",
+    "Sign In": "Sign In",
+    "Register": "Register"
+  },
+
+  "Advice": {
+    "Id-Label": "Notice's Id",
+    "Id-Placeholder": "Id",
+    "Body-Label": "Body",
+    "Body-Placeholder": "Body",
+    "Send": "Send",
+    "Advice-Button":"Advice"
   },
 
   "Dashboard": {
@@ -69,7 +79,10 @@
       "Finished-Placeholder": "Finished",
       "Select a team": "Select a team",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Match":"Edit Match",
+      "Delete Match":"Delete Match"
     },
     "Forum": {
       "Create Thread": "Create Thread",
@@ -87,7 +100,10 @@
       "Description-Label": "Description",
       "ImageUrl-Label": "ImageUrl",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit New":"Edit New",
+      "Delete New":"Delete New"
     },
     "Player": {
       "Create Player": "Create Player",
@@ -118,7 +134,10 @@
       "Local Team-Label": "Local Team",
       "Select a team": "Select a team",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Player":"Edit Player",
+      "Delete Player":"Delete Player"
     },
 
     "Team": {
@@ -129,7 +148,10 @@
       "Name-Label": "Name",
       "ImageUrl-Label": "ImageUrl-Placeholder",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Team":"Edit Team",
+      "Delete Team":"Delete Team"
     },
     "Color": {
       "Create Color": "Create Color",
@@ -138,9 +160,11 @@
       "Value-Placeholder": "Value",
       "Name-Label": "Name",
       "Value-Label": "Value",
-    "Go back": "Go back",
-    "Create": "Create"
-
+      "Go back": "Go back",
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Color":"Edit Color",
+      "Delete Color":"Delete Color"
     },
     "Category": {
       "Create Category": "Create Category",
@@ -148,7 +172,10 @@
       "Name-Label": "Name",
       "Name-Placeholder": "Name",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Category":"Edit Category",
+      "Delete Category":"Delete Category"
     },
     "Size": {
       "Create Size": "Create Size",
@@ -158,7 +185,10 @@
       "Name-Label": "Name",
       "Value-Label": "Value",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Size":"Edit Size",
+      "Delete Size":"Delete Size"
     },
     "Product": {
       "Create Product": "Create Product",
@@ -183,7 +213,10 @@
       "Select a color": "Select a color",
       "Select a category": "Select a category",
       "Go back": "Go back",
-      "Create": "Create"
+      "Create": "Create",
+      "Actions":"Actions",
+      "Edit Product":"Edit Product",
+      "Delete Product":"Delete Product"
     }
   }
 }

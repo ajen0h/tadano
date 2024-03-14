@@ -18,49 +18,40 @@ import {usePathname, useRouter} from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Product } from '@prisma/client';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { deleteProduct } from '@/actions/products';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
 
 const Menu = ({productId}: {productId: string}) => {
-  const t = useTranslations('Index');
-
+  const t = useTranslations('Dashboard.Product');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${productId}`}>Edit Product</NavigationLink>
+        <NavigationLink href={`/dashboard/product/${productId}`}>
+          {t('Edit Product')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(productId);
+          const res = await deleteProduct(productId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Product')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );
 };
 
 export const columns: ColumnDef<Product>[] = [
-
-  /* id: string;
-    name: string;
-    price: number;
-    description: string;
-    cantidad: number;
-    sizeId: string;
-    colorId: string;
-    categoryId: string;
-    createdAt: Date;
-    updatedAt: */
 
   {
     accessorKey: 'id',

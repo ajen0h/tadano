@@ -6,6 +6,7 @@ import {stripe} from '@/lib/stripe';
 import {db} from '@/lib/db';
 
 export async function POST(req: Request) {
+  
   const body = await req.text();
   const signature = headers().get('Stripe-Signature') as string;
 

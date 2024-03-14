@@ -17,31 +17,33 @@ import toast from 'react-hot-toast';
 import {Match} from '@prisma/client';
 import { useTranslations } from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { deleteMatch } from '@/actions/match';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
 const Menu = ({matchId}: {matchId: string}) => {
   const t = useTranslations('Dashboard.Match');
-
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${matchId}`}>Edit Match</NavigationLink>
+        <NavigationLink href={`/dashboard/match/${matchId}`}>
+          {t('Edit Match')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(matchId);
+          const res = await deleteMatch(matchId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Match')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );

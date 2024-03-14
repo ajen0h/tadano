@@ -17,6 +17,7 @@ import toast from 'react-hot-toast';
 import {usePathname, useRouter} from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { deleteNew } from '@/actions/news';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -30,26 +31,27 @@ export type Report={
 }
 
 const Menu = ({reportId}: {reportId: string}) => {
-  const t = useTranslations('Index');
-
+  const t = useTranslations('Dashboard.New');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${reportId}`}>Edit New</NavigationLink>
+        <NavigationLink href={`/dashboard/new/${reportId}`}>
+          {t('Edit New')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(reportId);
+          const res = await deleteNew(reportId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete New')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );
@@ -57,14 +59,6 @@ const Menu = ({reportId}: {reportId: string}) => {
 
 export const columns: ColumnDef<Report>[] = [
 
-  /* id: string;
-    title: string;
-    description: string;
-    body: string;
-    imageUrl: string;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string; */
 
   {
     accessorKey: 'id',

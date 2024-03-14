@@ -15,35 +15,36 @@ import {DeleteUser} from '@/actions/users';
 import toast from 'react-hot-toast';
 import {usePathname, useRouter} from 'next/navigation';
 
-import { Color } from '@prisma/client';
-import { useTranslations } from 'next-intl';
+import {Color} from '@prisma/client';
+import {useTranslations} from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import {deleteColor} from '@/actions/color';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-
 const Menu = ({colorId}: {colorId: string}) => {
-  const t = useTranslations('Color');
-  
+  const t = useTranslations('Dashboard.Color');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${colorId}`}>Edit Color</NavigationLink>
+        <NavigationLink href={`/dashboard/color/${colorId}`}>
+          {t('Edit Color')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(colorId);
+          const res = await deleteColor(colorId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Color')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );
@@ -51,16 +52,16 @@ const Menu = ({colorId}: {colorId: string}) => {
 
 export const columns: ColumnDef<Color>[] = [
   {
-    accessorKey:"id",
-    header:"Id"
+    accessorKey: 'id',
+    header: 'Id',
   },
   {
     accessorKey: 'name',
     header: ({column}) => {
       return (
         <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
           Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>

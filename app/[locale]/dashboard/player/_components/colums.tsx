@@ -20,31 +20,33 @@ import {useLang} from '@/hooks/use-lang';
 import { Player } from '@prisma/client';
 import { useTranslations } from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { deletePlayer } from '@/actions/player';
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
 
 const Menu = ({playerId}: {playerId: string}) => {
-  const t = useTranslations('Index');
-
+  const t = useTranslations('Dashboard.Player');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${playerId}`}>Edit Player</NavigationLink>
+        <NavigationLink href={`/dashboard/player/${playerId}`}>
+          {t('Edit Player')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(playerId);
+          const res = await deletePlayer(playerId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Player')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );

@@ -4,6 +4,7 @@ import {User2Icon} from 'lucide-react';
 import Image from 'next/image';
 import "@/styles/editor.css"
 import { auth } from '@/auth';
+import { AdviceForm } from './advice-form';
 interface IndividualPostProps {
   report: Report & {
     User: User;
@@ -46,6 +47,9 @@ export const IndividualPost = ({report}: IndividualPostProps) => {
 
       <main className="my-10 px-6">
         <div dangerouslySetInnerHTML={{__html:report.body}} className='editor'/>
+      </main>
+      <main>
+        <AdviceForm newId={report.id}/>
       </main>
     </article>
   );

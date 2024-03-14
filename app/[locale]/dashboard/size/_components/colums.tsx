@@ -19,31 +19,33 @@ import {usePathname, useRouter} from 'next/navigation';
 import { Size } from '@prisma/client';
 import { useTranslations } from 'next-intl';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { deleteSize } from '@/actions/size';
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
 
 const Menu = ({sizeId}: {sizeId: string}) => {
-  const t = useTranslations('Index');
-
+  const t = useTranslations('Dashboard.Size');
   return (
     <DropdownMenuContent align="end">
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuLabel>{t('Actions')}</DropdownMenuLabel>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/${sizeId}`}>Edit Size</NavigationLink>
+        <NavigationLink href={`/dashboard/size/${sizeId}`}>
+          {t('Edit Size')}
+        </NavigationLink>
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={async () => {
-          const res = await DeleteUser(sizeId);
+          const res = await deleteSize(sizeId);
           if (res?.success) {
             toast.success(`${res.success}`);
           } else {
             toast.error(`${res.error}`);
           }
         }}>
-        Delete User
+        {t('Delete Size')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   );

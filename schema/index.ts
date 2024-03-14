@@ -56,7 +56,6 @@ export const ThreadSchema = z.object({
   body: z.string().min(1),
 });
 export const SignInSchema = z.object({
-  
   email: z.string().email().min(1),
   password: z.string().min(1),
 });
@@ -64,6 +63,9 @@ export const SignUpSchema = z.object({
   name: z.string().min(1),
   email: z.string().email().min(1),
   password: z.string().min(1),
+});
+export const AdviseSchema = z.object({
+  body: z.string().min(1),
 });
 
 export const MatchSchema = z.object({
@@ -75,7 +77,7 @@ export const MatchSchema = z.object({
   visitingTeamId: z.string().min(1),
   localTeamId: z.string().min(1),
   isFinish: z.boolean(),
-  capacity:z.coerce.number().min(1),
+  capacity: z.coerce.number().min(1),
 });
 export const PlayerSchema = z.object({
   name: z.string().min(1),
