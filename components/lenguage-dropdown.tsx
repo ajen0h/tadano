@@ -63,7 +63,7 @@ export const LenguageDropDown = () => {
       <OpenLenguage />
       <DropdownMenuContent>
         <DropdownMenuItem className={lang==="es" ? "bg-pink-300": ""}>
-          <Link href={`/es/${path}`} locale="es"  >
+          <Link href={path===undefined ? `es/` : `/es/${path}`} locale="es"  >
           <main className="flex flex-row justify-center items-center gap-2">
               <div className="relative h-[20px] w-[20px]">
                 <Image
@@ -78,7 +78,7 @@ export const LenguageDropDown = () => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className={lang==="en" ? "bg-pink-300": ""}>
-          <Link href={`/en/${path}`} locale="en">
+          <Link href={path===undefined ? `en/` : `/en/${path}`} locale="en">
           <main className="flex flex-row justify-center items-center gap-2">
               <div className="relative h-[20px] w-[20px]">
                 <Image
