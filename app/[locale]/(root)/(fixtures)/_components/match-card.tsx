@@ -135,7 +135,7 @@ const MatchCard = async ({match}: MatchProps) => {
                     <>
                       {!ticketUser ? (
                         <>
-                          {match.capacity >= 0 ? (
+                          {match.capacity > 0 ? (
                             <>
                               <Button asChild className="rounded-full w-full">
                                 <PdfDownload
