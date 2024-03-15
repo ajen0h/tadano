@@ -10,7 +10,8 @@ import {ErrorMessage} from '@hookform/error-message';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {ThreadSchema} from '@/schema';
 import {z} from 'zod';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
+
 
 export const ThreadForm = () => {
   const ruter=useRouter()

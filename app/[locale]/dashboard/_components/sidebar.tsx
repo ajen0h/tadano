@@ -13,6 +13,8 @@ export const SideBar = () => {
     {name: 'New', href: '/dashboard/new'},
     {name: 'Player', href: '/dashboard/player'},
     {name: 'Team', href: '/dashboard/teams'},
+    {name: 'User', href: '/dashboard/user'},
+
   ];
 
   const linksStore = [
@@ -24,7 +26,7 @@ export const SideBar = () => {
 
   const pathname=usePathname()
   return (
-    <aside className="h-full flex flex-col bg-fondo text-white">
+    <aside className="h-full flex flex-col bg-fondo text-white overflow-y-auto">
       <div className="p-7">
         <h2 className="text-center">ATM</h2>
         <p className="text-[0.75rem] text-center">

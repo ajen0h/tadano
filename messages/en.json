@@ -66,10 +66,32 @@
     "Body-Label": "Body",
     "Body-Placeholder": "Body",
     "Send": "Send",
-    "Advice-Button": "Advice"
+    "Advice-Button": "Advice",
+    "Create User": "Create User",
+    "Filter Name": "Filter Name..."
   },
 
   "Dashboard": {
+    "User": {
+      "Name-Label": "Name",
+      "Email-Label": "Email",
+      "Password-Label": "Password",
+      "ImageUrl-Label": "Image",
+      "Role-Label": "Role",
+      "Name-Placeholder": "Name",
+      "Email-Placeholder": "Email",
+      "Password-Placeholder": "Password",
+      "ImageUrl-Placeholder": "Image",
+      "Role-Placeholder": "Role",
+      "Select a role": "Select a role",
+      "Admin":"Admin",
+      "User":"User",
+      "Go back": "Go back",
+      "Create": "Create",
+      "Actions": "Actions",
+      "Edit Match": "Edit Match",
+      "Delete Match": "Delete Match"
+    },
     "Match": {
       "Create Match": "Create Match",
       "Filter Dates": "Filter Dates...",

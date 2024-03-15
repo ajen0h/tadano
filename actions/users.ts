@@ -1,44 +1,92 @@
-'user';
+'use server';
 
 import {db} from '@/lib/db';
+import {UserSchema} from '@/schema';
 
-import {User} from '@prisma/client';
+import {Prisma, User, UserRole} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
 import {cookies} from 'next/headers';
-import {string} from 'zod';
 
-interface Email {
-  email_address: string;
-}
+import {z} from 'zod';
 
-interface UserProps {
-  id: string;
-  first_name: string;
-  image_url: string;
-  email_addresses: Email[];
-  last_name: string;
-  username: string | null;
-}
+export const getUser = async () => {
+  const users = await db.user.findMany();
+  return users;
+};
+export const getCommentsByUser = async (userId: string) => {
+  const users = await db.comment.findMany({
+    where: {
+      userId
+    },
+  });
+  return users;
+};
+export const getOrderByUser = async (userId: string) => {
+  const users = await db.order.findMany({
+    where: {
+      userId
+    },
+  });
+  return users;
+};
+export const getThreadVotesByUser = async (userId: string) => {
+  const users = await db.threadVotes.findMany({
+    where: {
+      userId
+    },
+    include:{
+      thread:true
+    }
+  });
+  return users;
+};
+export const getThreadByUser = async (userId: string) => {
+  const users = await db.thread.findMany({
+    where: {
+      userId
+    },
+  });
+  return users;
+};
+export const getCommentsVotesByUser = async (userId: string) => {
+  const users = await db.commentVotes.findMany({
+    where: {
+      userId
+    },
+  });
+  return users;
+};
 
-export const CreateUser = async (values: UserProps) => {
-  const user = {
-    id: values.id,
-    email: values.email_addresses[0].email_address,
-    first_name: values.first_name,
-    image_url: values.image_url,
-    last_name: values.last_name,
-    username: values.username,
-  };
+
+
+export const createUser = async (values: z.infer<typeof UserSchema>) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const validatedFields = UserSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Invalid Fields!'};
+  }
+
+  const {email, imageUrl, name, password, role} = validatedFields.data;
 
   try {
-    const newUser = await db.user.create({
-      data: user,
+    const users = await db.user.create({
+      data: {
+        email,
+        image: imageUrl,
+        name,
+        password,
+        role: role === 'User' ? UserRole.USER : UserRole.ADMIN,
+      },
     });
-
-    return newUser;
-  } catch (error) {
-    console.error('Registration failed:', error);
-    return {error: 'Registration failed.'};
+    revalidatePath(`${lang}/dashboard/user`);
+    return {success: 'User has been created!'};
+  } catch (error: any) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return {error: "User's email exist!"};
+      }
+    }
+    return {error: 'Anything wrong!'};
   }
 };
 
@@ -51,7 +99,7 @@ export const DeleteUser = async (userId: string) => {
         id: userId,
       },
     });
-    revalidatePath(`${lang}/dashboard/users`);
+    revalidatePath(`${lang}/dashboard/user`);
     return {success: 'User deleted!'};
   } catch (error) {
     console.error('Registration failed:', error);
@@ -59,14 +107,37 @@ export const DeleteUser = async (userId: string) => {
   }
 };
 
-export const getUsersColumn = async () => {
-  const users = await db.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      image: true,
-    },
-  });
-  return users;
+export const UpdateUser = async (
+  userId: string,
+  values: z.infer<typeof UserSchema>
+) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const validatedFields = UserSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Invalid Fields!'};
+  }
+  const {email, imageUrl, name, password, role} = validatedFields.data;
+  try {
+    const updatedUser = await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        email,
+        image: imageUrl,
+        name,
+        password,
+        role: role === 'User' ? UserRole.USER : UserRole.ADMIN,
+      },
+    });
+    revalidatePath(`${lang}/dashboard/user`);
+    return {success: 'User has been updated!'};
+  } catch (error: any) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return {error: "User's name exist!"};
+      }
+    }
+    return {error: 'Anything wrong!'};
+  }
 };

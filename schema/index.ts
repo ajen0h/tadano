@@ -63,6 +63,16 @@ export const SignUpSchema = z.object({
   name: z.string().min(1),
   email: z.string().email().min(1),
   password: z.string().min(1),
+  description: z.string().min(1).nullable(),
+
+});
+export const UserSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email().min(1),
+  password: z.string().min(1),
+  description: z.string().min(1),
+  imageUrl: z.string().min(1),
+  role:z.string().min(1)
 });
 export const AdviseSchema = z.object({
   body: z.string().min(1),

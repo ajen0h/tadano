@@ -68,6 +68,28 @@
     "Advice-Button": "Reporte"
   },
   "Dashboard": {
+    "User": {
+      "Name-Label": "Nombre",
+      "Email-Label": "Email",
+      "Password-Label": "Contraseña",
+      "ImageUrl-Label": "Imagen",
+      "Role-Label": "Puesto",
+      "Name-Placeholder": "Nombre",
+      "Email-Placeholder": "Email",
+      "Password-Placeholder": "Contraseña",
+      "ImageUrl-Placeholder": "Imagen",
+      "Role-Placeholder": "Puesto",
+      "Select a role":"Seleccionar un puesto",
+      "Admin":"Administrador",
+      "User":"Usuario",
+      "Go back": "Regresar",
+      "Create": "Crear",
+      "Actions": "Acciones",
+      "Edit User": "Editar Usuario",
+      "Delete User": "Borrar Usuario",
+      "Create User": "Crear Usuario",
+      "Filter Name": "Filtar Name..."
+    },
     "Match": {
       "Create Match": "Crear Partido",
       "Filter Dates": "Filtrar Fechas...",

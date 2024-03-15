@@ -25,6 +25,7 @@ export function DashboardMenu() {
     {name: 'New', href: '/dashboard/new'},
     {name: 'Player', href: '/dashboard/player'},
     {name: 'Team', href: '/dashboard/teams'},
+    {name: 'User', href: '/dashboard/user'},
   ];
 
   const linksStore = [

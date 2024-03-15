@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
   
   return (
     <div>
-    <div className="flex items-center py-4">
+    <div className="flex items-center py-4 gap-6  ">
       <Input
         placeholder={`${inputPlaceholder}`}
         value={(table.getColumn(`${filterValue}`)?.getFilterValue() as string) ?? ""}
@@ -113,7 +113,7 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
     </div>
     <div className="rounded-md border">
-      <Table>
+      <Table className="w-full">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

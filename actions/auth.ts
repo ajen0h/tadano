@@ -12,7 +12,7 @@ import {revalidatePath} from 'next/cache';
 
 export const register = async (values: z.infer<typeof SignUpSchema>) => {
   const lang = cookies().get('NEXT_LOCALE')?.value;
-  const {name, email, password} = values;
+  const {name, email, password,description} = values;
   const hashedPassword = await bcrypt.hash(password, 12);
 
   const existingUser = await db.user.findUnique({
@@ -28,6 +28,7 @@ export const register = async (values: z.infer<typeof SignUpSchema>) => {
         name,
         email,
         password: hashedPassword,
+        description
       },
     });
 
