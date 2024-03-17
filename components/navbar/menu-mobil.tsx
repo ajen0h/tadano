@@ -50,7 +50,7 @@ export const MenuMobil = () => {
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-          <Menu />
+          <Menu className='w-7 h-7' />
         </SheetTrigger>
         <SheetContent side={'left'} className="flex flex-col rounded-xl">
           <>

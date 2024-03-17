@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react';
 import {ProductCard} from './product-card';
 import {Button} from '@/components/ui/button';
 import {InfinityProduct, InfinityProductInitial} from '@/actions/products';
+import Image from 'next/image';
 
 export const Store = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -18,38 +19,54 @@ export const Store = () => {
 
   const loadInitialItems = async () => {
     setLoading(true);
-    setShowLoadingMessage(true); 
+    setShowLoadingMessage(true);
 
     const initialItems = await InfinityProductInitial();
     setProducts(initialItems);
     setLoading(false);
-    setShowLoadingMessage(false); 
+    setShowLoadingMessage(false);
   };
 
   const loadMoreItems = async () => {
     setLoading(true);
-    setShowLoadingMessage(true); 
+    setShowLoadingMessage(true);
 
     const newItems = await InfinityProduct(products.length);
     setProducts([...products, ...newItems]);
     setLoading(false);
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 5);
     setLoading(false);
-    setShowLoadingMessage(false); 
+    setShowLoadingMessage(false);
   };
 
   return (
     <>
-      <section>
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4">
+      <section className="px-10 ">
+        {/*  <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
-        {showLoadingMessage && <p>Loading...</p>}
-        <div className="flex justify-center items-center py-14">
+        </div> */}
+
+        {/* <div className="flex justify-center items-center py-14">
           <Button onClick={loadMoreItems}>Show More</Button>
-        </div>
+        </div> */}
+        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <div className="relative h-[300px] lg:h-[600px] w-full">
+              <Image
+                src={'/tanjiro.jpg'}
+                alt="tanjiro.jpg"
+                fill
+                className="object-cover rounded-br-3xl"
+              />
+            </div>
+            <div>
+              <p>Linen cushion cober</p>
+              <p>$19</p>
+            </div>
+          </div>
+        </main>
       </section>
     </>
   );

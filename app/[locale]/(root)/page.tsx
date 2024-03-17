@@ -1,11 +1,3 @@
-import {Card, CardContent} from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import {auth} from '@/auth';
 import {FaArrowRight} from 'react-icons/fa';
 import {Button} from '@/components/ui/button';
@@ -13,10 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import NavigationLink from '@/components/navbar/navigation-link';
 import {getTranslations} from 'next-intl/server';
+import { getNews, getNewsLimit10 } from '@/actions/news';
+import { NewsHome } from './_components/news-home';
 export default async function Home() {
   const t = await getTranslations('Home');
+  const reportData=await getNewsLimit10()
   const session = await auth();
 
+ 
   return (
     <main className="">
       <section className="h-[100vh] bg-hero bg-cover bg-center bg-no-repeat p-0 ">
@@ -104,45 +100,14 @@ export default async function Home() {
           <p className="xl:container py-4 text-xl font-semibold px-10">
             {t('News Title')}
           </p>
-          <article className="xl:container hover:text-pink-400 cursor-pointer ease-in duration-100">
-            <div className="relative h-[380px] lg:h-[500px] w-full overflow-hidden">
-              <Image
-                src={'/tanjiro.jpg'}
-                alt="tanjiro"
-                fill
-                className="w-full h-full object-cover hover:scale-105 ease-in duration-1500"
-              />
-            </div>
-
-            <div className="pt-5 pb-7 px-10">
-              <p className="text-3xl font-bold pb-4 ">
-                Toon in training: Focus on FA Cup quarter-final
-              </p>
-              <p className="text-lg opacity-80">15th March 2024</p>
-            </div>
-          </article>
-        </header>
-        {/* SubNews */}
-        <main className="xl:container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <article className="hover:text-pink-400 text-white cursor-pointer ease-in duration-100">
-            <div className="relative h-[380px] w-full overflow-hidden">
-              <Image
-                src={'/tanjiro.jpg'}
-                alt="tanjiro"
-                fill
-                className="w-full h-full object-cover hover:scale-105 ease-in duration-1500"
-              />
-            </div>
-            <div className="pt-5 pb-7 px-10 bg-black  ">
-              <p className="text-3xl font-bold pb-4">
-                Toon in training: Focus on FA Cup quarter-final
-              </p>
-              <p className="text-lg opacity-80">15th March 2024</p>
-            </div>
-          </article>
-        </main>
+          </header>
+        <main className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+          {reportData.map((report,index)=>(
+            <NewsHome key={report.id} reportData={report} index={index}/>
+          ))}
+          </main>
         <div className="w-full p-10 text-center">
-          <Button className="text-md rounded-none text-black bg-white border-2 border-black font-normal px-12 hover:bg-black hover:text-white ease-in duration-200 lg:px-14 lg:py-6">
+          <Button className="text-md rounded-none text-black bg-white border-2 border-black font-normal px-12 hover:bg-black hover:text-white ease-in duration-200 ">
             <NavigationLink href={'/news'}>{t('See More')}</NavigationLink>
           </Button>
         </div>

@@ -4,7 +4,13 @@ import {Button} from '@/components/ui/button';
 import useCart from '@/hooks/use-cart-original';
 import {Heart} from 'lucide-react';
 import Image from 'next/image';
-import {Category, Color, Image as PrismaImage, Product, Size} from '@prisma/client';
+import {
+  Category,
+  Color,
+  Image as PrismaImage,
+  Product,
+  Size,
+} from '@prisma/client';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
@@ -16,9 +22,9 @@ import NavigationLink from '@/components/navbar/navigation-link';
 interface ProductProps {
   product: Product & {
     images: PrismaImage[];
-    size:Size,
-    color: Color,
-    category: Category,
+    size: Size;
+    color: Color;
+    category: Category;
   };
 }
 
@@ -36,7 +42,7 @@ export const ProductCard = ({product}: any) => {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      {/* <div className="flex flex-col gap-2">
         <NavigationLink href={`/products/${product.id}`}>
           <div className="bg-white group cursor-pointer rounded-xl hover:shadow-xl">
             <div className="aspect-square  bg-gray-100 relative">
@@ -79,7 +85,19 @@ export const ProductCard = ({product}: any) => {
             Añadir
           </Button>
         </NavigationLink>
-      </div>
+      </div> */}
+
+      <main>
+        <div className="relative h-[100px] w-[100px]">
+          <Image
+            src={'/tanjiro.jpg'}
+            alt="tanjiro.jpg"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </main>
+
       <Toaster position="top-center" reverseOrder={false} />
     </>
   );

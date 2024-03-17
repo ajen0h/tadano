@@ -10,13 +10,12 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
       </div>
 
       <div>
-        <div className="flex flex-row items-center justify-between lg:justify-center bg-slate-100 p-3 ">
+        <div className="flex flex-row items-center justify-between lg:justify-center ">
           <div className="lg:hidden">
             <DashboardMenu  />
           </div>
-          <p className="text-2xl font-bold tracking-wider ">Hola</p>
         </div>
-        <div className="">{children}</div>
+        <div className="bg-gray-50 h-full">{children}</div>
       </div>
     </div>
   );

@@ -12,13 +12,13 @@ const config = {
   theme: {
     container: {
       center: true,
-        padding: '1rem',
-        screens: {
-          sm: '640px', // Para dispositivos pequeños (sm)
-          md: '768px', // Para dispositivos medianos (md)
-          lg: '1024px', // Para dispositivos grandes (lg)
-          '2xl': '1400px', // Para dispositivos extra grandes (2xl)
-        },
+      padding: '1rem',
+      screens: {
+        sm: '640px', // Para dispositivos pequeños (sm)
+        md: '768px', // Para dispositivos medianos (md)
+        lg: '1024px', // Para dispositivos grandes (lg)
+        '2xl': '1400px', // Para dispositivos extra grandes (2xl)
+      },
     },
 
     backgroundImage: {
@@ -38,6 +38,11 @@ const config = {
         '1500': '1500ms',
       },
       colors: {
+        rosa: '#F1B3F2 ',
+        gris: '#BFC3D9 ',
+        amarillo: '#F2CF1D ',
+        marron: '#73563D ',
+        negroat: '#0D0D0D',
         fondo: '#0f0f0f',
         negro: '#000000',
         rosaclarito: '#fcf0f6',

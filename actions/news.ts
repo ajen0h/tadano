@@ -25,7 +25,7 @@ export const getNews = async (term?:string) => {
   });
   return news;
 };
-export const getNewsLimit1 = async () => {
+export const getNewsLimit10 = async () => {
   const news = await db.report.findMany({
     include: {
       User: true,
@@ -33,7 +33,7 @@ export const getNewsLimit1 = async () => {
     orderBy:{
       createdAt:"desc"
     },
-    take:1
+    take:10
   });
   return news;
 };

@@ -20,23 +20,19 @@ export const SearcInput = () => {
   }, WAIT_BETWEEN_CHANGE);
   return (
     <>
-      <header className="w-full h-[60px] bg-black">
-        <div className="px-10 xl:container h-full flex flex-row items-center">
-         
+      <header className="w-full bg-black">
+  <div className="px-4 xl:px-10 container mx-auto h-full flex items-center relative">
+    <input
+      className="w-full p-4 rounded-none bg-transparent border-white text-white placeholder:text-lg placeholder:font-bold placeholder:uppercase focus:outline-none"
+      name="name"
+      placeholder="Search..."
+      onChange={(e) => {
+        handleSearch(e.target.value);
+      }}
+    />
+  </div>
+</header>
 
-          <Search className='xl:container w-6 h-6 text-white absolute right-14  ' />
-
-          <input
-            className="w-full p-4 rounded-none  bg-transparent border-white text-white placeholder:text-lg placeholder:font-bold placeholder:uppercase "
-            name="name"
-            placeholder="Search..."
-            onChange={(e) => {
-              handleSearch(e.target.value);
-            }}
-            />
-           
-        </div>
-      </header>
     </>
   );
 };

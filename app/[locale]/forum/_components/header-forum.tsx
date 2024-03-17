@@ -23,26 +23,18 @@ export const HeaderForum = () => {
   }, WAIT_BETWEEN_CHANGE);
   return (
     <header className="py-8 bg-amber-700">
-      <div className='px-10 xl:container '>
+      <div className="px-10 xl:container ">
         <input
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
         />
         <Button asChild>
-            <NavigationLink href="/forum/thread/create">
-
+          <NavigationLink href="/forum/thread/create">
             Add Thread
-            </NavigationLink>
-            </Button>
-        <div className="relative h-[40px] w-[40px]">
-          <Image
-            src={'/tanjiro.jpg'}
-            alt="tanjiro.jpg"
-            fill
-            className="object-cover"
-          />
-        </div>
+          </NavigationLink>
+        </Button>
+        <Button>Dropdawn</Button>
       </div>
     </header>
   );

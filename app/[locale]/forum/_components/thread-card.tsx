@@ -35,20 +35,7 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
       </div>
       <div dangerouslySetInnerHTML={{__html: thread.body}} className="editor" />
       <div className="flex flex-row justify-start items-center gap-2 py-5 border-b">
-        {session?.user?.id ? (
-          <>
-            <ButtonLike threadId={thread.id} threadLiked={threadLiked} />
-            <p>{thread.ThreadVotes.length}</p>
-          </>
-        ) : (
-          <>
-            <Button variant={'ghost'} asChild>
-              <NavigationLink href={'/sign-in'}>
-                <FaRegHeart className="w-5 h-5" />
-              </NavigationLink>
-            </Button>
-          </>
-        )}
+       
       </div>
       <section className="py-4">
         {session?.user?.id ? (

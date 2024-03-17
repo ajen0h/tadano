@@ -30,23 +30,9 @@ const StoreLayout = ({children}: {children: React.ReactNode}) => {
           </div>
         </div>
       </section>
-      <main className="px-7">
-        <section id="discover">
-          <div className="flex flex-col justify-center items-center py-9 gap-2">
-            <h2 className="text-3xl font-bold">New Arrivals</h2>
-            <p className="text-center w-[50%]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-              debitis vel consectetur voluptatem.
-            </p>
-          </div>
-        </section>
-        {/* <section className='flex flex-row items-center gap-3 justify-center mb-4'>
-          <PiMagnifyingGlass className='w-6 h-6'/>
-          <Input type='Text' placeholder='Search...' className=' md:w-[40%] '/>
-        </section> */}
+      
         <MenuCategories />
         {children}
-      </main>
     </div>
   );
 };

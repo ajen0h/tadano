@@ -17,7 +17,48 @@ export const getMatchFinished = async () => {
   const match = await db.match.findMany({
     where:{
       isFinish:true
+    },
+    include:{
+      localTeam:true,
+      visitingTeam:true
     }
+  });
+  return match;
+};
+
+export const getMatchFinishedLimit1 = async () => {
+  const match = await db.match.findMany({
+    where:{
+      isFinish:true
+      
+    },
+    include:{
+      localTeam:true,
+      visitingTeam:true
+    },
+    orderBy:{
+      createdAt:"asc"
+    },
+    take:1
+
+  });
+  return match;
+};
+export const getMatchNotFinishedLimit2 = async () => {
+  const match = await db.match.findMany({
+    where:{
+      isFinish:false
+      
+    },
+    include:{
+      localTeam:true,
+      visitingTeam:true
+    },
+    orderBy:{
+      createdAt:"asc"
+    },
+    take:2
+
   });
   return match;
 };
@@ -25,6 +66,10 @@ export const getMatchNotFinished = async () => {
   const match = await db.match.findMany({
     where:{
       isFinish:false
+    },
+    include:{
+      localTeam:true,
+      visitingTeam:true
     }
   });
   return match;

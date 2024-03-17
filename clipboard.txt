@@ -1,4 +1,10 @@
 
+#F1B3F2 rosa
+#BFC3D9 gris
+  #F2CF1D amarillo
+#73563D marron
+#0D0D0D negro
+
 px10 md lg xl:container
 
 async({params:{lang}}:{params:{lang:string}}) => {
