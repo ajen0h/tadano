@@ -37,6 +37,11 @@ export const MenuMobil = () => {
       href: '/store',
       icon: '',
     },
+    {
+      name: `${t('Store')}`,
+      href: '/team',
+      icon: '',
+    },
   ];
 
   const {data: session} = useSession();

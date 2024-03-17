@@ -29,6 +29,11 @@ export const SerchLinkNav = () => {
       href: '/store',
       icon: '',
     },
+    {
+      name: `${t('Store')}`,
+      href: '/team',
+      icon: '',
+    },
   ];
 
   return (

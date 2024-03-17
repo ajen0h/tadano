@@ -39,26 +39,27 @@ export const PostCard = async ({reportData, index}: PostCardProps) => {
     if (index === 0) {
       return (
         <article className=" hover:text-pink-400 cursor-pointer ease-in duration-100 col-span-3 ">
-          <div className="relative h-[380px] lg:h-[500px] w-full overflow-hidden">
-            <Image
-              src={`${reportData.imageUrl}`}
-              alt={`${reportData.title}`}
-              fill
-              className="w-full h-full object-cover hover:scale-105 ease-in duration-1500"
-            />
-          </div>
+          <NavigationLink href={`/news/${reportData.id}`}>
+            <div className="relative h-[380px] lg:h-[600px] w-full overflow-hidden">
+              <Image
+                src={`${reportData.imageUrl}`}
+                alt={`${reportData.title}`}
+                fill
+                className="w-full h-full object-cover hover:scale-105 ease-in duration-1500"
+              />
+            </div>
 
-          <div className="pt-5 pb-7 px-10 bg-black text-white">
-            <p className="text-3xl font-bold pb-4 break-words">
-              {reportData.title}
-            </p>
-            <p className="text-lg opacity-80 break-words">{fecha}</p>
-          </div>
+            <div className="pt-5 pb-7 px-10 bg-black text-white flex flex-col justify-between break-words">
+              <p className="text-3xl font-bold pb-4 break-words">
+                {reportData.title}
+              </p>
+              <p className="text-lg opacity-80 break-words">{fecha}</p>
+            </div>
+          </NavigationLink>
         </article>
       );
     }
   };
-  console.log(index);
 
   return (
     <>
@@ -94,8 +95,8 @@ export const PostCard = async ({reportData, index}: PostCardProps) => {
             <main className="">
               {/* SubNews */}
 
-              <article className=" hover:text-pink-400 text-white cursor-pointer ease-in duration-100 h-[200px]">
-                <div className="relative h-[380px] w-full overflow-hidden">
+              <article className=" hover:text-pink-400 text-white cursor-pointer ease-in duration-100 ">
+                <div className="relative h-[360px] lg:h-[520px] w-full overflow-hidden">
                   <Image
                     src={`${reportData.imageUrl}`}
                     alt={`${reportData.title}`}
