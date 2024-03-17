@@ -14,7 +14,7 @@ const NewIdPage = async ({params}: NewIdPageProps) => {
     <main>
       {report ? (
         <>
-          <IndividualPost report={report} />
+          <IndividualPost key={report.id} report={report} />
         </>
       ) : (
         <>No hay</>

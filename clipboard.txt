@@ -1,3 +1,6 @@
+
+px10 md lg xl:container
+
 async({params:{lang}}:{params:{lang:string}}) => {
   const dictionary=await import( `@/app/dictionaries/${lang}.json`).then(m=>m.default)
 

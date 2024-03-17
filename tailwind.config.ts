@@ -34,7 +34,9 @@ const config = {
         '108': '1.08',
         '175': '1.75',
       },
-      
+      transitionDuration: {
+        '1500': '1500ms',
+      },
       colors: {
         fondo: '#0f0f0f',
         negro: '#000000',

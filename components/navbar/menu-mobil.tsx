@@ -1,38 +1,39 @@
 'use client';
+
 import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
 import {Separator} from '../ui/separator';
-import Link from 'next/link';
 import {Button} from '../ui/button';
 import {LogoutButton} from './sing-out';
 import {useState} from 'react';
 import {Menu} from 'lucide-react';
 import {useSession} from 'next-auth/react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import {useTranslations} from 'next-intl';
 import NavigationLink from './navigation-link';
+import { LenguageDropDown } from '../lenguage-dropdown';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
-  const t=useTranslations("Links")
+  const t = useTranslations('Links');
 
   const navLinks = [
     {
-      name: `${t("News")}`,
+      name: `${t('News')}`,
       href: '/news',
       icon: '',
     },
     {
-      name: `${t("Fixtures")}`,
+      name: `${t('Fixtures')}`,
       href: '/fixtures',
       icon: '',
     },
     {
-      name: `${t("Forum")}`,
+      name: `${t('Forum')}`,
       href: '/forum',
       icon: '',
     },
     {
-      name: `${t("Store")}`,
+      name: `${t('Store')}`,
       href: '/store',
       icon: '',
     },
@@ -49,24 +50,29 @@ export const MenuMobil = () => {
         <SheetContent side={'left'} className="flex flex-col rounded-xl">
           <>
             {session && (
-              <div className="flex flex-row justify-start items-center gap-3">
-                <div className="relative h-[40px] w-[40px]">
-                  <Image
-                    src={`${session.user?.image}`}
-                    alt={`${session.user?.name}`}
-                    fill
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col justify-start">
-                  <h1 className="text-lg text-marronnegro font-bold">
-                    {session.user?.name}
-                  </h1>
-                  <p className="text-sm text-marronnegro/70 ">
-                    {session.user?.email}
-                  </p>
-                </div>
-              </div>
+              
+                  <div className="flex flex-row justify-start items-center gap-3">
+                    <div className="relative h-[40px] w-[40px]">
+                      <Image
+                        src={`${session.user?.image}`}
+                        alt={`${session.user?.name}`}
+                        fill
+                        className="rounded-full"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-start">
+                      <h1 className="text-lg text-marronnegro font-bold">
+                        {session.user?.name}
+                      </h1>
+                      <p className="text-sm text-marronnegro/70 ">
+                        {session.user?.email}
+                      </p>
+                    </div>
+                    <div>
+                      <LenguageDropDown/>
+                    </div>
+                  </div>
+               
             )}
           </>
           <>

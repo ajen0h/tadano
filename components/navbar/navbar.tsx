@@ -47,7 +47,10 @@ export const NavBar = async () => {
             <SheetCart />
             <p className='text-xs'>{t('Cart')}</p>
           </div>
+          <div className="hidden lg:block">
+
           <LenguageDropDown/>
+          </div>
         </div>
         <div>
         </div>

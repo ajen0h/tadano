@@ -7,11 +7,33 @@ import {revalidatePath} from 'next/cache';
 import { cookies } from 'next/headers';
 import {string, z} from 'zod';
 
-export const getNews = async () => {
+export const getNews = async (term?:string) => {
   const news = await db.report.findMany({
     include: {
       User: true,
     },
+    
+    orderBy:{
+      createdAt:"desc"
+    },
+    where:{
+      title:{
+        contains:term?.toString()
+      }
+    }
+    
+  });
+  return news;
+};
+export const getNewsLimit1 = async () => {
+  const news = await db.report.findMany({
+    include: {
+      User: true,
+    },
+    orderBy:{
+      createdAt:"desc"
+    },
+    take:1
   });
   return news;
 };

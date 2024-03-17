@@ -5,6 +5,14 @@
     "Upload an Image": "Upload an Image",
     "Go back": "Go back"
   },
+  "Home":{
+    "Our Store":"Our Store",
+    "View More":"View More",
+    "Get Ticket":"Get Ticket",
+    "News Title":"News Title",
+    "See More":"See More",
+    "Our Team":"Our Team"
+  },
   "SignIn": {
     "Create Account": "Create Account",
     "SignIn": "SignIn",

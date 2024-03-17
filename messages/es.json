@@ -5,6 +5,14 @@
     "Upload an Image": "Subir una Imagen",
     "Go back": "Regresar"
   },
+  "Home":{
+    "Our Store":"Nuestra tienda",
+    "View More":"View More",
+    "Get Ticket":"Obtener Ticket",
+    "News Title":"Noticias Titulo",
+    "See More":"Ver Mas",
+    "Our Team":"Nuestro equipo"
+  },
   "SignIn": {
     "Create Account": "Create Account",
     "SignIn": "Iniciar sesión",
