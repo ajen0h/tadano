@@ -7,10 +7,10 @@ const PostsComponent = async () => {
   return (
     <section className="xl:container">
    
-      {reports.map((data) => (
+      {reports.map((data,index) => (
         <div key={data.id}>
           <main className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-            <PostCard reportData={data} />
+            <PostCard reportData={data} index={index} />
           </main>
         </div>
       ))}
