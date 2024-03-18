@@ -67,7 +67,6 @@ export const UserForm: React.FC<UserFormPorps> = ({initialData}) => {
       if (res.success) {
         toast.success(`${res.success}`);
         form.reset()
-F
       } else {
         toast.error(`${res.error}`);
       }
