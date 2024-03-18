@@ -10,6 +10,7 @@ import {auth} from '@/auth';
 interface MatchCardProps {
   match: Match & {
     visitingTeam: Team;
+    localTeam:Team
   };
 }
 
