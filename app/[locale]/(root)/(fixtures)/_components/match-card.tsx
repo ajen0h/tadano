@@ -140,7 +140,7 @@ const MatchCard = async ({match}: MatchProps) => {
                               <Button asChild className="rounded-full w-full">
                                 <PdfDownload
                                   date={match.date}
-                                  matchId={match.id}
+                                  match={match}
                                 />
                               </Button>
                             </>

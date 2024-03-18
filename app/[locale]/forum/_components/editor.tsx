@@ -37,7 +37,7 @@ export const Editor = ({onChange, body}: EditorProps) => {
         inline: true,
       }),
     ],
-    content: body,
+    content: body ? body : "",
     onUpdate({editor}){
       onChange(editor.getHTML())
     }

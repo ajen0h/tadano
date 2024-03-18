@@ -30,24 +30,27 @@ export const SerchLinkNav = () => {
       icon: '',
     },
     {
-      name: `${t('Store')}`,
+      name: `${t('Team')}`,
       href: '/team',
       icon: '',
     },
   ];
 
   return (
-    <main className="h-full flex justify-center items-center gap-5 text-sm ">
+    <main className="h-full flex justify-center items-center gap-5 text-sm pb-4">
       {navLinks.map((link) => (
         <NavigationLink
           key={link.name}
           href={link.href}
-          className={`${
+          className={` text-lg ${
             link.href === `${pathname}`
-              ? 'font-extrabold border-b-2 border-black '
+              ? 'text-pink-400 border-b-2 border-pink-400 '
               : ''
           }`}>
+            <p className='font-semibold hover:text-pink-400 transition-all'>
+
           {link.name}
+            </p>
         </NavigationLink>
       ))}
     </main>

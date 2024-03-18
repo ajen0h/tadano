@@ -3,7 +3,7 @@
 import {auth} from '@/auth';
 import {db} from '@/lib/db';
 import {ThreadSchema} from '@/schema';
-import {revalidatePath} from 'next/cache';
+import {revalidatePath, revalidateTag} from 'next/cache';
 import { cookies } from 'next/headers';
 import {z} from 'zod';
 
@@ -48,6 +48,8 @@ export const getThreads = async (term?:string,sort?:string,categoryName?:string)
     include: {
       CategoryThreads:true,
       User: true,
+      ThreadVotes:true
+
     },
     orderBy:{
       createdAt: sort?.toLowerCase() === "asc" ? "asc" : "desc"
@@ -79,6 +81,7 @@ export const getThread = async (threadId: string) => {
 };
 
 export const likeThread = async (threadId: string) => {
+  console.log("idol");
   const lang = cookies().get('NEXT_LOCALE')?.value;
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
@@ -110,7 +113,8 @@ export const likeThread = async (threadId: string) => {
       });
     }
 
-    revalidatePath(`${lang}//forum/thread/${threadId}`);
+    /* revalidatePath(`${lang}/forum/thread/${threadId}`); */
+    
   } catch (error) {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};

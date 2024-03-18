@@ -66,6 +66,8 @@ export const MatchForm = ({initialData, teams}: MatchFormProps) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset()
+
       } else {
         toast.error(`${res.error}`);
       }

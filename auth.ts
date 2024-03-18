@@ -6,6 +6,7 @@ import {PrismaAdapter} from '@auth/prisma-adapter';
 import {db} from './lib/db';
 import bcrypt from 'bcrypt';
 import {SignInSchema} from './schema';
+import authConfig from './auth.config';
 export const {
   handlers: {GET, POST},
   auth,
@@ -17,6 +18,7 @@ export const {
   session: {
     strategy: 'jwt',
   },
+  ...authConfig,
 
   callbacks: {
     async session({token, session}) {
@@ -38,30 +40,4 @@ export const {
       return token;
     },
   },
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-    credentials({
-      async authorize(credentials: any) {
-        const validatedFields = SignInSchema.safeParse(credentials);
-        if (validatedFields.success) {
-          const {email, password} = validatedFields.data;
-
-          const user = await getUserByEmail(email);
-          if (!user || !user.password) {
-            return null;
-          }
-
-          const passwordMatch = await bcrypt.compare(password, user.password);
-          
-          if (passwordMatch){
-            return user;
-          } 
-        }
-        return null;
-      },
-    }),
-  ],
 });

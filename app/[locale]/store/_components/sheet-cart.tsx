@@ -47,7 +47,7 @@ export const SheetCart = () => {
       <Sheet>
         <SheetTrigger>
           <Button variant={'ghost'} className='p-0 m-0'>
-            <BsHandbag className="h-6 w-6" />
+            <BsHandbag className="w-7 h-7" />
           </Button>
         </SheetTrigger>
         <SheetContent className="flex flex-col justify-between">

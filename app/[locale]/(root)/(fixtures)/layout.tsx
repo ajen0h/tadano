@@ -75,10 +75,7 @@ const FixturesLayout =async({children}: {children: React.ReactNode}) => {
                     <p>{`${match.league}`}</p>
                   </div>
                 </div>
-                <div className="pt-10">
-                  
-                  <Button>Get Ticket</Button>
-                </div>
+                
               </div>
             </div>
           </main>

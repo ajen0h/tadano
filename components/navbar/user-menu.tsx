@@ -13,6 +13,7 @@ import {PiUser} from 'react-icons/pi';
 import {LogoutButton} from './sing-out';
 import {useSession} from 'next-auth/react';
 import NavigationLink from './navigation-link';
+import { User } from 'lucide-react';
 
 export const UserMenu = () => {
   const [open, setOpen] = useState(false);
@@ -21,7 +22,7 @@ export const UserMenu = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <PiUser className="h-6 w-6" />
+        <User className="w-7 h-7" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>

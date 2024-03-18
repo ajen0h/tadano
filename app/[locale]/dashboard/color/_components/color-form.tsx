@@ -46,6 +46,8 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset()
+
       } else {
         toast.error(`${res.error}`);
       }

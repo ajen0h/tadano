@@ -39,6 +39,7 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
     }
     replace(`${pathname}?${params.toString()}`);
   }, WAIT_BETWEEN_CHANGE);
+  console.log(searchParams.get('sort'));
   return (
     <header className="py-8 px-10 xl:container ">
       <main className="flex flex-row md:justify-end justify-center items-center gap-4  py-5">
@@ -61,7 +62,7 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
           </>
         ) : (
           <>
-            <ModalLoginRedirect />
+            <ModalLoginRedirect title="Create thread" />
           </>
         )}
       </main>
@@ -76,15 +77,33 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                className={` text-center ${
+                  searchParams.get('sort') === 'asc' ? 'bg-pink-400 focus:bg-pink-400 ' : ''
+                }`}>
                 <NavigationLink href={`/forum/?sort=asc`}>
-                  Orderna ascendente
+                  <p
+                    className={`${
+                      searchParams.get('sort') === 'asc' ? ' text-white' : ''
+                    }`}>
+                    Orderna ascendente
+                  </p>
                 </NavigationLink>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <NavigationLink href={`/forum/?sort=desc`}>
-                  Orderna descendente
-                </NavigationLink>
+                <DropdownMenuItem
+                  className={`text-center ${
+                    searchParams.get('sort') === 'desc' ? 'bg-pink-400 focus:bg-pink-400' : ''
+                  }`}>
+                  <NavigationLink href={`/forum/?sort=desc`}>
+                    <p
+                      className={`${
+                        searchParams.get('sort') === 'desc' ? ' text-white' : ''
+                      }`}>
+                      Orderna descendente
+                    </p>
+                  </NavigationLink>
+                </DropdownMenuItem>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -100,14 +119,40 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+        
+                className={`text-center  ${
+                  searchParams.get('category') === 'Consejo'
+                    ? 'bg-pink-400 focus:bg-pink-400 '
+                    : ''
+                }`}>
                 <NavigationLink href={`/forum?category=${'Consejo'}`}>
-                  Consejo
+                  <p
+                    className={`${
+                      searchParams.get('category') === 'Consejo'
+                        ? ' text-white '
+                        : ''
+                    }`}>
+                    Consejo
+                  </p>
                 </NavigationLink>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+              disabled={searchParams.get('category') === 'Debate'}
+                className={`text-center ${
+                  searchParams.get('category') === 'Debate'
+                    ? 'bg-pink-400 focus:bg-pink-400'
+                    : ''
+                }`}>
                 <NavigationLink href={`/forum?category=${'Debate'}`}>
-                  Debate
+                  <p
+                    className={`${
+                      searchParams.get('category') === 'Debate'
+                        ? ' text-white '
+                        : ''
+                    }`}>
+                    Debate
+                  </p>
                 </NavigationLink>
               </DropdownMenuItem>
             </DropdownMenuContent>

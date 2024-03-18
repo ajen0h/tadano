@@ -25,17 +25,19 @@ const TeamPage = () => {
                 backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${'/tanjiro.jpg'}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                
-                
               }}>
-                <div className='p-3 md:p-6'>
-
-              <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">22</p>
-              <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">TOM</p>
-              <p className="font-bold text-white text-sm md:text-3xl">HEATON</p>
-                </div>
+              <div className="p-3 md:p-6">
+                <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                  22
+                </p>
+                <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                  TOM
+                </p>
+                <p className="font-bold text-white text-sm md:text-3xl">
+                  HEATON
+                </p>
+              </div>
             </div>
-           
           </div>
         </main>
         <main>
@@ -76,6 +78,20 @@ const TeamPage = () => {
               />
             </div>
           </div>
+        </main>
+      </section>
+      <section className='bg-gray-200'>
+        <main className='grid grid-cols-2 gap-4'>
+
+        <div className="h-[200px] w-full relative">
+          <Image src={'/tanjiro.jpg'} alt="" fill className="object-cover" />
+        </div>
+        <div className='flex flex-col gap-3 '>
+
+        <p className='font-bold text-2xl'>Equipo local vs Equipo Visitante</p>
+        <p className='font-bold text-lg opacity-90'>Estadio</p>
+        <p className='font-semibold text-lg opacity-90'>Fecha</p>
+        </div>
         </main>
       </section>
     </main>

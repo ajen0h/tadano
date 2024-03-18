@@ -14,15 +14,16 @@ import {NewSchema, TeamSchema} from '@/schema';
 import {Controller, useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {useTransition} from 'react';
+import {useRef, useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import ImageUpload from '@/components/ui/image-upload';
 import {Report, User} from '@prisma/client';
 import {createNew, updateNew} from '@/actions/news';
 import {Editor} from '@/app/[locale]/forum/_components/editor';
 import {ErrorMessage} from '@hookform/error-message';
-import "@/styles/editor.css"
-import { useTranslations } from 'next-intl';
+import '@/styles/editor.css';
+import {useTranslations} from 'next-intl';
+import {useRouter} from '@/navigation';
 interface NewFormPorps {
   initialData: Report | null;
 }
@@ -30,8 +31,9 @@ interface NewFormPorps {
 export const NewForm: React.FC<any> = ({initialData}) => {
   const t = useTranslations('Dashboard.New');
 
+  const editorRef = useRef(); // Crea una referencia al Editor
   const [pending, startTransition] = useTransition();
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof NewSchema>>({
     resolver: zodResolver(NewSchema),
     defaultValues: initialData || {
@@ -54,6 +56,8 @@ export const NewForm: React.FC<any> = ({initialData}) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset();
+        router.refresh();
       } else {
         toast.error(`${res.error}`);
       }
@@ -71,7 +75,11 @@ export const NewForm: React.FC<any> = ({initialData}) => {
               <FormItem>
                 <FormLabel>{t('Title-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder={t('Title-Placeholder')} {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Title-Placeholder')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -19,6 +19,7 @@ import toast, {Toaster} from 'react-hot-toast';
 import {Category} from '@prisma/client';
 import {createCategory, updateCategory} from '@/actions/category';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 interface CategoryFormPorps {
   initialData: Category | null;
@@ -26,6 +27,7 @@ interface CategoryFormPorps {
 
 export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
   const t = useTranslations('Dashboard');
+  const router=useRouter()
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CategorySchema>>({

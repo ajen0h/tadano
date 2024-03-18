@@ -12,11 +12,11 @@ import {
 } from '@/components/ui/alert-dialog';
 import {Button} from './ui/button';
 import NavigationLink from './navbar/navigation-link';
-export const ModalLoginRedirect = () => {
+export const ModalLoginRedirect = ({title}:{title:string}) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Button>Add Thread</Button>
+        <Button>{title}</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

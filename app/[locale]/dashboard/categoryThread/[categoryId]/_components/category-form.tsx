@@ -47,6 +47,8 @@ export const CategoryThreadForm: React.FC<CategoryFormPorps> = ({initialData}) =
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset()
+
       } else {
         toast.error(`${res.error}`);
       }

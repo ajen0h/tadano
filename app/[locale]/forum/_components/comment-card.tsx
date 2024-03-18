@@ -31,13 +31,11 @@ export const CommentCard = ({comment}: any) => {
   const dia = fechaPersonalizada.getDate();
   const fecha = `${dia} de ${mesNombre} de ${año}`;
 
-  const session = useSession();
-
   return (
     <section className="border mt-4 p-3">
       <header className="flex flex-row justify-between items-center">
         <div className="flex flex-row justify-start items-center gap-2">
-          {session.data?.user?.image ? (
+          {comment.User.image ? (
             <>
               <div className="relative h-[40px] w-[40px]">
                 <Image

@@ -26,8 +26,7 @@ import React, {useTransition} from 'react';
 import {useForm} from 'react-hook-form';
 import toast, {Toaster} from 'react-hot-toast';
 import {z} from 'zod';
-import { useTranslations } from 'next-intl';
-
+import {useTranslations} from 'next-intl';
 
 interface PlayerFormProps {
   initialData: Player | null;
@@ -69,6 +68,8 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset()
+
       } else {
         toast.error(`${res.error}`);
       }
@@ -86,7 +87,11 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
               <FormItem>
                 <FormLabel>{t('Name-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder={t('Name-Placeholder')}{...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Name-Placeholder')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -117,7 +122,11 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
               <FormItem>
                 <FormLabel>{t('Description-Label')}</FormLabel>
                 <FormControl>
-                  <Input disabled={pending} placeholder={t('Description-Placeholder')} {...field} />
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Description-Placeholder')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -252,10 +261,28 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
             name="position"
             render={({field}) => (
               <FormItem>
-                <FormLabel>{t('Position-Label')}</FormLabel>
-                <FormControl>
-                  <Input disabled={pending} placeholder="0" {...field} />
-                </FormControl>
+                <FormLabel>Position</FormLabel>
+                <Select
+                  disabled={pending}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        defaultValue={field.value}
+                        placeholder="Select a position"
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Goalkeeper">Goalkeeper</SelectItem>
+                    <SelectItem value="Defender">Defender</SelectItem>
+                    <SelectItem value="Midfielder">Midfielder</SelectItem>
+                    <SelectItem value="Forwards">Forwards</SelectItem>
+                    <SelectItem value="Staff">Staff</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

@@ -21,6 +21,7 @@ interface ThreadProps {
 }
 export const ThreadCard = async ({thread}: ThreadProps) => {
   const session = await auth();
+  console.log(session?.user?.image);
   const threadLiked = await getThreadVotedByUserId(thread.id);
 
   return (
@@ -41,7 +42,7 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
         {session?.user?.id ? (
           <>
             <main className="grid md:grid-cols-[auto_1fr] gap-3">
-              {session?.user?.image!==null ? (
+              {session?.user?.image ? (
                 <>
                   <div className="relative h-[60px] w-[60px]">
                     <Image

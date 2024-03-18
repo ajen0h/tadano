@@ -11,6 +11,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import NavigationLink from './navigation-link';
 import { LenguageDropDown } from '../lenguage-dropdown';
+import { usePathname } from '@/navigation';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
@@ -38,14 +39,14 @@ export const MenuMobil = () => {
       icon: '',
     },
     {
-      name: `${t('Store')}`,
+      name: `${t('Team')}`,
       href: '/team',
       icon: '',
     },
   ];
 
   const {data: session} = useSession();
-
+  const pathname=usePathname()
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -100,11 +101,11 @@ export const MenuMobil = () => {
                 variant={'ghost'}
                 key={link.name}
                 asChild
-                className="justify-start gap-4"
+                className={`justify-start gap-4 ${pathname===link.href ? "bg-pink-400 text-white":""}`}
                 onClick={() => setOpen(false)}>
                 <NavigationLink href={`${link.href}`}>
                   {link.icon}
-                  <h3 className="text-marronnegro font-semibold text-md">
+                  <h3 className={`text-marronnegro font-semibold text-md ${pathname===link.href ? " text-white":""}`}>
                     {link.name}
                   </h3>
                 </NavigationLink>

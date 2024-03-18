@@ -89,6 +89,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
       if (res.success) {
         toast.success(`${res.success}`);
+        form.reset()
+
       } else {
         toast.error(`${res.error}`);
       }
