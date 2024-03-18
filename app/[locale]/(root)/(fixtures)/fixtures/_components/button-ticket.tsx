@@ -9,6 +9,7 @@ import {useSession} from 'next-auth/react';
 interface MatchCardProps {
   match: Match & {
     visitingTeam: Team;
+    localTeam:Team
   };
 }
 
