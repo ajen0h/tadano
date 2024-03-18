@@ -14,17 +14,20 @@ import useCart from '@/hooks/use-cart-original';
 import axios from 'axios';
 import {useSession} from 'next-auth/react';
 import Image from 'next/image';
-import {useRouter} from 'next/navigation';
+import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect, useState} from 'react';
-import { BsHandbag } from "react-icons/bs";
+import toast from 'react-hot-toast';
+import {BsHandbag} from 'react-icons/bs';
 
 export const SheetCart = () => {
   const session = useSession();
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();
+  const searchParams = useSearchParams();
   useEffect(() => {
     setIsMounted(true);
+  
   }, [cart.items]);
 
   if (!isMounted) {
@@ -46,7 +49,7 @@ export const SheetCart = () => {
     <>
       <Sheet>
         <SheetTrigger>
-          <Button variant={'ghost'} className='p-0 m-0'>
+          <Button variant={'ghost'} className="p-0 m-0">
             <BsHandbag className="w-7 h-7" />
           </Button>
         </SheetTrigger>
@@ -109,7 +112,8 @@ export const SheetCart = () => {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-{/*       <ModalAuth />
- */}    </>
+      {/*       <ModalAuth />
+       */}{' '}
+    </>
   );
 };

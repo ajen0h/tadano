@@ -26,6 +26,7 @@ export const createPlayer = async (values: z.infer<typeof PlayerSchema>) => {
 
   const {
     name,
+    lastname,
     age,
     description,
     imageUrl,
@@ -52,6 +53,7 @@ export const createPlayer = async (values: z.infer<typeof PlayerSchema>) => {
     await db.player.create({
       data: {
         name,
+        lastname,
         age,
         description,
         imageUrl,
@@ -99,6 +101,7 @@ export const updatePlayer = async (
   const {
     name,
     age,
+    lastname,
     description,
     imageUrl,
     assists,
@@ -119,6 +122,7 @@ export const updatePlayer = async (
       },
       data: {
         name,
+        lastname,
         age,
         description,
         imageUrl,

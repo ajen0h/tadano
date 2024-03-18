@@ -156,10 +156,16 @@ export const NavBar = async () => {
                 </>
               ) : (
                 <>
+                  
+
                   <NavigationLink href={'/sign-in'}>
+                  <Button className='flex flex-row gap-2 bg-transparent border-pink-400 border hover:bg-pink-400 hover:text-white text-black'>
+
                     <User className="w-7 h-7" />
                     <p className="">SignIn / SignUp</p>
+                  </Button>
                   </NavigationLink>
+                  
                 </>
               )}
             </Button>

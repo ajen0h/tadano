@@ -10,8 +10,8 @@ import {useSession} from 'next-auth/react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import NavigationLink from './navigation-link';
-import { LenguageDropDown } from '../lenguage-dropdown';
-import { usePathname } from '@/navigation';
+import {LenguageDropDown} from '../lenguage-dropdown';
+import {usePathname} from '@/navigation';
 
 export const MenuMobil = () => {
   const [open, setOpen] = useState(false);
@@ -46,39 +46,37 @@ export const MenuMobil = () => {
   ];
 
   const {data: session} = useSession();
-  const pathname=usePathname()
+  const pathname = usePathname();
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-          <Menu className='w-7 h-7' />
+          <Menu className="w-7 h-7" />
         </SheetTrigger>
         <SheetContent side={'left'} className="flex flex-col rounded-xl">
           <>
             {session && (
-              
-                  <div className="flex flex-row justify-start items-center gap-3">
-                    <div className="relative h-[40px] w-[40px]">
-                      <Image
-                        src={`${session.user?.image}`}
-                        alt={`${session.user?.name}`}
-                        fill
-                        className="rounded-full"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-start">
-                      <h1 className="text-lg text-marronnegro font-bold">
-                        {session.user?.name}
-                      </h1>
-                      <p className="text-sm text-marronnegro/70 ">
-                        {session.user?.email}
-                      </p>
-                    </div>
-                    <div>
-                      <LenguageDropDown/>
-                    </div>
-                  </div>
-               
+              <div className="flex flex-row justify-start items-center gap-3">
+                <div className="relative h-[40px] w-[40px]">
+                  <Image
+                    src={`${session.user?.image}`}
+                    alt={`${session.user?.name}`}
+                    fill
+                    className="rounded-full"
+                  />
+                </div>
+                <div className="flex flex-col justify-start">
+                  <h1 className="text-lg text-marronnegro font-bold">
+                    {session.user?.name}
+                  </h1>
+                  <p className="text-sm text-marronnegro/70 ">
+                    {session.user?.email}
+                  </p>
+                </div>
+                <div>
+                  <LenguageDropDown />
+                </div>
+              </div>
             )}
           </>
           <>
@@ -101,22 +99,29 @@ export const MenuMobil = () => {
                 variant={'ghost'}
                 key={link.name}
                 asChild
-                className={`justify-start gap-4 ${pathname===link.href ? "bg-pink-400 text-white":""}`}
+                className={`justify-start gap-4 ${
+                  pathname === link.href ? 'bg-pink-400 text-white' : ''
+                }`}
                 onClick={() => setOpen(false)}>
                 <NavigationLink href={`${link.href}`}>
                   {link.icon}
-                  <h3 className={`text-marronnegro font-semibold text-md ${pathname===link.href ? " text-white":""}`}>
+                  <h3
+                    className={`text-marronnegro font-semibold text-md ${
+                      pathname === link.href ? ' text-white' : ''
+                    }`}>
                     {link.name}
                   </h3>
                 </NavigationLink>
               </Button>
             ))}
           </div>
-          <div className="h-full flex flex-col justify-end">
-            <>
-              <LogoutButton setOpen={setOpen} />
-            </>
-          </div>
+          {session?.user?.id ? (
+            <div className="h-full flex flex-col justify-end">
+              <>
+                <LogoutButton setOpen={setOpen} />
+              </>
+            </div>
+          ) : null}
         </SheetContent>
       </Sheet>
     </>

@@ -5,9 +5,10 @@ import {QueryProvider} from '@/lib/query-provider';
 import {NavBar} from '@/components/navbar/navbar';
 import {auth} from '@/auth';
 import {SessionProvider} from 'next-auth/react';
-import { getMessages } from 'next-intl/server';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {NextIntlClientProvider, useMessages} from 'next-intl';
 import ProvidSessionClientProvider from '@/lib/SessionClientProvider';
+import {Toaster} from '@/components/ui/toaster';
 const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
@@ -22,20 +23,18 @@ export default function RootLayout({
   children: React.ReactNode;
   params: {lang: string; locale: string};
 }>) {
-
-  const message=useMessages()
+  const message = useMessages();
 
   return (
     <ProvidSessionClientProvider>
       <html lang={locale}>
-        
-          <NextIntlClientProvider messages={message}>
-            <body className={inter.className}>
-              <NavBar />
-              <QueryProvider>{children}</QueryProvider>
-            </body>
-          </NextIntlClientProvider>
-        
+        <NextIntlClientProvider messages={message}>
+          <body className={inter.className}>
+            <NavBar />
+            <QueryProvider>{children}</QueryProvider>
+            <Toaster />
+          </body>
+        </NextIntlClientProvider>
       </html>
     </ProvidSessionClientProvider>
   );

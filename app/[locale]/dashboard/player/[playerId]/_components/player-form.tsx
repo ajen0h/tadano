@@ -41,6 +41,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
     resolver: zodResolver(PlayerSchema),
     defaultValues: initialData || {
       name: '',
+      lastname:"",
       age: 0,
       description: '',
       imageUrl: '',
@@ -90,6 +91,23 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
                   <Input
                     disabled={pending}
                     placeholder={t('Name-Placeholder')}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastname"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>{t('Lastname-Label')}</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={pending}
+                    placeholder={t('Lastname-Placeholder')}
                     {...field}
                   />
                 </FormControl>

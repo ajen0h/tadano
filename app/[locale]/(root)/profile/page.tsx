@@ -5,15 +5,20 @@ import {
   getThreadByUser,
   getThreadVotesByUser,
 } from '@/actions/users';
+import {auth} from '@/auth';
 import {Button} from '@/components/ui/button';
+import {redirect} from '@/navigation';
 
 const ProfilePage = async ({
   searchParams,
 }: {
   searchParams: {id: string; tab: string};
 }) => {
-  console.log(searchParams.id);
-  console.log(searchParams.tab);
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    return redirect('/');
+  }
 
   const Comments = async () => {
     const comments = await getCommentsByUser(searchParams.id);
@@ -39,7 +44,7 @@ const ProfilePage = async ({
           <div>
             {threads.map((threads) => (
               <div key={threads.id} className="border p-3">
-                <div className='w-full flex flex-row items-center justify-between'>
+                <div className="w-full flex flex-row items-center justify-between">
                   <p>{threads.title}</p>
                   <Button>:</Button>
                 </div>
@@ -65,14 +70,16 @@ const ProfilePage = async ({
           <div>
             {threadVotes.map((votes) => (
               <div key={votes.thread.id} className="border p-3">
-              <div className='w-full flex flex-row items-center justify-between'>
-                <p>{votes.thread.title}</p>
-                <Button>:</Button>
+                <div className="w-full flex flex-row items-center justify-between">
+                  <p>{votes.thread.title}</p>
+                  <Button>:</Button>
+                </div>
+                <div className="grid grid-cols-1">
+                  <p className="text-lg break-words">
+                    {votes.thread.description}
+                  </p>
+                </div>
               </div>
-              <div className="grid grid-cols-1">
-                <p className="text-lg break-words">{votes.thread.description}</p>
-              </div>
-            </div>
             ))}
           </div>
         </main>

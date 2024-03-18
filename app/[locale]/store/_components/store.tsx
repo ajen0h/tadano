@@ -6,14 +6,19 @@ import {ProductCard} from './product-card';
 import {Button} from '@/components/ui/button';
 import {InfinityProduct, InfinityProductInitial} from '@/actions/products';
 import Image from 'next/image';
+import {useSearchParams} from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
-export const Store = () => {
+export const Store = ({success,error}:{success?:string,error?:string}) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [visibleItems, setVisibleItems] = useState(5);
   const [showLoadingMessage, setShowLoadingMessage] = useState(false);
+  const searchParams = useSearchParams();
+
 
   useEffect(() => {
+    
     loadInitialItems();
   }, []);
 
@@ -67,6 +72,7 @@ export const Store = () => {
             </div>
           </div>
         </main>
+        <Toaster position="top-center" reverseOrder={false} />
       </section>
     </>
   );

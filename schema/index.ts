@@ -92,6 +92,7 @@ export const MatchSchema = z.object({
 });
 export const PlayerSchema = z.object({
   name: z.string().min(1),
+  lastname: z.string().min(1),
   age: z.coerce.number(),
   description: z.string().min(1),
   imageUrl: z.string().min(1),

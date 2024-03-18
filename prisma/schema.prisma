@@ -263,8 +263,9 @@ model Ticket {
 }
 
 model Player {
-  id          String   @id @default(uuid())
-  name        String   @unique
+  id   String @id @default(uuid())
+  name String @unique
+  lastname String
   age         Int
   description String
   imageUrl    String

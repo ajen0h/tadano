@@ -1,7 +1,14 @@
+import {getPlayer} from '@/actions/player';
 import Image from 'next/image';
 
-const TeamPage = () => {
+const TeamPage = async () => {
+  const players = await getPlayer();
   return (
+    /*   <SelectItem value="Goalkeeper">Goalkeeper</SelectItem>
+                    <SelectItem value="Defender">Defender</SelectItem>
+                    <SelectItem value="Midfielder">Midfielder</SelectItem>
+                    <SelectItem value="Forwards">Forwards</SelectItem>
+                    <SelectItem value="Staff">Staff</SelectItem> */
     <main>
       <div
         style={{
@@ -17,83 +24,174 @@ const TeamPage = () => {
 
       <section className="py-6 px-10 xl:container">
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">PORTEROS</p>
+          <p className="text-2xl font-bold border-b md:text-4xl">Goalkeeper</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
-            <div
-              className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
-              style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${'/tanjiro.jpg'}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}>
-              <div className="p-3 md:p-6">
-                <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
-                  22
-                </p>
-                <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
-                  TOM
-                </p>
-                <p className="font-bold text-white text-sm md:text-3xl">
-                  HEATON
-                </p>
-              </div>
-            </div>
+            {players.map((player) => (
+              <>
+                {player.position === 'Goalkeeper' ? (
+                  <>
+                    <div
+                      key={player.id}
+                      className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${player.imageUrl}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}>
+                      <div className="p-3 md:p-6">
+                        <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                          {player.dorsal}
+                        </p>
+                        <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                          {player.name}
+                        </p>
+                        <p className="font-bold text-white text-sm md:text-3xl">
+                          {player.lastname}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </>
+            ))}
+          </div>
+        </main>
+        
+        <main>
+          <p className="text-2xl font-bold border-b md:text-4xl">Defender</p>
+          <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
+            {players.map((player) => (
+              <>
+                {player.position === 'Defender' ? (
+                  <>
+                    <div
+                      key={player.id}
+                      className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${player.imageUrl}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}>
+                      <div className="p-3 md:p-6">
+                        <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                          {player.dorsal}
+                        </p>
+                        <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                          {player.name}
+                        </p>
+                        <p className="font-bold text-white text-sm md:text-3xl">
+                          {player.lastname}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </>
+            ))}
           </div>
         </main>
         <main>
-          <p>DEFENSAS</p>
-          <div className="grid grid-cols-2">
-            <div className="h-[200px] w-full relative">
-              <Image
-                src={'/tanjiro.jpg'}
-                alt=""
-                fill
-                className="object-cover"
-              />
-            </div>
+          <p className="text-2xl font-bold border-b md:text-4xl">Midfielder</p>
+          <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
+            {players.map((player) => (
+              <>
+                {player.position === 'Midfielder' ? (
+                  <>
+                    <div
+                      key={player.id}
+                      className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${player.imageUrl}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}>
+                      <div className="p-3 md:p-6">
+                        <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                          {player.dorsal}
+                        </p>
+                        <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                          {player.name}
+                        </p>
+                        <p className="font-bold text-white text-sm md:text-3xl">
+                          {player.lastname}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </>
+            ))}
           </div>
         </main>
         <main>
-          <p>MEDIOS</p>
-          <div className="grid grid-cols-2">
-            <div className="h-[200px] w-full relative">
-              <Image
-                src={'/tanjiro.jpg'}
-                alt=""
-                fill
-                className="object-cover"
-              />
-            </div>
+          <p className="text-2xl font-bold border-b md:text-4xl">Forwards</p>
+          <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
+            {players.map((player) => (
+              <>
+                {player.position === 'Forwards' ? (
+                  <>
+                    <div
+                      key={player.id}
+                      className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${player.imageUrl}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}>
+                      <div className="p-3 md:p-6">
+                        <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                          {player.dorsal}
+                        </p>
+                        <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                          {player.name}
+                        </p>
+                        <p className="font-bold text-white text-sm md:text-3xl">
+                          {player.lastname}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </>
+            ))}
           </div>
         </main>
         <main>
-          <p>DELANTEROS</p>
-          <div className="grid grid-cols-2">
-            <div className="h-[200px] w-full relative">
-              <Image
-                src={'/tanjiro.jpg'}
-                alt=""
-                fill
-                className="object-cover"
-              />
-            </div>
+          <p className="text-2xl font-bold border-b md:text-4xl">Staff</p>
+          <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
+            {players.map((player) => (
+              <>
+                {player.position === 'Staff' ? (
+                  <>
+                    <div
+                      key={player.id}
+                      className="object-cover rounded-xl flex flex-col justify-end  overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500 h-[200px] md:h-[400px] md:w-[400px]"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('${player.imageUrl}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}>
+                      <div className="p-3 md:p-6">
+                        <p className="font-bold text-white text-sm md:text-3xl pb-1 border-b-[2px] border-b-red-600 w-6 md:w-10">
+                          {player.dorsal}
+                        </p>
+                        <p className="font-bold text-white leading-4 pt-3 text-sm md:text-3xl">
+                          {player.name}
+                        </p>
+                        <p className="font-bold text-white text-sm md:text-3xl">
+                          {player.lastname}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </>
+            ))}
           </div>
         </main>
+        
       </section>
-      <section className='bg-gray-200'>
-        <main className='grid grid-cols-2 gap-4'>
-
-        <div className="h-[200px] w-full relative">
-          <Image src={'/tanjiro.jpg'} alt="" fill className="object-cover" />
-        </div>
-        <div className='flex flex-col gap-3 '>
-
-        <p className='font-bold text-2xl'>Equipo local vs Equipo Visitante</p>
-        <p className='font-bold text-lg opacity-90'>Estadio</p>
-        <p className='font-semibold text-lg opacity-90'>Fecha</p>
-        </div>
-        </main>
-      </section>
+    
     </main>
   );
 };
