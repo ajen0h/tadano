@@ -7,7 +7,6 @@ const PdfPage = () => {
     <>
       {view ? (
         <>
-          <PdfDownload matchId={'jijijitutututuut'} date='2000' />
         </>
       ) : null}
     </>
