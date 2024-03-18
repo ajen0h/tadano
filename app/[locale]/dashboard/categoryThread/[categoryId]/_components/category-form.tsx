@@ -16,15 +16,15 @@ import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
-import {Category} from '@prisma/client';
-import {createCategory, updateCategory} from '@/actions/category';
+import {Category, CategoryThreads} from '@prisma/client';
+import {createCategory, createCategoryThread, updateCategory, updateCategoryThread} from '@/actions/category';
 import { useTranslations } from 'next-intl';
 
 interface CategoryFormPorps {
-  initialData: Category | null;
+  initialData: CategoryThreads | null;
 }
 
-export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
+export const CategoryThreadForm: React.FC<CategoryFormPorps> = ({initialData}) => {
   const t = useTranslations('Dashboard');
   const [pending, startTransition] = useTransition();
 
@@ -40,15 +40,13 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
       let res;
 
       if (initialData) {
-        res = await updateCategory(initialData.id, values);
+        res = await updateCategoryThread(initialData.id, values);
       } else {
-        res = await createCategory(values);
-        
+        res = await createCategoryThread(values);
       }
 
       if (res.success) {
         toast.success(`${res.success}`);
-        form.reset()
       } else {
         toast.error(`${res.error}`);
       }

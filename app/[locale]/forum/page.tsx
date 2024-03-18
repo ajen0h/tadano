@@ -10,11 +10,17 @@ import {getTranslations} from 'next-intl/server';
 import {HeaderForum} from './_components/header-forum';
 import {ChevronUp, Dot, Heart, MessageCircle} from 'lucide-react';
 import NavigationLink from '@/components/navbar/navigation-link';
+import {getCategoryThread} from '@/actions/category';
 
-const ForumPage = async ({params: {lang}}: {params: {lang: string}}) => {
+const ForumPage = async ({
+  searchParams: {query, sort, category},
+}: {
+  searchParams: {query?: string; sort?: string; category?: string};
+}) => {
   const t = await getTranslations('Dashboard.Forum');
 
-  const threads = await getThreads();
+  const threads = await getThreads(query, sort, category);
+  const categories = await getCategoryThread();
   const session = await auth();
 
   return (
@@ -30,12 +36,9 @@ const ForumPage = async ({params: {lang}}: {params: {lang: string}}) => {
       )}
 
       */}
-      <HeaderForum />
+      <HeaderForum categories={categories} />
       {threads.map((thread) => (
-        <NavigationLink
-          key={thread.id}
-          href={`/forum/thread/${thread.id}`}
-          >
+        <NavigationLink key={thread.id} href={`/forum/thread/${thread.id}`}>
           <main className="px-10 py-4 xl:container">
             <section className="hover:shadow-xl transition-all cursor-pointer">
               <main className="border p-6 md:p-10 rounded-xl">
@@ -78,7 +81,7 @@ const ForumPage = async ({params: {lang}}: {params: {lang: string}}) => {
                   </div>
                   <div className="flex flex-row justify-start items-start">
                     <p className="text-sm bg-cyan-400 p-1 rounded-full font-bold text-white">
-                      Accounting
+                      {thread.CategoryThreads?.name}
                     </p>
                   </div>
                 </div>
@@ -87,14 +90,18 @@ const ForumPage = async ({params: {lang}}: {params: {lang: string}}) => {
                     {thread.description}
                   </p>
                 </div>
-                <div className="pt-4">
-                  <Button
-                    variant={'ghost'}
-                    className="bg-slate-100 flex flex-col justify-center items-center h-full">
-                    <Heart className="hover:fill-red-500 hover:text-red-500" />
-                    <p>244</p>
-                  </Button>
-                </div>
+                {session?.user?.id ? (
+                  <>
+                    <div className="pt-4">
+                      <Button
+                        variant={'ghost'}
+                        className="bg-slate-100 flex flex-col justify-center items-center h-full">
+                        <Heart className="hover:fill-red-500 hover:text-red-500" />
+                        <p>244</p>
+                      </Button>
+                    </div>
+                  </>
+                ) : null}
               </main>
             </section>
           </main>

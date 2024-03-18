@@ -11,7 +11,6 @@ type ThreadType = z.infer<typeof ThreadSchema>;
 
 export const CreateThread = async (values: ThreadType) => {
   const lang = cookies().get('NEXT_LOCALE')?.value;
-
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
   try {
@@ -20,6 +19,7 @@ export const CreateThread = async (values: ThreadType) => {
         title: values.title,
         body: values.body,
         description: values.description,
+        categoryThreadsId:values.categoryId,
         userId: session.user?.id,
       },
     });
@@ -33,13 +33,24 @@ export const CreateThread = async (values: ThreadType) => {
   }
 };
 
-export const getThreads = async () => {
+export const getThreads = async (term?:string,sort?:string,categoryName?:string) => {
   const threads = await db.thread.findMany({
+    where:{
+      title:{
+        contains:term?.toString()
+      },
+      CategoryThreads:{
+        name:categoryName?.toString()
+      }
+      
+    },
+    
     include: {
+      CategoryThreads:true,
       User: true,
     },
     orderBy:{
-      createdAt:"desc"
+      createdAt: sort?.toLowerCase() === "asc" ? "asc" : "desc"
     }
   });
   return threads;
@@ -50,6 +61,7 @@ export const getThread = async (threadId: string) => {
       id: threadId,
     },
     include: {
+      CategoryThreads:true,
       User: true,
       comments: {
         include: {

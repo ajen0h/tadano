@@ -17,8 +17,9 @@ import toast, {Toaster} from 'react-hot-toast';
 import {z} from 'zod';
 import 'react-datepicker/dist/react-datepicker.css';
 import {register} from '@/actions/auth';
-import {useRouter} from 'next/navigation';
+
 import { useTranslations } from 'next-intl';
+import { useRouter } from '@/navigation';
 
 export const SingUpForm = () => {
   const t=useTranslations("SignIn")

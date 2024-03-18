@@ -19,7 +19,101 @@ export const getCategoryById = async (categoryId: string) => {
   });
   return category;
 };
+export const getCategoryThread = async () => {
+  const category = await db.categoryThreads.findMany();
+  return category;
+};
 
+export const getCategoryThreadById = async (categoryThreadId: string) => {
+  const category = await db.categoryThreads.findUnique({
+    where: {
+      id: categoryThreadId,
+    },
+  });
+  return category;
+};
+
+export const createCategoryThread = async (
+  values: z.infer<typeof CategorySchema>
+) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const validatedFields = CategorySchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Invalid Fields!'};
+  }
+
+  const {name} = validatedFields.data;
+
+  const existingCategory = await db.category.findFirst({
+    where: {name},
+  });
+
+  if (existingCategory) {
+    return {error: 'Category name is used!'};
+  }
+
+  try {
+    await db.categoryThreads.create({
+      data: {
+        name,
+      },
+    });
+    revalidatePath(`/${lang}/dashboard/categoryThread`);
+    return {success: 'Category has been created!'};
+  } catch (error) {
+    return {error: 'Error creating category.'};
+  }
+};
+
+export const deleteCategoryThread = async (categoryId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  try {
+    await db.categoryThreads.delete({
+      where: {
+        id: categoryId,
+      },
+    });
+    revalidatePath(`/${lang}/dashboard/categoryThread`);
+
+    return {success: 'Category was deleted!'};
+  } catch (error) {
+    console.error('Registration failed:', error);
+    return {error: 'Error deleting category.'};
+  }
+};
+
+export const updateCategoryThread = async (
+  categoryId: string,
+  values: z.infer<typeof CategorySchema>
+) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const validatedFields = CategorySchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Invalid Fields!'};
+  }
+
+  const {name} = validatedFields.data;
+
+  try {
+    await db.categoryThreads.update({
+      where: {
+        id: categoryId,
+      },
+      data: {
+        name,
+      },
+    });
+    revalidatePath(`/${lang}/dashboard/category`);
+    return {success: 'Category has been updated!'};
+  } catch (error: any) {
+    if (error.constructor.name === Prisma.PrismaClientKnownRequestError.name) {
+      if (error.code === 'P2002') {
+        return {error: "Category's name exist!"};
+      }
+    }
+    return {error: 'Anything wrong!'};
+  }
+};
 export const createCategory = async (
   values: z.infer<typeof CategorySchema>
 ) => {

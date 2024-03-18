@@ -54,6 +54,7 @@ export const ThreadSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   body: z.string().min(1),
+  categoryId: z.string().min(1),
 });
 export const SignInSchema = z.object({
   email: z.string().email().min(1),
@@ -63,7 +64,7 @@ export const SignUpSchema = z.object({
   name: z.string().min(1),
   email: z.string().email().min(1),
   password: z.string().min(1),
-  description: z.string().min(1).nullable(),
+  description: z.string().min(1).nullable().optional(),
 
 });
 export const UserSchema = z.object({

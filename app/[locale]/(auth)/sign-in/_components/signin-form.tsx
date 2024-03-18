@@ -31,12 +31,17 @@ export const SignInForm = () => {
 
   const onSubmit = async (values: z.infer<typeof SignInSchema>) => {
     startTransition(async () => {
+      console.log(values);
+      
+
       const res = await login(values);
       if (res) {
         toast.error(`${res.error}`);
       }else{
         toast.success(`LoginIn!`);
         console.log("object");
+        router.refresh()
+        router.back()
 
       }
     });

@@ -1,9 +1,11 @@
+import { getCategoryThread } from '@/actions/category';
 import {ThreadForm} from '../../_components/thread-form';
 
-const ThreadCreate = () => {
+const ThreadCreate = async() => {
+  const categories=await getCategoryThread()
   return (
     <div>
-      <ThreadForm />
+      <ThreadForm categories={categories}/>
     </div>
   );
 };

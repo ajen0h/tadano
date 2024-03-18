@@ -15,6 +15,8 @@ import {
     "/fixtures":"/fixtures",
     "/store":"/store",
     "/forum":"/forum",
+    "/sign-in":"/sign-in",
+    "/sign-up":"/sign-up"
    
    
   

@@ -101,7 +101,7 @@ export default async function Home() {
             {t('News Title')}
           </p>
           </header>
-        <main className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+        <main className="xl:container px-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {reportData.map((report,index)=>(
             <NewsHome key={report.id} reportData={report} index={index}/>
           ))}

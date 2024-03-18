@@ -26,13 +26,11 @@ export function DashboardMenu() {
     {name: 'Player', href: '/dashboard/player'},
     {name: 'Team', href: '/dashboard/teams'},
     {name: 'User', href: '/dashboard/user'},
-  ];
-
-  const linksStore = [
     {name: 'Color', href: '/dashboard/color'},
     {name: 'Category', href: '/dashboard/category'},
     {name: 'Size', href: '/dashboard/size'},
     {name: 'Product', href: '/dashboard/product'},
+    {name: 'Category Thread', href: '/dashboard/categoryThread'},
   ];
 
   return (
@@ -42,8 +40,7 @@ export function DashboardMenu() {
       </SheetTrigger>
       <SheetContent side={'left'}>
         <aside className="h-full flex flex-col ">
-          <div className="grid">
-            <p className="p-4 text-[0.75rem] opacity-60">Web</p>
+          <div className="grid py-6">
             {linksWeb.map((link) => (
               <Button
                 className={`${
@@ -60,23 +57,7 @@ export function DashboardMenu() {
             ))}
           </div>
 
-          <div className="grid">
-            <p className="p-4 text-[0.75rem] opacity-60">Store</p>
-            {linksStore.map((link) => (
-              <Button
-                className={`${
-                  pathname === link.href
-                    ? 'bg-pink-400 opacity-100'
-                    : 'opacity-60'
-                } justify-start rounded-none  `}
-                variant={'ghost'}
-                key={link.name}
-                onClick={() => setOpen(false)}
-                >
-                <NavigationLink href={link.href}>{link.name}</NavigationLink>
-              </Button>
-            ))}
-          </div>
+         
         </aside>
       </SheetContent>
     </Sheet>
