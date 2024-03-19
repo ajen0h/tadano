@@ -49,6 +49,7 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
+        router.refresh()
         form.reset();
       } else {
         toast.error(`${res.error}`);

@@ -158,6 +158,7 @@
       "Select a role": "Select a role",
       "Admin": "Admin",
       "User": "User",
+      "Go Back": "Go back",
       "Go back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
@@ -204,6 +205,7 @@
       "Create Thread": "Create Thread",
       "Filter Title": "Filter Title...",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create"
     },
     "New": {
@@ -216,6 +218,7 @@
       "Description-Label": "Description",
       "ImageUrl-Label": "ImageUrl",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit New": "Edit New",
@@ -225,6 +228,8 @@
       "Create Player": "Create Player",
       "Filter Name": "Filter Name...",
       "Name-Placeholder": "Name",
+      "Lastname-Label":"Lastname",
+      "Lastname-Placeholder": "Lastname",
       "Age-Placeholder": "Age",
       "Description-Placeholder": "Description",
       "Height-Placeholder": "Height",
@@ -250,6 +255,7 @@
       "Local Team-Label": "Local Team",
       "Select a team": "Select a team",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Player": "Edit Player",
@@ -264,6 +270,7 @@
       "Name-Label": "Name",
       "ImageUrl-Label": "ImageUrl-Placeholder",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Team": "Edit Team",
@@ -278,6 +285,7 @@
       "Name-Label": "Name",
       "ImageUrl-Label": "ImageUrl-Placeholder",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Team": "Edit Team",
@@ -291,6 +299,7 @@
       "Name-Label": "Name",
       "Value-Label": "Value",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Color": "Edit Color",
@@ -302,6 +311,7 @@
       "Name-Label": "Name",
       "Name-Placeholder": "Name",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Category": "Edit Category",
@@ -315,6 +325,7 @@
       "Name-Label": "Name",
       "Value-Label": "Value",
       "Go back": "Go back",
+      "Go Back": "Go back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Size": "Edit Size",
@@ -346,7 +357,8 @@
       "Create": "Create",
       "Actions": "Actions",
       "Edit Product": "Edit Product",
-      "Delete Product": "Delete Product"
+      "Delete Product": "Delete Product",
+      "Go Back": "Go back"
     }
   }
 }

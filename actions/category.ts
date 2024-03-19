@@ -103,7 +103,7 @@ export const updateCategoryThread = async (
         name,
       },
     });
-    revalidatePath(`/${lang}/dashboard/category`);
+    /* revalidatePath(`/${lang}/dashboard/category`); */
     return {success: 'Category has been updated!'};
   } catch (error: any) {
     if (error.constructor.name === Prisma.PrismaClientKnownRequestError.name) {
@@ -139,7 +139,7 @@ export const createCategory = async (
         name,
       },
     });
-    revalidatePath(`/${lang}/dashboard/category`);
+    /* revalidatePath(`/${lang}/dashboard/category`); */
     return {success: 'Category has been created!'};
   } catch (error) {
     return {error: 'Error creating category.'};
