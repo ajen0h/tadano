@@ -22,7 +22,7 @@ const config = {
     },
 
     backgroundImage: {
-      hero: 'linear-gradient(to right bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%) ,url(/bannerLanding.jpg)',
+      hero: 'linear-gradient(to right bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%) ,url(/logo.jpg)',
       bannerNews:
         'linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1) 70%),url(/bannernews.jpg)',
       bannerStore:

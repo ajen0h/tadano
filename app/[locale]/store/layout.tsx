@@ -10,8 +10,8 @@ const StoreLayout = ({children}: {children: React.ReactNode}) => {
     <div className="h-full ">
       {/* <HeaderStore/> */}
 
-      <section>
-        <div className="h-[70vh] bg-bannerStore bg-center bg-cover bg-no-repeat ">
+      <section className='px-10 xl:container pt-8'>
+        <div className="h-[70vh] bg-bannerStore bg-center bg-cover bg-no-repeat rounded-3xl">
           <div className="h-full flex flex-col justify-center items-start px-9 text-white">
             <p className="text-sm font-bold lg:text-[0.95rem]">New Arrivals</p>
             <h2 className="text-6xl lg:text-8xl font-extrabold mb-4">
@@ -31,7 +31,7 @@ const StoreLayout = ({children}: {children: React.ReactNode}) => {
         </div>
       </section>
       
-        <MenuCategories />
+       {/*  <MenuCategories /> */}
         {children}
     </div>
   );

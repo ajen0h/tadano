@@ -1,6 +1,6 @@
 'use client';
 import {Button} from '@/components/ui/button';
-import {Menu} from 'lucide-react';
+import {GripHorizontal, Menu} from 'lucide-react';
 import {
   Sheet,
   SheetClose,
@@ -36,7 +36,12 @@ export function DashboardMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Menu className="cursor-pointer" />
+        <Button
+          
+          className="flex flex-row justify-center items-center gap-3 bg-pink-400">
+          <p>Abrir menu </p>
+          <GripHorizontal className="cursor-pointer" />
+        </Button>
       </SheetTrigger>
       <SheetContent side={'left'}>
         <aside className="h-full flex flex-col ">
@@ -50,14 +55,11 @@ export function DashboardMenu() {
                 } justify-start rounded-none  `}
                 variant={'ghost'}
                 key={link.name}
-                onClick={() => setOpen(false)}
-                >
+                onClick={() => setOpen(false)}>
                 <NavigationLink href={link.href}>{link.name}</NavigationLink>
               </Button>
             ))}
           </div>
-
-         
         </aside>
       </SheetContent>
     </Sheet>

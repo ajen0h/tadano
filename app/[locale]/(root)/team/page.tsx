@@ -12,13 +12,13 @@ const TeamPage = async () => {
     <main>
       <div
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/bannerEquipo.jpg')`,
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/banner-home.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '85vh',
+          height: '55vh',
         }}>
         <div className="px-10 xl:container h-full text-white flex flex-col justify-center items-start">
-          <p className="text-4xl font-bold md:text-6xl">FIRST TEAM</p>
+          <p className="text-4xl font-bold md:text-6xl uppercase">Nuestro equipo</p>
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {SideBar} from './_components/sidebar';
 import {DashboardMenu} from './_components/dashboard-menu';
+import { Button } from '@/components/ui/button';
 
 const DashboardLayout = ({children}: {children: React.ReactNode}) => {
   return (
@@ -10,9 +11,11 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
       </div>
 
       <div>
-        <div className="flex flex-row items-center justify-between lg:justify-center ">
-          <div className="lg:hidden">
-            <DashboardMenu  />
+        <div className="flex flex-row items-center justify-between lg:justify-center p-6 ">
+          <div className="lg:hidden ">
+            
+              <DashboardMenu />
+            
           </div>
         </div>
         <div className="bg-gray-50 h-full">{children}</div>

@@ -27,7 +27,6 @@ export const SheetCart = () => {
   const searchParams = useSearchParams();
   useEffect(() => {
     setIsMounted(true);
-  
   }, [cart.items]);
 
   if (!isMounted) {
@@ -55,7 +54,7 @@ export const SheetCart = () => {
         </SheetTrigger>
         <SheetContent className="flex flex-col justify-between">
           <SheetHeader>
-            <SheetTitle>Anita Max Wynd</SheetTitle>
+            <SheetTitle>My Cart</SheetTitle>
             <SheetDescription>
               {cart.items.map((item) => (
                 <div key={item.id}>

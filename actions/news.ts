@@ -4,36 +4,46 @@ import {db} from '@/lib/db';
 import {NewSchema} from '@/schema';
 import {Prisma} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
-import { cookies } from 'next/headers';
+import {cookies} from 'next/headers';
 import {string, z} from 'zod';
 
-export const getNews = async (term?:string) => {
+export const getNews = async (term?: string) => {
   const news = await db.report.findMany({
     include: {
       User: true,
     },
-    
-    orderBy:{
-      createdAt:"desc"
+
+    orderBy: {
+      createdAt: 'desc',
     },
-    where:{
-      title:{
-        contains:term?.toString()
-      }
-    }
-    
+    where: {
+      title: {
+        contains: term?.toString(),
+      },
+    },
   });
   return news;
+};
+export const getRandomNewsLimit1 = async () => {
+  const productsCount = await db.report.count();
+  const skip = Math.floor(Math.random() * productsCount);
+  return await db.report.findMany({
+    take: 1,
+    skip: skip,
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
 };
 export const getNewsLimit10 = async () => {
   const news = await db.report.findMany({
     include: {
       User: true,
     },
-    orderBy:{
-      createdAt:"desc"
+    orderBy: {
+      createdAt: 'desc',
     },
-    take:10
+    take: 10,
   });
   return news;
 };

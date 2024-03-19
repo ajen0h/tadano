@@ -36,7 +36,7 @@ export const UserMenu = () => {
             session.data?.user?.role === 'ADMIN' ? (
               <>
                 <DropdownMenuItem>
-                  <NavigationLink href={'/dashboard'}>Dashboard</NavigationLink>
+                  <NavigationLink href={'/dashboard/match'}>Dashboard</NavigationLink>
                 </DropdownMenuItem>
               </>
             ) : null

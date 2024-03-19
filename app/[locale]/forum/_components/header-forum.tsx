@@ -41,7 +41,7 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
   }, WAIT_BETWEEN_CHANGE);
   console.log(searchParams.get('sort'));
   return (
-    <header className="py-8 px-10 xl:container ">
+    <header className="py-8">
       <main className="flex flex-row md:justify-end justify-center items-center gap-4  py-5">
         <div className="w-full lg:w-[40%]">
           <Input

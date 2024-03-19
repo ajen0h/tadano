@@ -20,6 +20,7 @@ import {register} from '@/actions/auth';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/navigation';
+import { ButtonGoogle } from '@/components/button-google';
 
 export const SingUpForm = () => {
   const t=useTranslations("SignIn")
@@ -44,7 +45,7 @@ export const SingUpForm = () => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-7'>
           <FormField
             control={form.control}
             name="name"
@@ -93,6 +94,12 @@ export const SingUpForm = () => {
           <Button  className="w-full" disabled={pending}>{t("SignUp")}</Button>
         </form>
       </Form>
+      <div className='flex flex-row justify-center items-center gap-3 py-4'>
+        <p>------</p>
+        <p>O</p>
+        <p>------</p>
+      </div>
+      <ButtonGoogle pathname="/" />
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );

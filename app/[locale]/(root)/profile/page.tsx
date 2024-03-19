@@ -111,7 +111,7 @@ const ProfilePage = async ({
 
   return (
     <>
-      <section className="w-full">
+      <section className="w-full bg-black text-white">
         {searchParams.tab === 'Comments' ? (
           <>
             <Comments />

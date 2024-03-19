@@ -56,22 +56,26 @@ export const MenuMobil = () => {
         <SheetContent side={'left'} className="flex flex-col rounded-xl">
           <>
             {session && (
-              <div className="flex flex-row justify-start items-center gap-3">
-                <div className="relative h-[40px] w-[40px]">
-                  <Image
-                    src={`${session.user?.image}`}
-                    alt={`${session.user?.name}`}
-                    fill
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col justify-start">
-                  <h1 className="text-lg text-marronnegro font-bold">
-                    {session.user?.name}
-                  </h1>
-                  <p className="text-sm text-marronnegro/70 ">
-                    {session.user?.email}
-                  </p>
+              <div className="flex flex-row justify-between items-center gap-3 px-4">
+                <div>
+                  <div className='flex flex-row gap-3 justify-start items-center'>
+                    <div className="relative h-[40px] w-[40px]">
+                      <Image
+                        src={`${session.user?.image}`}
+                        alt={`${session.user?.name}`}
+                        fill
+                        className="rounded-full"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-start">
+                      <h1 className="text-lg text-marronnegro font-bold">
+                        {session.user?.name}
+                      </h1>
+                      <p className="text-sm text-marronnegro/70 ">
+                        {session.user?.email}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <LenguageDropDown />
