@@ -16,7 +16,8 @@ import {
     "/store":"/store",
     "/forum":"/forum",
     "/sign-in":"/sign-in",
-    "/sign-up":"/sign-up"
+    "/sign-up":"/sign-up",
+    '/profile':'/profile'
    
    
   
