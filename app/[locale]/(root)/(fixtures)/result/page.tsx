@@ -2,16 +2,19 @@ import {getMatchFinished} from '@/actions/match';
 import { FechaThread } from '@/app/[locale]/forum/_components/fecha-thread';
 import {Button} from '@/components/ui/button';
 import { Calendar, MapPin } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 const ResultPage = async () => {
+  const t = await getTranslations('General');
+
   const matches = await getMatchFinished();
   return (
     <main>
     <section className="px-10 xl:container">
       <header className="  py-6 border-b-pink-400 border-b">
-        <p className="text-3xl font-bold pb-2 lg:text-5xl">Resultados</p>
-        <p>Ultimos enfrentamientos de club</p>
+        <p className="text-3xl font-bold pb-2 lg:text-5xl">{t("Resultados")}</p>
+        <p>{t("Last club matches")}</p>
       
       </header>
       {/* Respeta lo de los botones */}

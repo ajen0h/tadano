@@ -14,7 +14,7 @@ import {
   getMatchNotFinishedLimit2,
 } from '@/actions/match';
 export default async function Home() {
-  const t = await getTranslations('Home');
+  const t = await getTranslations('General');
   const reportData = await getNewsLimit6();
   const matchfinish = await getMatchFinishedLimit2();
   const matchnotfinish = await getMatchNotFinishedLimit2();
@@ -50,8 +50,8 @@ export default async function Home() {
 
       {/* News */}
       <section className=" py-5 px-10">
-        <p className="font-bold py-4 text-xl">ÚLTIMAS NOTICAS</p>
-        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <p className="font-bold py-4 text-xl">{t("LAST NEWS")}</p>
+        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reportData.map((report) => (
             <NavigationLink key={report.id} href={`/news/${report.id}`}>
 
@@ -98,10 +98,10 @@ export default async function Home() {
             }}>
             <div className="px-10 xl:container h-full text-white flex flex-col justify-center items-center gap-4">
               <p className="text-4xl font-bold md:text-6xl text-center">
-                Descubre nuesta tienda
+                {t("Discover our store")}
               </p>
               <Button className="bg-white text-black hover:bg-black hover:text-white transition-all text-start">
-                Go To Store
+                 {t("Go To Store")}
               </Button>
             </div>
           </div>
@@ -109,8 +109,8 @@ export default async function Home() {
       </section>
       {/* matches */}
       <section className=" py-5 px-10">
-        <p className="font-bold py-4 text-xl">MATCHES</p>
-        <main className=" grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4">
+        <p className="font-bold py-4 text-xl">{t("MATCHES")}</p>
+        <main className=" grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5">
           {matchfinish.map((matchfi) => (
             <article
               key={matchfi.id}
@@ -226,7 +226,7 @@ export default async function Home() {
       <section className="pt-6">
         <div className=" bg-black flex justify-start items-center p-5 w-[50%] md:w-[30%] lg:w-[25%] xl:w-[17%]">
           <p className="text-white text-xl font-bold uppercase hover:text-pink-400">
-            Nuestro equipo
+          {t('Our team')}
           </p>
         </div>
         <NavigationLink href="/team">

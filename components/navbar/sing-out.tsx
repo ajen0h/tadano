@@ -13,7 +13,7 @@ export const LogoutButton = ({setOpen}: LogoutButtonProps) => {
     <>
       <Button
         variant={'ghost'}
-        className="justify-start gap-4"
+        className="justify-start gap-4 w-full"
         onClick={() => {
           signOut({
             callbackUrl: `/`,

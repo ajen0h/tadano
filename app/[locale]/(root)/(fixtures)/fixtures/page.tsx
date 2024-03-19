@@ -14,7 +14,7 @@ import { auth } from '@/auth';
 import { Matches } from './_components/matches';
 
 const FixturesPage = async () => {
-  const t = await getTranslations('Fixtures');
+  const t = await getTranslations('General');
   const matches = await getMatchNotFinished();
 
 
@@ -23,8 +23,8 @@ const FixturesPage = async () => {
     <main>
       <section className="px-10 xl:container">
         <header className="  py-6 border-b-pink-400 border-b">
-          <p className="text-3xl font-bold pb-2 lg:text-5xl">Calendario</p>
-          <p>Descubre los proximos enfrentamientos</p>
+          <p className="text-3xl font-bold pb-2 lg:text-5xl">{t("Calendar")}</p>
+          <p>{t("Discover the next matchups")}</p>
         
         </header>
          {/* Respeta lo de los botones */}
@@ -33,7 +33,7 @@ const FixturesPage = async () => {
         ))} */}
         <section className='pt-6'>
         <main className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {matches.map((matchnotfi) => (
+        {matches.map((matchnotfi:any) => (
             <Matches key={matchnotfi.id} matchnotfi={matchnotfi}/>
           ))}
         </main>

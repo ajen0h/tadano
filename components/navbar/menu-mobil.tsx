@@ -54,7 +54,7 @@ export const MenuMobil = () => {
           <Menu className="w-7 h-7" />
         </SheetTrigger>
         <SheetContent side={'left'} className="flex flex-col rounded-xl">
-          <>
+         {/*  <>
             {session && (
               <div className="flex flex-row justify-between items-center gap-3 px-4">
                 <div>
@@ -78,11 +78,14 @@ export const MenuMobil = () => {
                   </div>
                 </div>
                 <div>
-                  <LenguageDropDown />
                 </div>
+                </div>
+                )}
+              </> */}
+              <div className=''>
+
+              <LenguageDropDown />
               </div>
-            )}
-          </>
           <>
             {!session ? (
               <>

@@ -26,12 +26,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useRouter } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 interface ThreadFormProps {
   categories: CategoryThreads[];
 }
 
 export const ThreadForm = ({categories}: ThreadFormProps) => {
+  const t=useTranslations("General")
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(ThreadSchema),
@@ -58,14 +60,14 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
           <FormField
             control={form.control}
             name="title"
             render={({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Titulo" {...field} />
+                  <Input placeholder={t("Title")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -77,7 +79,7 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
             render={({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Descripcion" {...field} />
+                  <Input placeholder={t("Descripcion")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,13 +115,12 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
                   </FormControl>
                   <SelectContent>
                     <>
-                      {/*  {categories.map((category) => (
+                       {categories.map((category) => (
                       <SelectItem key={category.id} value={category.id}>
                         {category.name}
                       </SelectItem>
-                    ))} */}
-                      <SelectItem value="111">Debate</SelectItem>
-                      <SelectItem value="222">Jugadas</SelectItem>
+                    ))}
+                      
                     </>
                   </SelectContent>
                 </Select>
@@ -128,7 +129,7 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
             )}
           />
 
-          <Button>Save!</Button>
+          <Button>{t("Post!")}</Button>
         </form>
       </Form>
     </div>

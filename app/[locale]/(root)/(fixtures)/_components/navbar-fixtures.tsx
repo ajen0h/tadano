@@ -3,14 +3,16 @@
 import NavigationLink from '@/components/navbar/navigation-link';
 import {Button} from '@/components/ui/button';
 import {usePathname} from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export const NavbarFixtures = () => {
+  const t=useTranslations("General")
   const pathname = usePathname();
   console.log(pathname);
 
   const navLinks = [
-    {name: 'Fixtures', href: '/fixtures'},
-    {name: 'Results', href: '/result'},
+    {name: `${t("Fixtures")}`, href: '/fixtures'},
+    {name: `${t("Results")}`, href: '/result'},
   ];
 
   return (

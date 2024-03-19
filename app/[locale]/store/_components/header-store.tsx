@@ -42,7 +42,7 @@ export const HeaderStore= ({categories}: HeaderForumProps) => {
   console.log(searchParams.get('sort'));
   return (
     <header className="py-8">
-      <main className="flex flex-row md:justify-center justify-center items-center gap-4  py-5">
+      <main className="flex flex-row md:justify-center justify-center items-center gap-4  py-5 px-10 xl:container">
         <div className="w-full lg:w-[40%]">
           <Input
             className="rounded-full p-4 h-[50px] placeholder:text-lg"

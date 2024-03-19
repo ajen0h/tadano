@@ -9,6 +9,7 @@ import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import { ButtonTicket } from "./button-ticket";
 import { ModalLoginRedirect } from "@/components/modal-login-redirect";
+import { getTranslations } from "next-intl/server";
 
 interface MatchCardProps {
     matchnotfi: Match & {
@@ -18,6 +19,8 @@ interface MatchCardProps {
   }
 
 export const Matches = async ({matchnotfi}:MatchCardProps) => {
+  const t = await getTranslations('General');
+
     const session=await auth()
     const ticketUser = await getTicketByUser(matchnotfi.id);
   return <article
@@ -81,7 +84,7 @@ export const Matches = async ({matchnotfi}:MatchCardProps) => {
     <>
       {ticketUser ? (
         <>
-          <Button disabled className="w-full">Get ticket</Button>
+          <Button disabled className="w-full">{t("Get ticket")}</Button>
         </>
       ) : (
         <>
@@ -91,7 +94,7 @@ export const Matches = async ({matchnotfi}:MatchCardProps) => {
     </>
   ) : (
     <>
-      <ModalLoginRedirect title="Get Ticket" />
+      <ModalLoginRedirect title={`${t("Get ticket")}`} />
     </>
   )}
 </>

@@ -20,7 +20,7 @@ const ForumPage = async ({
 }: {
   searchParams: {query?: string; sort?: string; category?: string};
 }) => {
-  const t = await getTranslations('Dashboard.Forum');
+  const t = await getTranslations('General');
 
   const threads = await getThreads(query, sort, category);
   const categories = await getCategoryThread();
@@ -42,8 +42,8 @@ const ForumPage = async ({
 
       */}
 <div className='pt-6 border-b border-pink-400'>
-        <p className='text-5xl font-bold'>Forum</p>
-        <p className='text-lg font-semibold opacity-70 pb-4'>Expresa tus opiniones</p>
+        <p className='text-5xl font-bold'>{t("Forum")}</p>
+        <p className='text-lg font-semibold opacity-70 pb-4'>{t("Expresa tus opiniones")}</p>
       </div>
         <HeaderForum categories={categories} />
         {threads.map((thread) => (

@@ -20,12 +20,14 @@ import {CategoryThreads} from '@prisma/client';
 import {useSession} from 'next-auth/react';
 import {AuthButtons} from '@/components/navbar/auth-buttons';
 import {ModalLoginRedirect} from '@/components/modal-login-redirect';
+import {useTranslations} from 'next-intl';
 
 const WAIT_BETWEEN_CHANGE = 300;
 interface HeaderForumProps {
   categories: CategoryThreads[];
 }
 export const HeaderForum = ({categories}: HeaderForumProps) => {
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const {replace} = useRouter();
@@ -68,39 +70,43 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
       </main>
       <main className="flex flex-col md:flex-row md:justify-start md:items-center gap-3">
         <div className="flex flex-row justify-start items-center gap-3">
-          <p>Sort: </p>
+          <p> {t('Sort')}</p>
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Button>
-                Sort
+                {t('Sort')}
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem
                 className={` text-center ${
-                  searchParams.get('sort') === 'asc' ? 'bg-pink-400 focus:bg-pink-400 ' : ''
+                  searchParams.get('sort') === 'asc'
+                    ? 'bg-pink-400 focus:bg-pink-400 '
+                    : ''
                 }`}>
                 <NavigationLink href={`/forum/?sort=asc`}>
                   <p
                     className={`${
                       searchParams.get('sort') === 'asc' ? ' text-white' : ''
                     }`}>
-                    Orderna ascendente
+                    {t('Ascending order')}
                   </p>
                 </NavigationLink>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <DropdownMenuItem
                   className={`text-center ${
-                    searchParams.get('sort') === 'desc' ? 'bg-pink-400 focus:bg-pink-400' : ''
+                    searchParams.get('sort') === 'desc'
+                      ? 'bg-pink-400 focus:bg-pink-400'
+                      : ''
                   }`}>
                   <NavigationLink href={`/forum/?sort=desc`}>
                     <p
                       className={`${
                         searchParams.get('sort') === 'desc' ? ' text-white' : ''
                       }`}>
-                      Orderna descendente
+                      {t('Descending order')}
                     </p>
                   </NavigationLink>
                 </DropdownMenuItem>
@@ -109,52 +115,35 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
           </DropdownMenu>
         </div>
         <div className="flex flex-row justify-start items-center gap-3">
-          <p>Categories: </p>
-
+          <p>{t('Categories')}</p>
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Button>
-                Categories
+                {t('Categories')}
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem
-        
-                className={`text-center  ${
-                  searchParams.get('category') === 'Consejo'
-                    ? 'bg-pink-400 focus:bg-pink-400 '
-                    : ''
-                }`}>
-                <NavigationLink href={`/forum?category=${'Consejo'}`}>
-                  <p
-                    className={`${
-                      searchParams.get('category') === 'Consejo'
-                        ? ' text-white '
-                        : ''
-                    }`}>
-                    Consejo
-                  </p>
-                </NavigationLink>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-              disabled={searchParams.get('category') === 'Debate'}
-                className={`text-center ${
-                  searchParams.get('category') === 'Debate'
-                    ? 'bg-pink-400 focus:bg-pink-400'
-                    : ''
-                }`}>
-                <NavigationLink href={`/forum?category=${'Debate'}`}>
-                  <p
-                    className={`${
-                      searchParams.get('category') === 'Debate'
-                        ? ' text-white '
-                        : ''
-                    }`}>
-                    Debate
-                  </p>
-                </NavigationLink>
-              </DropdownMenuItem>
+              {categories?.map((category) => (
+                <DropdownMenuItem
+                  key={category.id}
+                  className={`text-center  ${
+                    searchParams.get('category') === `${category.name}`
+                      ? 'bg-pink-400 focus:bg-pink-400 '
+                      : ''
+                  }`}>
+                  <NavigationLink href={`/forum?category=${category.name}`}>
+                    <p
+                      className={`${
+                        searchParams.get('category') === `${category.name}`
+                          ? ' text-white '
+                          : ''
+                      }`}>
+                      {category.name}
+                    </p>
+                  </NavigationLink>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
