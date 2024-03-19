@@ -32,9 +32,11 @@ export const SingUpForm = () => {
 
   const onSubmit = async (values: z.infer<typeof SignUpSchema>) => {
     startTransition(async () => {
+      console.log(values);
       const res = await register(values);
       if (res.success) {
         toast.success(`${res.success}`);
+        router.refresh()
         router.push('/sign-in');
       } else {
         toast.error(`${res.error}`);

@@ -52,7 +52,7 @@ export const login = async (values: z.infer<typeof SignInSchema>) => {
       email,
       password,
     });
-    /* revalidatePath(`/${lang}/`); */
+    revalidatePath(`/${lang}/`);
     return {success: ''};
   } catch (error) {
     if (error instanceof AuthError) {

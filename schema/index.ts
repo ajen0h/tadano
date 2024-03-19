@@ -77,7 +77,7 @@ export const SignUpSchema = z.object({
   name: z.string().min(1, 'Name must have at least 1 character').min(1, 'Name field is required'),
   email: z.string().email().min(1, 'Email must have at least 1 character').min(1, 'Email field is required'),
   password: z.string().min(1, 'Password must have at least 1 character').min(1, 'Password field is required'),
-  description: z.string().min(1),
+  description: z.string().min(1).optional().nullable(),
 });
 
 export const UserSchema = z.object({
