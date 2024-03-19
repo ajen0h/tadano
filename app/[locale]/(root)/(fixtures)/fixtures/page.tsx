@@ -32,7 +32,7 @@ const FixturesPage = async () => {
           <MatchCardFixtures key={match.id} match={match} />
         ))} */}
         <section className='pt-6'>
-        <main className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <main className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {matches.map((matchnotfi:any) => (
             <Matches key={matchnotfi.id} matchnotfi={matchnotfi}/>
           ))}
