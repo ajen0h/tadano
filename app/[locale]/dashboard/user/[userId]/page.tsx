@@ -18,8 +18,14 @@ const UserIdPage = async ({params: {userId}}: {params: {userId: string}}) => {
 
   return (
     <>
+     <main className='px-10 py-6'>
+
+      <div className='pb-5'>
+
       <GoBackButton href={'/dashboard/user'} title={t('Go back')} />
+      </div>
       <UserForm initialData={user} />
+     </main>
     </>
   );
 };

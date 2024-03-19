@@ -2,12 +2,13 @@
 
 import {auth} from '@/auth';
 import {db} from '@/lib/db';
-import {ThreadSchema} from '@/schema';
+import {ThreadSchema, ThreadUpdateSchema} from '@/schema';
 import {revalidatePath, revalidateTag} from 'next/cache';
-import { cookies } from 'next/headers';
+import {cookies} from 'next/headers';
 import {z} from 'zod';
 
 type ThreadType = z.infer<typeof ThreadSchema>;
+type ThreadUpdateType = z.infer<typeof ThreadUpdateSchema>;
 
 export const CreateThread = async (values: ThreadType) => {
   const lang = cookies().get('NEXT_LOCALE')?.value;
@@ -19,41 +20,82 @@ export const CreateThread = async (values: ThreadType) => {
         title: values.title,
         body: values.body,
         description: values.description,
-        categoryThreadsId:values.categoryId,
+        categoryThreadsId: values.categoryId,
         userId: session.user?.id,
       },
     });
-    
-    revalidatePath(`${lang}/forum`);
 
-    return {success:"Thread created!"}
+    return {success: 'Thread created!'};
   } catch (error) {
     console.error('Registration failed:', error);
-    return {error: 'Registration failed.'};
+    /*  return {error: 'Registration failed.'}; */
   }
 };
-
-export const getThreads = async (term?:string,sort?:string,categoryName?:string) => {
-  const threads = await db.thread.findMany({
-    where:{
-      title:{
-        contains:term?.toString()
+export const updateThread = async (threadId: string, values: ThreadUpdateType) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const session = await auth();
+  if (!session?.user?.id) return {error: 'User is not registed!'};
+  try {
+    const createThread = await db.thread.update({
+      where: {
+        id: threadId,
       },
-      CategoryThreads:{
-        name:categoryName?.toString()
-      }
-      
-    },
-    
-    include: {
-      CategoryThreads:true,
-      User: true,
-      ThreadVotes:true
+      data: {
+        title: values.title,
+        body: values.body,
+        description: values.description,
+        categoryThreadsId: values.categoryThreadsId,
+        userId: session.user?.id,
+      },
+    });
+    revalidatePath(`/${lang}/profile`)
+    return {success: 'Thread updated!'};
+  } catch (error) {
+    console.error('Registration failed:', error);
+    /*  return {error: 'Registration failed.'}; */
+  }
+};
+export const deleteThread = async (threadId: string) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const session = await auth();
+  if (!session?.user?.id) return {error: 'User is not registed!'};
+  try {
+    const createThread = await db.thread.delete({
+      where: {
+        id: threadId,
+      },
+    });
 
+    revalidatePath(`${lang}/profile`);
+    return {success: 'Thread deleted!'};
+  } catch (error) {
+    console.error('Registration failed:', error);
+    /*  return {error: 'Registration failed.'}; */
+  }
+};
+export const getThreads = async (
+  term?: string,
+  sort?: string,
+  categoryName?: string
+) => {
+  const threads = await db.thread.findMany({
+    where: {
+      title: {
+        contains: term?.toString(),
+      },
+      CategoryThreads: {
+        name: categoryName?.toString(),
+      },
     },
-    orderBy:{
-      createdAt: sort?.toLowerCase() === "asc" ? "asc" : "desc"
-    }
+
+    include: {
+      CategoryThreads: true,
+      User: true,
+      ThreadVotes: true,
+    },
+    orderBy: {
+      createdAt: sort?.toLowerCase() === 'asc' ? 'asc' : 'desc',
+    },
   });
   return threads;
 };
@@ -63,15 +105,15 @@ export const getThread = async (threadId: string) => {
       id: threadId,
     },
     include: {
-      CategoryThreads:true,
+      CategoryThreads: true,
       User: true,
       comments: {
         include: {
           User: true,
         },
-        orderBy:{
-          createdAt:"desc"
-        }
+        orderBy: {
+          createdAt: 'desc',
+        },
       },
       ThreadVotes: true,
     },
@@ -81,7 +123,7 @@ export const getThread = async (threadId: string) => {
 };
 
 export const likeThread = async (threadId: string) => {
-  console.log("idol");
+  console.log('idol');
   const lang = cookies().get('NEXT_LOCALE')?.value;
   const session = await auth();
   if (!session?.user?.id) return {error: 'User is not registed!'};
@@ -114,7 +156,6 @@ export const likeThread = async (threadId: string) => {
     }
 
     /* revalidatePath(`${lang}/forum/thread/${threadId}`); */
-    
   } catch (error) {
     console.error('Registration failed:', error);
     return {error: 'Registration failed.'};

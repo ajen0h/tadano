@@ -37,24 +37,7 @@ const NewIdLayout = async ({children}: {children: React.ReactNode}) => {
       <div className="grid xl:grid-cols-1 gap-6 ">
         <div>{children}</div>
 
-        {/* Aside Noticias */}
-        <main >
-          <header>
-            <p className="flex flex-row items-center gap-3 px-10 xl:container text-xl font-bold mb-3">
-              Recommended for you
-            </p>
-          </header>
-
-          {/* Posts lateral */}
-          <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 xl:container'>
-
-          {ramdomNews?.map((randomNew,index) => (
-            <>
-              <RamdomNews randomNew={randomNew} index={index}/>
-            </>
-          ))}
-          </main>
-        </main>
+        
       </div>
     </main>
   );

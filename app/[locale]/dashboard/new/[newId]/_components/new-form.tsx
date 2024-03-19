@@ -67,7 +67,8 @@ export const NewForm: React.FC<any> = ({initialData}) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)}className='space-y-4' >
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
           <FormField
             control={form.control}
             name="title"
@@ -118,6 +119,7 @@ export const NewForm: React.FC<any> = ({initialData}) => {
               </FormItem>
             )}
           />
+          </div>
           <Controller
             control={form.control}
             name="body"

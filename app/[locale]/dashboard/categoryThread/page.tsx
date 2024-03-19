@@ -19,7 +19,7 @@ const CategoryThreadPage = async () => {
     <>   
       <section className="container mx-auto py-10">
         <Button asChild>
-            <NavigationLink href={`/dashboard/category/createThread`}>{t("Category.Create Category")}</NavigationLink>
+            <NavigationLink href={`/dashboard/categoryThread/create`}>{t("Category.Create Category")}</NavigationLink>
         </Button>
         <DataTable columns={columns} data={data} inputPlaceholder={t("Category.Filter Names")} filterValue='name' />
       </section>

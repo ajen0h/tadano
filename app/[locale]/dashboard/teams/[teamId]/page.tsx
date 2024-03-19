@@ -10,8 +10,15 @@ const TeamPageId = async ({params}: {params: {teamId: string,lang:string}}) => {
 
   return (
     <div>
-      <GoBackButton href={"/dashboard/team"} title={t("Go back")}/>
+      
+ <main className='px-10 py-6'>
+
+      <div className='pb-5'>
+
+      <GoBackButton href={"/dashboard/teams"} title={t("Go back")}/>
+      </div>
       <TeamForm initialData={team} />
+ </main>
     </div>
   );
 };

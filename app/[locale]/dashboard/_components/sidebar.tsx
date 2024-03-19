@@ -16,7 +16,7 @@ export const SideBar = () => {
     {name: 'Category', href: '/dashboard/category'},
     {name: 'Size', href: '/dashboard/size'},
     {name: 'Product', href: '/dashboard/product'},
-    {name: 'Category Thread', href: '/dashboard/categoryThreads'},
+    {name: 'Category Thread', href: '/dashboard/categoryThread'},
   ];
 
 

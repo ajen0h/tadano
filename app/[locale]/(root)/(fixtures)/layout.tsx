@@ -2,10 +2,6 @@ import {Button} from '@/components/ui/button';
 import NavigationLink from '@/components/navbar/navigation-link';
 import Image from 'next/image';
 import {NavbarFixtures} from './_components/navbar-fixtures';
-import {
-  getMatchFinishedLimit1,
-  getMatchNotFinishedLimit2,
-} from '@/actions/match';
 
 const FixturesLayout = async ({children}: {children: React.ReactNode}) => {
 

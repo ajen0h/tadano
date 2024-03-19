@@ -58,8 +58,8 @@ export const CategoryThreadForm: React.FC<CategoryFormPorps> = ({initialData}) =
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
-          <div className="md:grid md:grid-cols-2 gap-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4' >
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
             <FormField
               control={form.control}
               name="name"

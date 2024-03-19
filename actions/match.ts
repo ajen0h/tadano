@@ -26,7 +26,7 @@ export const getMatchFinished = async () => {
   return match;
 };
 
-export const getMatchFinishedLimit1 = async () => {
+export const getMatchFinishedLimit2 = async () => {
   const match = await db.match.findMany({
     where:{
       isFinish:true
@@ -39,7 +39,7 @@ export const getMatchFinishedLimit1 = async () => {
     orderBy:{
       createdAt:"asc"
     },
-    take:1
+    take:2
 
   });
   return match;

@@ -30,7 +30,7 @@ const Menu = ({teamId}: {teamId: string}) => {
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/dashboard/team/${teamId}`}>
+        <NavigationLink href={`/dashboard/teams/${teamId}`}>
           {t('Edit Team')}
         </NavigationLink>
       </DropdownMenuItem>
@@ -48,6 +48,8 @@ const Menu = ({teamId}: {teamId: string}) => {
     </DropdownMenuContent>
   );
 };
+
+
 
 export const columns: ColumnDef<Team>[] = [
 

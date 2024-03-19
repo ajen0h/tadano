@@ -34,7 +34,7 @@ const Menu = ({categoryId}: {categoryId: string}) => {
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <NavigationLink href={`/dashboard/category/${categoryId}`}>
+        <NavigationLink href={`/dashboard/categoryThread/${categoryId}`}>
           {t('Edit Category')}
         </NavigationLink>
       </DropdownMenuItem>

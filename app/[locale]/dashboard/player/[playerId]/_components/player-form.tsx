@@ -80,7 +80,8 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4' >
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
           <FormField
             control={form.control}
             name="name"
@@ -350,7 +351,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({initialData, teams}) => {
               </FormItem>
             )}
           />
-
+</div>
           <Button disabled={pending}>{t('Create')}</Button>
         </form>
       </Form>

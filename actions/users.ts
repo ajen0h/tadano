@@ -1,7 +1,7 @@
 'use server';
 
 import {db} from '@/lib/db';
-import {UserSchema} from '@/schema';
+import {ProfileSchema, UserSchema} from '@/schema';
 
 import {Prisma, User, UserRole} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
@@ -19,6 +19,9 @@ export const getUserbyId = async (id: string) => {
       where: {
         id,
       },
+      include:{
+        Thread:true
+      }
     });
     return user;
   } catch (error) {
@@ -154,3 +157,35 @@ export const UpdateUser = async (
     return {error: 'Anything wrong!'};
   }
 };
+export const UpdateProfile = async (
+  userId: string,
+  values: z.infer<typeof ProfileSchema>
+) => {
+  const lang = cookies().get('NEXT_LOCALE')?.value;
+  const validatedFields = ProfileSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {error: 'Invalid Fields!'};
+  }
+  const {email,  name,description} = validatedFields.data;
+  try {
+    const updatedUser = await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        email,
+        name,
+        description,
+      },
+    });
+    
+    return {success: 'User has been updated!'};
+  } catch (error: any) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return {error: "User's name exist!"};
+      }
+    }
+    return {error: 'Anything wrong!'};
+  }
+}

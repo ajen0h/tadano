@@ -8,8 +8,14 @@ const ColorIdPage = async ({params}: {params: {colorId: string,lang:string}}) =>
   const color = await getColorById(params.colorId);
   return (
     <>
+     <main className='px-10 py-6'>
+
+      <div className='pb-5'>
+
       <GoBackButton href={"/dashboard/color"} title={t('Color.Go Back')}/>
+      </div>
       <ColorForm initialData={color} />
+     </main>
       
     </>
   );

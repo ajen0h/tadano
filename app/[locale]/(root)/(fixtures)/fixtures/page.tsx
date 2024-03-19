@@ -9,10 +9,15 @@ import {getTranslations} from 'next-intl/server';
 import NavigationLink from '@/components/navbar/navigation-link';
 import { MatchCardFixtures } from './_components/match-card-fixtures';
 import { Calendar, MapPin } from 'lucide-react';
+import { FechaThread } from '@/app/[locale]/forum/_components/fecha-thread';
+import { auth } from '@/auth';
+import { Matches } from './_components/matches';
 
 const FixturesPage = async () => {
   const t = await getTranslations('Fixtures');
   const matches = await getMatchNotFinished();
+
+
 
   return (
     <main>
@@ -28,53 +33,9 @@ const FixturesPage = async () => {
         ))} */}
         <section className='pt-6'>
         <main className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <article className="bg-gray-100 rounded-xl px-4 py-6">
-            <div>
-              <p className="text-end font-bold lg:text-lg lg:pb-4">Santander</p>
-            </div>
-            <div className="flex flex-row justify-center items-center gap-4 px-5">
-              <div className="relative h-[60px] w-[60px] lg:h-[90px] lg:w-[90px]">
-                <Image
-                  src={'/elyoya.jpg'}
-                  alt="elyoya"
-                  fill
-                  className="object-cover  rounded-full "
-                />
-              </div>
-              <p className="font-bold">VS</p>
-              <div className="relative h-[60px] w-[60px] lg:h-[90px] lg:w-[90px]">
-                <Image
-                  src={'/tanjiro.jpg'}
-                  alt="elyoya"
-                  fill
-                  className="object-cover  rounded-full "
-                />
-              </div>
-            </div>
-            <div className="px-5 pt-4">
-              <div className="flex flex-row justify-center items-center">
-                <p className="text-lg lg:text-xl">UD LAS PALMAS</p>
-                
-              </div>
-              <div className="flex flex-row justify-center items-center">
-                <p className="text-lg lg:text-xl">Equipo visitante</p>
-                
-              </div>
-            </div>
-            <div className="px-5 pt-3">
-              <p className="flex flex-row items-center justify-center gap-2  opacity-70 text-sm lg:text-lg">
-                <Calendar className="opacity-70" />
-                13 marzo 2024
-              </p>
-            </div>
-            <div className="px-5 pt-3">
-              <p className="flex flex-row items-center justify-center gap-2  opacity-70 text-sm lg:text-lg">
-                <MapPin className="opacity-70" />
-                El carmen
-              </p>
-            </div>
-            <div></div>
-          </article>
+        {matches.map((matchnotfi) => (
+            <Matches key={matchnotfi.id} matchnotfi={matchnotfi}/>
+          ))}
         </main>
         </section>
 

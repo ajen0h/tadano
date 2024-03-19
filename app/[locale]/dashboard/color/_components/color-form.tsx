@@ -56,8 +56,8 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4' >
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
             <FormField
               control={form.control}
               name="name"
@@ -86,7 +86,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({initialData}) => {
             />
           </div>
 
-          <Button variant={"atm"} disabled={pending}>{t('Color.Create')}</Button>
+          <Button disabled={pending}>{t('Color.Create')}</Button>
         </form>
       </Form>
       <Toaster position="top-center" reverseOrder={false} />

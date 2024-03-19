@@ -42,63 +42,43 @@ export const ProductCard = ({product}: any) => {
 
   return (
     <>
-      {/* <div className="flex flex-col gap-2">
-        <NavigationLink href={`/products/${product.id}`}>
-          <div className="bg-white group cursor-pointer rounded-xl hover:shadow-xl">
-            <div className="aspect-square  bg-gray-100 relative">
-              <div>
-                {product.images[0] ? (
-                  <>
-                    <Image
-                      key={product.images[0].id}
-                      fill
-                      src={`${product.images[0].url}`}
-                      alt="image"
-                      className="aspect-square object-cover rounded-md"
-                    />
-                  </>
-                ) : (
-                  <>No hay</>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 px-5 py-4">
-              <div className="flex flex-col justify-start items-start  text-sm relative">
-                <div>{product.name}</div>
-                <div className="font-bold text-destructive">
-                  {product.price} €
-                </div>
-              </div>
-            </div>
-          </div>
-          <Button
+      <div className="">
+        <div className="relative h-[300px] lg:h-[500px] w-full overflow-hidden rounded-t-3xl">
           
-            variant={'outline'}
-            className="w-full"
-            onClick={(e: React.SyntheticEvent) => {
-              //Añadir la imagen
-              e.stopPropagation();
-              e.preventDefault()
-              cart.increment(product.id, product.name, product.images[0].url);
-              toast.success("Product added")
-            }}>
-            Añadir
-          </Button>
-        </NavigationLink>
-      </div> */}
-
-      <main>
-        <div className="relative h-[100px] w-[100px]">
           <Image
-            src={'/tanjiro.jpg'}
+            src={`${product.images[0].url}`}
             alt="tanjiro.jpg"
             fill
-            className="object-cover"
+            className="object-cover   overflow-hidden hover:scale-105 cursor-pointer ease-in duration-500"
           />
         </div>
-      </main>
+        <div className="border rounded-b-3xl p-4 flex flex-col justify-between items-start gap-8">
+          <div>
+            <p className="font-bold text-xl">{product.name}</p>
+          </div>
+          <div className="flex flex-row justify-between items-center w-full">
+            <p className="font-semibold text-xl">{product.price} €</p>
+            <Button
+              variant={'outline'}
+              className=""
+              onClick={(e: React.SyntheticEvent) => {
+                //Añadir la imagen
+                e.stopPropagation();
+                e.preventDefault();
+                cart.increment(product.id, product.name, product.images[0].url);
+                toast.success('Product added');
+              }}>
+              Añadir a la cesta
+            </Button>
+          </div>
+        </div>
+      </div>
 
       <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
+
+{
+  /*  */
+}

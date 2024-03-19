@@ -18,8 +18,8 @@ import {useTransition} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import {Category} from '@prisma/client';
 import {createCategory, updateCategory} from '@/actions/category';
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import {useTranslations} from 'next-intl';
+import {useRouter} from 'next/navigation';
 
 interface CategoryFormPorps {
   initialData: Category | null;
@@ -27,7 +27,7 @@ interface CategoryFormPorps {
 
 export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
   const t = useTranslations('Dashboard');
-  const router=useRouter()
+  const router = useRouter();
   const [pending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CategorySchema>>({
@@ -45,12 +45,11 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
         res = await updateCategory(initialData.id, values);
       } else {
         res = await createCategory(values);
-        
       }
 
       if (res.success) {
         toast.success(`${res.success}`);
-        form.reset()
+        form.reset();
       } else {
         toast.error(`${res.error}`);
       }
@@ -60,8 +59,10 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
-          <div className="md:grid md:grid-cols-2 gap-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <FormField
               control={form.control}
               name="name"
@@ -69,14 +70,17 @@ export const CategoryForm: React.FC<CategoryFormPorps> = ({initialData}) => {
                 <FormItem>
                   <FormLabel>{t('Category.Name-Label')}</FormLabel>
                   <FormControl>
-                    <Input disabled={pending} placeholder={t('Category.Name-Placeholder')} {...field} />
+                    <Input
+                      disabled={pending}
+                      placeholder={t('Category.Name-Placeholder')}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-
           <Button disabled={pending}>{t('Category.Create')}</Button>
         </form>
       </Form>

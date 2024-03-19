@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import {useEffect, useTransition} from 'react';
 import {useSession} from 'next-auth/react';
 import {ModalAuth} from '@/components/modal-auth';
+import {useRouter} from '@/navigation'
 
 interface FormCommentProps {
   threadId: string;
@@ -18,6 +19,7 @@ interface FormCommentProps {
 
 export const FormComment = ({threadId}: FormCommentProps) => {
   const session = useSession();
+
   const [pending, startTransition] = useTransition();
   const form = useForm({
     defaultValues: {

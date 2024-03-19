@@ -60,7 +60,7 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4' >
           <FormField
             control={form.control}
             name="imageUrl"
@@ -77,6 +77,8 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
               </FormItem>
             )}
           />
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
+
           <FormField
             control={form.control}
             name="name"
@@ -89,7 +91,8 @@ export const TeamForm: React.FC<TeamFormPorps> = ({initialData}) => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+            />
+            </div>
           <Button disabled={pending}>Create</Button>
         </form>
       </Form>

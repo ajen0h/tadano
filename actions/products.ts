@@ -18,6 +18,34 @@ export const getProducts = async () => {
   });
   return products;
 };
+export const getProductsSheact = async (
+  term?: string,
+  sort?: string,
+  categoryName?: string
+) => {
+  const products = await db.product.findMany({
+    where: {
+      name: {
+        contains: term?.toString(),
+      },
+      category: {
+        name: {
+          contains: term?.toString(),
+        },
+      },
+    },
+    include: {
+      images: true,
+      category: true,
+      color: true,
+      size: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  return products;
+};
 
 export const getProductById = async (productId: string) => {
   const product = await db.product.findUnique({

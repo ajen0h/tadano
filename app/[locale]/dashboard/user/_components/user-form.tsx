@@ -66,7 +66,7 @@ export const UserForm: React.FC<UserFormPorps> = ({initialData}) => {
 
       if (res.success) {
         toast.success(`${res.success}`);
-        form.reset()
+        form.reset();
       } else {
         toast.error(`${res.error}`);
       }
@@ -76,41 +76,7 @@ export const UserForm: React.FC<UserFormPorps> = ({initialData}) => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>{t('Name-Label')}</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={pending}
-                    placeholder={t('Name-Placeholder')}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>{t('Email-Label')}</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={pending}
-                    placeholder={t('Email-Placeholder')}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="imageUrl"
@@ -127,51 +93,87 @@ export const UserForm: React.FC<UserFormPorps> = ({initialData}) => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>{t('Password-Label')}</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={pending}
-                    placeholder={t('Password-Placeholder')}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="role"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>{t('Role-Label')}</FormLabel>
-                <Select
-                  disabled={pending}
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>{t('Name-Label')}</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue
-                        defaultValue={field.value}
-                        placeholder={t('Select a role')}
-                      />
-                    </SelectTrigger>
+                    <Input
+                      disabled={pending}
+                      placeholder={t('Name-Placeholder')}
+                      {...field}
+                    />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="ADMIN">{t('Admin')}</SelectItem>
-                    <SelectItem value="USER">{t('User')}</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>{t('Email-Label')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={pending}
+                      placeholder={t('Email-Placeholder')}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>{t('Password-Label')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={pending}
+                      placeholder={t('Password-Placeholder')}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>{t('Role-Label')}</FormLabel>
+                  <Select
+                    disabled={pending}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          defaultValue={field.value}
+                          placeholder={t('Select a role')}
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="ADMIN">{t('Admin')}</SelectItem>
+                      <SelectItem value="USER">{t('User')}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <Button disabled={pending}>{t('Create')}</Button>
         </form>

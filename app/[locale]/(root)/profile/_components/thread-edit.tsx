@@ -3,13 +3,20 @@
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {Controller, useForm} from 'react-hook-form';
-import {Editor} from './editor';
-import {CreateThread} from '@/actions/thread';
+
+import {CreateThread, updateThread} from '@/actions/thread';
 import {ErrorMessage} from '@hookform/error-message';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {ThreadSchema} from '@/schema';
+import {ThreadSchema, ThreadUpdateSchema} from '@/schema';
 import {z} from 'zod';
-import {CategoryThreads} from '@prisma/client';
+import {
+  Category,
+  CategoryThreads,
+  Comment,
+  Thread,
+  ThreadVotes,
+  User,
+} from '@prisma/client';
 import {
   Select,
   SelectContent,
@@ -25,34 +32,43 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { useRouter } from '@/navigation';
+import {useRouter} from '@/navigation';
+import {Editor} from '@/app/[locale]/forum/_components/editor';
 
+type ThreadDate = {
+  id: string;
+  title: string;
+  description: string;
+  body: string;
+  categoryThreadsId: string;
+};
 interface ThreadFormProps {
+  initialValues: any;
   categories: CategoryThreads[];
 }
 
-export const ThreadForm = ({categories}: ThreadFormProps) => {
+export const ThreadEdit = ({categories, initialValues}: ThreadFormProps) => {
+  console.log(initialValues);
   const router = useRouter();
   const form = useForm({
-    resolver: zodResolver(ThreadSchema),
-    defaultValues: {
+    resolver: zodResolver(ThreadUpdateSchema),
+    defaultValues: initialValues || {
       title: '',
       description: '',
       body: '',
-      categoryId: '',
+      categoryThreadsId: '',
     },
   });
-  const onSubmit = async (values: z.infer<typeof ThreadSchema>) => {
+  const onSubmit = async (values: z.infer<typeof ThreadUpdateSchema>) => {
     console.log(values);
-    const res = await CreateThread(values);
+    const res = await updateThread(initialValues.id, values);
     console.log(res);
     if (res?.success) {
       console.log('object');
-      router.push('/forum');
+      router.push('/profile');
     }
     if (res?.error) {
       console.log('error');
-
     }
   };
   return (
@@ -96,7 +112,7 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
 
           <FormField
             control={form.control}
-            name="categoryId"
+            name="categoryThreadsId"
             render={({field}) => (
               <FormItem>
                 <Select
@@ -113,13 +129,11 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
                   </FormControl>
                   <SelectContent>
                     <>
-                      {/*  {categories.map((category) => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.name}
-                      </SelectItem>
-                    ))} */}
-                      <SelectItem value="111">Debate</SelectItem>
-                      <SelectItem value="222">Jugadas</SelectItem>
+                      {categories.map((category) => (
+                        <SelectItem key={category.id} value={category.id}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
                     </>
                   </SelectContent>
                 </Select>

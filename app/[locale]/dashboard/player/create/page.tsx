@@ -8,9 +8,14 @@ const CreatePlayerPage = async({params:{lang}}:{params:{lang:string}}) => {
   const teams = await getTeam();
 
   return (
-    <>
+    <> <main className='px-10 py-6'>
+
+    <div className='pb-5'>
+
       <GoBackButton href={'/dashboard/player'} title={t("Go back")} />
+    </div>
       <PlayerForm initialData={null} teams={teams}/>
+    </main>
     </>
   );
 };

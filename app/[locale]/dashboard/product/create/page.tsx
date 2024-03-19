@@ -3,9 +3,13 @@ import {getCategory} from '@/actions/category';
 import {getSize} from '@/actions/size';
 import {getColor} from '@/actions/color';
 import {ProductForm} from '../[productId]/_components/prodcut-form';
-import { getTranslations } from 'next-intl/server';
+import {getTranslations} from 'next-intl/server';
 
-const CreateProductPage = async({params:{lang}}:{params:{lang:string}}) => {
+const CreateProductPage = async ({
+  params: {lang},
+}: {
+  params: {lang: string};
+}) => {
   const t = await getTranslations('Dashboard.Product');
 
   const categories = await getCategory();
@@ -13,13 +17,17 @@ const CreateProductPage = async({params:{lang}}:{params:{lang:string}}) => {
   const colors = await getColor();
   return (
     <div>
-      <GoBackButton href={'/dashboard/product'} title={t("Go back")} />
-      <ProductForm
-        initialData={null}
-        categories={categories}
-        colors={colors}
-        sizes={sizes}
-      />
+      <main className="px-10 py-6">
+        <div className="pb-5">
+          <GoBackButton href={'/dashboard/product'} title={t('Go back')} />
+        </div>
+        <ProductForm
+          initialData={null}
+          categories={categories}
+          colors={colors}
+          sizes={sizes}
+        />
+      </main>
     </div>
   );
 };
