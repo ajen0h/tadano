@@ -4,6 +4,7 @@ import {PostCard} from './_components/post-card';
 import {Button} from '@/components/ui/button';
 import Image from 'next/image';
 import { FechaThread } from '../../forum/_components/fecha-thread';
+import { getTranslations } from 'next-intl/server';
 
 const NewsPage = async ({
   searchParams: {query},
@@ -11,13 +12,13 @@ const NewsPage = async ({
   searchParams: {query: string};
 }) => {
   const reports = await getNews(query);
-  
+  const t=await getTranslations("General")
 
   return (
     <main>
       {/* <Banner2 /> */}
       <section className="px-10 xl:container pt-6">
-        <p className="text-3xl font-bold py-4 lg:text-5xl">Noticias</p>
+        <p className="text-3xl font-bold py-4 lg:text-5xl">{t("News")}</p>
 
         <section className="h-[100px] flex flex-row justify-start items-center p-4">
           <SearcInput />

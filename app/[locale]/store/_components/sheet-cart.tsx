@@ -13,6 +13,7 @@ import {
 import useCart from '@/hooks/use-cart-original';
 import axios from 'axios';
 import {useSession} from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect, useState} from 'react';
@@ -25,6 +26,7 @@ export const SheetCart = () => {
   const cart = useCart();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t=useTranslations("General")
   useEffect(() => {
     setIsMounted(true);
   }, [cart.items]);
@@ -54,7 +56,7 @@ export const SheetCart = () => {
         </SheetTrigger>
         <SheetContent className="flex flex-col justify-between">
           <SheetHeader>
-            <SheetTitle>My Cart</SheetTitle>
+            <SheetTitle>{t("My Cart")}</SheetTitle>
             <SheetDescription>
               {cart.items.map((item) => (
                 <div key={item.id}>

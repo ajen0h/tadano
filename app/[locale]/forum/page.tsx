@@ -43,7 +43,7 @@ const ForumPage = async ({
       */}
 <div className='pt-6 border-b border-pink-400'>
         <p className='text-5xl font-bold'>{t("Forum")}</p>
-        <p className='text-lg font-semibold opacity-70 pb-4'>{t("Expresa tus opiniones")}</p>
+        <p className='text-lg font-semibold opacity-70 pb-4'>{t("Express your opinions")}</p>
       </div>
         <HeaderForum categories={categories} />
         {threads.map((thread) => (

@@ -1,7 +1,9 @@
 import {getPlayer} from '@/actions/player';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 const TeamPage = async () => {
+  const t=await getTranslations("General")
   const players = await getPlayer();
   return (
     /*   <SelectItem value="Goalkeeper">Goalkeeper</SelectItem>
@@ -18,13 +20,13 @@ const TeamPage = async () => {
           height: '55vh',
         }}>
         <div className="px-10 xl:container h-full text-white flex flex-col justify-center items-start">
-          <p className="text-4xl font-bold md:text-6xl uppercase">Nuestro equipo</p>
+          <p className="text-4xl font-bold md:text-6xl uppercase">{t("Our team")}</p>
         </div>
       </div>
 
       <section className="py-6 px-10 xl:container">
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">Goalkeeper</p>
+          <p className="text-2xl font-bold border-b md:text-4xl"> {t("Goalkeeper")}</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
             {players.map((player) => (
               <>
@@ -58,7 +60,7 @@ const TeamPage = async () => {
         </main>
         
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">Defender</p>
+          <p className="text-2xl font-bold border-b md:text-4xl">{t("Defender")}</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
             {players.map((player) => (
               <>
@@ -91,7 +93,7 @@ const TeamPage = async () => {
           </div>
         </main>
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">Midfielder</p>
+          <p className="text-2xl font-bold border-b md:text-4xl">{t("Midfielder")}</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
             {players.map((player) => (
               <>
@@ -124,7 +126,7 @@ const TeamPage = async () => {
           </div>
         </main>
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">Forwards</p>
+          <p className="text-2xl font-bold border-b md:text-4xl"> {t("Forwards")}</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
             {players.map((player) => (
               <>
@@ -157,7 +159,7 @@ const TeamPage = async () => {
           </div>
         </main>
         <main>
-          <p className="text-2xl font-bold border-b md:text-4xl">Staff</p>
+          <p className="text-2xl font-bold border-b md:text-4xl"> {t("Staff")}</p>
           <div className="grid grid-cols-2 gap-5 py-4 md:py-6">
             {players.map((player) => (
               <>

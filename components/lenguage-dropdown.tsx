@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
@@ -15,7 +16,7 @@ export const LenguageDropDown = () => {
   const lang = pathname.split('/')[1];
   const path = pathname.split('/')[2];
   console.log(path);
-
+const t=useTranslations("General")
   const OpenLenguage = () => {
     switch (lang) {
       case 'es':
@@ -73,7 +74,7 @@ export const LenguageDropDown = () => {
                   className="object-cover rounded-xl"
                 />
               </div>
-              <p>Español</p>
+              <p>{t("Spanish")}</p>
             </main>
           </Link>
         </DropdownMenuItem>
@@ -88,7 +89,7 @@ export const LenguageDropDown = () => {
                   className="object-cover rounded-xl"
                 />
               </div>
-              <p>Inglés</p>
+              <p>{t("English")}</p>
             </main>
             
           </Link>

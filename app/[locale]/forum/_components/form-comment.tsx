@@ -12,12 +12,14 @@ import {useEffect, useTransition} from 'react';
 import {useSession} from 'next-auth/react';
 import {ModalAuth} from '@/components/modal-auth';
 import {useRouter} from '@/navigation'
+import { useTranslations } from 'next-intl';
 
 interface FormCommentProps {
   threadId: string;
 }
 
 export const FormComment = ({threadId}: FormCommentProps) => {
+  const t=useTranslations("General")
   const session = useSession();
 
   const [pending, startTransition] = useTransition();
@@ -50,7 +52,7 @@ export const FormComment = ({threadId}: FormCommentProps) => {
 
         <>
           <Button disabled={pending} className="w-full mt-3">
-            Post!
+            {t("Post!")}
           </Button>
         </>
       </form>

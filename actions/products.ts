@@ -18,6 +18,9 @@ export const getProducts = async () => {
   });
   return products;
 };
+
+
+
 export const getProductsSheact = async (
   term?: string,
   sort?: string,

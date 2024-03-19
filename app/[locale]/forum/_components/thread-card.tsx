@@ -11,6 +11,7 @@ import {getThreadVotedByUserId} from '@/actions/thread';
 import {FaRegHeart} from 'react-icons/fa';
 import {Button} from '@/components/ui/button';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { getTranslations } from 'next-intl/server';
 
 interface ThreadProps {
   thread: Thread & {
@@ -20,6 +21,7 @@ interface ThreadProps {
   };
 }
 export const ThreadCard = async ({thread}: ThreadProps) => {
+  const t=await getTranslations("General")
   const session = await auth();
   console.log(session?.user?.image);
   const threadLiked = await getThreadVotedByUserId(thread.id);
@@ -73,7 +75,7 @@ export const ThreadCard = async ({thread}: ThreadProps) => {
 
         <section className="mt-4">
           <p className="text-2xl font-bold">
-            Comments
+             {t("Comments")}
           </p>
           {thread.comments.map((comment) => (
             <CommentCard key={comment.id} comment={comment} />

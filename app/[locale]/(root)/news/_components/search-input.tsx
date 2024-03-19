@@ -8,8 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
+import {Input} from '@/components/ui/input';
 import {Search} from 'lucide-react';
+import {useTranslations} from 'next-intl';
 import {useSearchParams, usePathname, useRouter} from 'next/navigation';
 import {useDebouncedCallback} from 'use-debounce';
 const WAIT_BETWEEN_CHANGE = 300;
@@ -18,6 +19,7 @@ export const SearcInput = () => {
   const pathname = usePathname();
   const {replace} = useRouter();
 
+  const t = useTranslations('General');
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
@@ -41,15 +43,15 @@ export const SearcInput = () => {
     />
   </div> */}
         <section className="flex flex-row justify-center items-center">
-        <div className="w-full lg:w-[40%]">
-          <Input
-            className="rounded-full p-4 h-[50px] placeholder:text-lg"
-            placeholder="Buscar..."
-            onChange={(e) => {
-              handleSearch(e.target.value);
-            }}
-          />
-        </div>
+          <div className="w-full lg:w-[40%]">
+            <Input
+              className="rounded-full p-4 h-[50px] placeholder:text-lg"
+              placeholder={t('Search')}
+              onChange={(e) => {
+                handleSearch(e.target.value);
+              }}
+            />
+          </div>
         </section>
       </header>
     </>

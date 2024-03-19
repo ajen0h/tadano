@@ -13,7 +13,7 @@ const ResultPage = async () => {
     <main>
     <section className="px-10 xl:container">
       <header className="  py-6 border-b-pink-400 border-b">
-        <p className="text-3xl font-bold pb-2 lg:text-5xl">{t("Resultados")}</p>
+        <p className="text-3xl font-bold pb-2 lg:text-5xl">{t("Results")}</p>
         <p>{t("Last club matches")}</p>
       
       </header>

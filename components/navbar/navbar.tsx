@@ -118,7 +118,7 @@ export const NavBar = async () => {
 
               <div className="flex flex-row justify-center items-center gap-1">
                 <SheetCart />
-                <p className="text-xs">{t('Cart')}</p>
+                
               </div>
               <div className="hidden lg:block">
                 <LenguageDropDown />
@@ -162,7 +162,7 @@ export const NavBar = async () => {
                   <Button className='flex flex-row gap-2 bg-transparent border-pink-400 border hover:bg-pink-400 hover:text-white text-black'>
 
                     <User className="w-7 h-7" />
-                    <p className="">SignIn / SignUp</p>
+                    <p className="">{t('SignIn')} / {t('SignUp')}</p>
                   </Button>
                   </NavigationLink>
                   
@@ -171,7 +171,7 @@ export const NavBar = async () => {
             </Button>
             <div className="flex flex-row justify-center items-center gap-1">
               <SheetCart />
-              <p className="text-xs">{t('Cart')}</p>
+              
             </div>
             <div className="hidden lg:block">
               <LenguageDropDown />

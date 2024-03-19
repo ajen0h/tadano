@@ -15,22 +15,24 @@ import {Separator} from '@radix-ui/react-separator';
 import {usePathname} from 'next/navigation';
 import {useState} from 'react';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { useTranslations } from 'next-intl';
 
 export function DashboardMenu() {
+  const t=useTranslations("General")
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const linksWeb = [
-    {name: 'Match', href: '/dashboard/match'},
-    {name: 'New', href: '/dashboard/new'},
-    {name: 'Player', href: '/dashboard/player'},
-    {name: 'Team', href: '/dashboard/teams'},
-    {name: 'User', href: '/dashboard/user'},
-    {name: 'Color', href: '/dashboard/color'},
-    {name: 'Category', href: '/dashboard/category'},
-    {name: 'Size', href: '/dashboard/size'},
-    {name: 'Product', href: '/dashboard/product'},
-    {name: 'Category Thread', href: '/dashboard/categoryThread'},
+    {name: `${t("Match")}`, href: '/dashboard/match'},
+    {name: `${t("New")}`, href: '/dashboard/new'},
+    {name: `${t("Player")}`, href: '/dashboard/player'},
+    {name: `${t("Team")}`, href: '/dashboard/teams'},
+    {name: `${t("User")}`, href: '/dashboard/user'},
+    {name: `${t("Color")}`, href: '/dashboard/color'},
+    {name: `${t("Category")}`, href: '/dashboard/category'},
+    {name: `${t("Size")}`, href: '/dashboard/size'},
+    {name: `${t("Product")}`, href: '/dashboard/product'},
+    {name: `${t("Category Thread")}`, href: '/dashboard/categoryThread'},
   ];
 
   return (

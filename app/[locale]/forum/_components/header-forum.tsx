@@ -27,7 +27,7 @@ interface HeaderForumProps {
   categories: CategoryThreads[];
 }
 export const HeaderForum = ({categories}: HeaderForumProps) => {
-  const t = useTranslations();
+  const t = useTranslations("General");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const {replace} = useRouter();
@@ -48,7 +48,7 @@ export const HeaderForum = ({categories}: HeaderForumProps) => {
         <div className="w-full lg:w-[40%]">
           <Input
             className="rounded-full p-4 h-[50px] placeholder:text-lg"
-            placeholder="Buscar..."
+            placeholder={t("Search")}
             onChange={(e) => {
               handleSearch(e.target.value);
             }}

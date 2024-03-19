@@ -1,5 +1,8 @@
 {
   "General": {
+    "Spanish":"Spanish",
+    "English":"English",
+    "News":"News",
     "Create": "Create",
     "Update": "Update",
     "Upload an Image": "Upload an Image",
@@ -27,12 +30,40 @@
     "Post!":"Post!",
     "Create new thread":"Create new thread",
     "Forum":"Forum",
-    "Expresa tus opiniones":"Expresa tus opiniones",
     "Sort":"Sort",
     "Sortt":"Sort:",
     "Categories":"Categories",
     "Categoriess":"Categories:",
-    "Ascending order":"Ascending order"
+    "Ascending order":"Ascending order",
+    "Select category":"Select category",
+    "Search":"Search...",
+    "Express your opinions":"Express your opinions",
+    "Comments":"Comments",
+    "Add to Cart":"Add to Cart",
+    "New Arrivals":"New Arrivals",
+    "All garments":"All garments",
+    "Discover New":"Discover New",
+    "Goalkeeper":"Goalkeeper",
+    "Defender":"Defender",
+    "Midfielder":"Midfielder",
+    "Forwards":"Forwards",
+    "Staff":"Staff",
+    "My Cart":"My Cart",
+    "Dashboard":"Dashboard",
+    "Sign Out":"Sign Out",
+    "Match": "Match",
+    "New": "New",
+    "Player": "Player",
+    "Team": "Team",
+    "User": "User",
+    "Color": "Color",
+    "Category": "Category",
+    "Size": "Size",
+    "Product": "Product",
+    "Orders": "Orders",
+    "Category Thread": "Category Thread"
+    
+    
   },
   "Home": {
     "Our Store": "Our Store",
@@ -73,6 +104,7 @@
     "News": "News",
     "Forum": "Forum",
     "Store": "Store",
+    "Team":"Team",
     "Sign In": "Sign In",
     "Sign Up": "Sign Up"
   },
@@ -83,7 +115,10 @@
     "Store": "Store",
     "Sign In": "Sign In",
     "Sign Up": "Sign Up",
-    "Cart": "Cart"
+    "SignIn": "SignIn",
+    "SignUp": "SignUp",
+    "Cart": "Cart",
+    "Team":"Team"
   },
 
   "Auht": {
@@ -127,8 +162,14 @@
       "Create": "Create",
       "Actions": "Actions",
       "Edit Match": "Edit Match",
-      "Delete Match": "Delete Match"
+      "Delete Match": "Delete Match",
+      "Create User": "Create User",
+      "Filter Name": "Filter Name"
     },
+
+
+
+    
     "Match": {
       "Create Match": "Create Match",
       "Filter Dates": "Filter Dates...",
@@ -138,6 +179,7 @@
       "Local Goles-Label": "Local Goles",
       "Visiting Goles-Label": "Visiting Goles",
       "Local Team-Label": "Local Team",
+      "Local Team": "Local Team",
       "Visiting Team-Label": "Visiting Team",
       "Capacity-Label": "Capacity",
       "Finished-Label": "Finished",
@@ -152,6 +194,7 @@
       "Finished-Placeholder": "Finished",
       "Select a team": "Select a team",
       "Go back": "Go back",
+      "Go Back": "Go Back",
       "Create": "Create",
       "Actions": "Actions",
       "Edit Match": "Edit Match",
@@ -216,6 +259,20 @@
     "Team": {
       "Create Team": "Create Team",
       "Filter Name": "Filter Name...",
+      "Name-Placeholder": "Name",
+      "ImageUrl-Placeholder": "ImageUrl",
+      "Name-Label": "Name",
+      "ImageUrl-Label": "ImageUrl-Placeholder",
+      "Go back": "Go back",
+      "Create": "Create",
+      "Actions": "Actions",
+      "Edit Team": "Edit Team",
+      "Delete Team": "Delete Team"
+    },
+    "Teams": {
+      "Create Team": "Create Team",
+      "Filter Name": "Filter Name...",
+      "Filter Names": "Filter Name...",
       "Name-Placeholder": "Name",
       "ImageUrl-Placeholder": "ImageUrl",
       "Name-Label": "Name",

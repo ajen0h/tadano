@@ -18,6 +18,7 @@ import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import toast, {Toaster} from 'react-hot-toast';
 import NavigationLink from '@/components/navbar/navigation-link';
+import { useTranslations } from 'next-intl';
 
 interface ProductProps {
   product: Product & {
@@ -29,6 +30,7 @@ interface ProductProps {
 }
 
 export const ProductCard = ({product}: any) => {
+  const t=useTranslations("General")
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
   const router = useRouter();
@@ -68,7 +70,7 @@ export const ProductCard = ({product}: any) => {
                 cart.increment(product.id, product.name, product.images[0].url);
                 toast.success('Product added');
               }}>
-              Añadir a la cesta
+              {t("Add to Cart")}
             </Button>
           </div>
         </div>

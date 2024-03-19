@@ -1,103 +1,166 @@
 {
   "General": {
+    "Spanish": "Español",
+    "English": "Inglés",
     "Create": "Crear",
+    "News":"Noticas",
     "Update": "Actualizar",
-    "Upload an Image": "Subir una Imagen",
-    "Go back": "Regresar"
+    "Upload an Image": "Subir una imagen",
+    "Go back": "Volver",
+    "LAST NEWS": "ÚLTIMAS NOTICIAS",
+    "Discover our store": "Descubre nuestra tienda",
+    "Go To Store": "Ir a la tienda",
+    "MATCHES": "PARTIDOS",
+    "Our team": "Nuestro equipo",
+    "See More": "Ver más",
+    "Calendar": "Calendario",
+    "Discover the next matchups": "Descubre los próximos enfrentamientos",
+    "Fixtures": "Fijaciones",
+    "Results": "Resultados",
+    "Get ticket": "Obtener entrada",
+    "Have you logged in?": "¿Has iniciado sesión?",
+    "You need to be logged in to create a thread": "Necesitas iniciar sesión para crear un hilo",
+    "Sing-in": "Iniciar sesión",
+    "Sing-up": "Registrarse",
+    "Cancel": "Cancelar",
+    "Resultados": "Resultados",
+    "Last club matches": "Últimos partidos del club",
+    "Title": "Título",
+    "Descripcion": "Descripción",
+    "Post!": "¡Publicar!",
+    "Create new thread": "Crear nuevo hilo",
+    "Forum": "Foro",
+    "Sort": "Ordenar",
+    "Sortt": "Ordenar:",
+    "Categories": "Categorías",
+    "Categoriess": "Categorías:",
+    "Ascending order": "Orden ascendente",
+    "Select category": "Seleccionar categoría",
+    "Search": "Buscar...",
+    "Express your opinions": "Expresa tus opiniones",
+    "Comments": "Comentarios",
+    "Add to Cart": "Agregar al carrito",
+    "New Arrivals": "Nuevas llegadas",
+    "All garments": "Todas las prendas",
+    "Discover New": "Descubre Nuevo",
+    "Goalkeeper": "Portero",
+    "Defender": "Defensor",
+    "Midfielder": "Centrocampista",
+    "Forwards": "Delanteros",
+    "Staff": "Personal",
+    "My Cart": "Mi carrito",
+    "Dashboard": "Tablero",
+    "Sign Out": "Cerrar sesión",
+    "Match": "Partido",
+    "New": "Nuevo",
+    "Player": "Jugador",
+    "Team": "Equipo",
+    "User": "Usuario",
+    "Color": "Color",
+    "Category": "Categoría",
+    "Size": "Tamaño",
+    "Product": "Producto",
+    "Orders": "Pedidos",
+    "Category Thread": "Hilo de categoría"
   },
-  "Home":{
-    "Our Store":"Nuestra tienda",
-    "View More":"View More",
-    "Get Ticket":"Obtener Ticket",
-    "News Title":"Noticias Titulo",
-    "See More":"Ver Mas",
-    "Our Team":"Nuestro equipo"
+  "Home": {
+    "Our Store": "Nuestra Tienda",
+    "View More": "Ver Más",
+    "Get Ticket": "Obtener Entrada",
+    "News Title": "Título de Noticias",
+    "See More": "Ver Más",
+    "Our Team": "Nuestro Equipo"
   },
   "SignIn": {
-    "Create Account": "Create Account",
-    "SignIn": "Iniciar sesión",
+    "Create Account": "Crear Cuenta",
+    "SignIn": "Iniciar Sesión",
     "SignUp": "Registrarse",
-    "Login": "Acceder",
-    "Email-Label": "Correo electrónico",
-    "Email-Placeholder": "Correo electrónico",
+    "Login": "Iniciar sesión",
+    "Email-Label": "Correo Electrónico",
+    "Email-Placeholder": "Correo Electrónico",
     "Password-Label": "Contraseña",
     "Password-Placeholder": "Contraseña",
-    "Name-Label": "Nombre de usuario",
-    "Name-Placeholder": "Nombre de usuario"
+    "Name-Label": "Nombre de Usuario",
+    "Name-Placeholder": "Nombre de Usuario"
   },
-
   "Fixtures": {
-    "Schedule and Results": "Calendario y Resultados"
+    "Schedule and Results": "Horario y Resultados"
   },
   "News": {
     "News and Updates": "Noticias y Actualizaciones",
-    "Follow whats brand new in digital design": "Sigue lo último en diseño digital",
+    "Follow whats brand new in digital design": "Sigue lo más nuevo en diseño digital",
     "Dont miss the latest happenings on awwwrds": {
-      "Dont miss the": "No te pierdas los",
-      "latest": "últimos",
+      "Dont miss the": "No te pierdas el",
+      "latest": "más reciente",
       "happenings on": "acontecimientos en",
       "awwwrds": "awwwrds"
     },
-    "wnews": "w.news"
+    "wnews": "w.noticias"
   },
   "Links": {
-    "Fixtures": "Equipo",
+    "Fixtures": "Fijaciones",
     "News": "Noticias",
     "Forum": "Foro",
     "Store": "Tienda",
-    "Sign In": "Iniciar sesión",
+    "Sign In": "Iniciar Sesión",
     "Sign Up": "Registrarse"
   },
   "Navbar": {
-    "Fixtures": "Equipo",
+    "Fixtures": "Fijaciones",
     "News": "Noticias",
     "Forum": "Foro",
     "Store": "Tienda",
-    "Sign In": "Iniciar sesión",
+    "Sign In": "Iniciar Sesión",
     "Sign Up": "Registrarse",
-    "Cart": "Cesta"
+    "SignIn": "Iniciar Sesión",
+    "SignUp": "Registrarse",
+    "Cart": "Carrito",
+    "Team": "Equipo"
   },
   "Auht": {
-    "Email-Label": "Correo electrónico",
-    "Email-Placeholder": "Correo electrónico",
+    "Email-Label": "Correo Electrónico",
+    "Email-Placeholder": "Correo Electrónico",
     "Password-Label": "Contraseña",
     "Password-Placeholder": "Contraseña",
-    "Name-Label": "Nombre de usuario",
-    "Name-Placeholder": "Nombre de usuario",
-    "Sign In": "Iniciar sesión",
+    "Name-Label": "Nombre de Usuario",
+    "Name-Placeholder": "Nombre de Usuario",
+    "Sign In": "Iniciar Sesión",
     "Register": "Registrarse"
   },
   "Advice": {
-    "Id-Label": "Id de la notica",
-    "Id-Placeholder": "Id",
-    "Body-Label": "Body",
-    "Body-Placeholder": "Body",
+    "Id-Label": "ID de Aviso",
+    "Id-Placeholder": "ID",
+    "Body-Label": "Cuerpo",
+    "Body-Placeholder": "Cuerpo",
     "Send": "Enviar",
-    "Advice-Button": "Reporte"
+    "Advice-Button": "Aviso",
+    "Create User": "Crear Usuario",
+    "Filter Name": "Filtrar Nombre..."
   },
   "Dashboard": {
     "User": {
       "Name-Label": "Nombre",
-      "Email-Label": "Email",
+      "Email-Label": "Correo Electrónico",
       "Password-Label": "Contraseña",
       "ImageUrl-Label": "Imagen",
-      "Role-Label": "Puesto",
+      "Role-Label": "Rol",
       "Name-Placeholder": "Nombre",
-      "Email-Placeholder": "Email",
+      "Email-Placeholder": "Correo Electrónico",
       "Password-Placeholder": "Contraseña",
       "ImageUrl-Placeholder": "Imagen",
-      "Role-Placeholder": "Puesto",
-      "Select a role":"Seleccionar un puesto",
-      "Admin":"Administrador",
-      "User":"Usuario",
-      "Go back": "Regresar",
+      "Role-Placeholder": "Rol",
+      "Select a role": "Seleccionar un rol",
+      "Admin": "Administrador",
+      "User": "Usuario",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit User": "Editar Usuario",
-      "Delete User": "Borrar Usuario",
+      "Edit Match": "Editar Partido",
+      "Delete Match": "Eliminar Partido",
       "Create User": "Crear Usuario",
-      "Filter Name": "Filtar Name..."
+      "Filter Name": "Filtrar Nombre"
     },
+
     "Match": {
       "Create Match": "Crear Partido",
       "Filter Dates": "Filtrar Fechas...",
@@ -107,6 +170,8 @@
       "Local Goles-Label": "Goles Locales",
       "Visiting Goles-Label": "Goles Visitantes",
       "Local Team-Label": "Equipo Local",
+      "Local Team": "Equipo Local",
+
       "Visiting Team-Label": "Equipo Visitante",
       "Capacity-Label": "Capacidad",
       "Finished-Label": "Finalizado",
@@ -120,16 +185,17 @@
       "Capacity-Placeholder": "Capacidad",
       "Finished-Placeholder": "Finalizado",
       "Select a team": "Seleccionar un equipo",
-      "Go back": "Regresar",
+      "Go back": "Volver",
+      "Go Back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit Match": "Editar Encuentro",
-      "Delete Match": "Borrar Encuentro"
+      "Edit Match": "Editar Partido",
+      "Delete Match": "Eliminar Partido"
     },
     "Forum": {
       "Create Thread": "Crear Hilo",
       "Filter Title": "Filtrar Título...",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear"
     },
     "New": {
@@ -141,11 +207,11 @@
       "Title-Label": "Título",
       "Description-Label": "Descripción",
       "ImageUrl-Label": "URL de la Imagen",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit New": "Editar New",
-      "Delete New": "Borrar New"
+      "Edit New": "Editar Nuevo",
+      "Delete New": "Eliminar Nuevo"
     },
     "Player": {
       "Create Player": "Crear Jugador",
@@ -158,7 +224,7 @@
       "Dorsal-Placeholder": "Dorsal",
       "Goals-Placeholder": "Goles",
       "Assists-Placeholder": "Asistencias",
-      "Saves-Placeholder": "Atajadas",
+      "Saves-Placeholder": "Paradas",
       "Position-Placeholder": "Posición",
       "Country-Placeholder": "País",
       "Local Team-Placeholder": "Equipo Local",
@@ -170,29 +236,43 @@
       "Dorsal-Label": "Dorsal",
       "Goals-Label": "Goles",
       "Assists-Label": "Asistencias",
-      "Saves-Label": "Atajadas",
+      "Saves-Label": "Paradas",
       "Position-Label": "Posición",
       "Country-Label": "País",
       "Local Team-Label": "Equipo Local",
       "Select a team": "Seleccionar un equipo",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
       "Edit Player": "Editar Jugador",
-      "Delete Player": "Borrar Jugador"
+      "Delete Player": "Eliminar Jugador"
     },
     "Team": {
       "Create Team": "Crear Equipo",
-      "Filter Names": "Filtrar Nombre...",
+      "Filter Name": "Filtrar Nombre...",
       "Name-Placeholder": "Nombre",
       "ImageUrl-Placeholder": "URL de la Imagen",
       "Name-Label": "Nombre",
       "ImageUrl-Label": "URL de la Imagen",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit Team": "Editar Team",
-      "Delete Team": "Borrar Team"
+      "Edit Team": "Editar Equipo",
+      "Delete Team": "Eliminar Equipo"
+    },
+    "Teams": {
+      "Create Team": "Crear Equipo",
+      "Filter Name": "Filtrar Nombre...",
+      "Filter Names": "Filtrar Nombres...",
+      "Name-Placeholder": "Nombre",
+      "ImageUrl-Placeholder": "URL de la Imagen",
+      "Name-Label": "Nombre",
+      "ImageUrl-Label": "URL de la Imagen",
+      "Go back": "Volver",
+      "Create": "Crear",
+      "Actions": "Acciones",
+      "Edit Team": "Editar Equipo",
+      "Delete Team": "Eliminar Equipo"
     },
     "Color": {
       "Create Color": "Crear Color",
@@ -201,22 +281,22 @@
       "Value-Placeholder": "Valor",
       "Name-Label": "Nombre",
       "Value-Label": "Valor",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
       "Edit Color": "Editar Color",
-      "Delete Color": "Borrar Color"
+      "Delete Color": "Eliminar Color"
     },
     "Category": {
       "Create Category": "Crear Categoría",
       "Filter Names": "Filtrar Nombres...",
       "Name-Label": "Nombre",
       "Name-Placeholder": "Nombre",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
       "Edit Category": "Editar Categoría",
-      "Delete Category": "Borrar Categoría"
+      "Delete Category": "Eliminar Categoría"
     },
     "Size": {
       "Create Size": "Crear Tamaño",
@@ -225,11 +305,11 @@
       "Value-Placeholder": "Valor",
       "Name-Label": "Nombre",
       "Value-Label": "Valor",
-      "Go back": "Regresar",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit Size": "Editar Size",
-      "Delete Size": "Borrar Size"
+      "Edit Size": "Editar Tamaño",
+      "Delete Size": "Eliminar Tamaño"
     },
     "Product": {
       "Create Product": "Crear Producto",
@@ -250,14 +330,14 @@
       "Category-Label": "Categoría",
       "Size-Label": "Tamaño",
       "Color-Label": "Color",
-      "Select a size": "Seleccionar un tamaño",
-      "Select a color": "Seleccionar un color",
-      "Select a category": "Seleccionar una categoría",
-      "Go back": "Regresar",
+      "Select a size": "Selecciona un tamaño",
+      "Select a color": "Selecciona un color",
+      "Select a category": "Selecciona una categoría",
+      "Go back": "Volver",
       "Create": "Crear",
       "Actions": "Acciones",
-      "Edit Product": "Editar Product",
-      "Delete Product": "Borrar Product"
+      "Edit Product": "Editar Producto",
+      "Delete Product": "Eliminar Producto"
     }
   }
 }

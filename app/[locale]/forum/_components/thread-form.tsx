@@ -109,7 +109,7 @@ export const ThreadForm = ({categories}: ThreadFormProps) => {
                     <SelectTrigger>
                       <SelectValue
                         defaultValue={field.value}
-                        placeholder="Select category"
+                        placeholder={t("Select category")}
                       />
                     </SelectTrigger>
                   </FormControl>

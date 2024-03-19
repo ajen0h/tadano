@@ -20,12 +20,14 @@ import {CategoryThreads} from '@prisma/client';
 import {useSession} from 'next-auth/react';
 import {AuthButtons} from '@/components/navbar/auth-buttons';
 import {ModalLoginRedirect} from '@/components/modal-login-redirect';
+import { useTranslations } from 'next-intl';
 
 const WAIT_BETWEEN_CHANGE = 300;
 interface HeaderForumProps {
   categories?: CategoryThreads[];
 }
 export const HeaderStore= ({categories}: HeaderForumProps) => {
+  const t=useTranslations("General")
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const {replace} = useRouter();
@@ -46,7 +48,7 @@ export const HeaderStore= ({categories}: HeaderForumProps) => {
         <div className="w-full lg:w-[40%]">
           <Input
             className="rounded-full p-4 h-[50px] placeholder:text-lg"
-            placeholder="Buscar..."
+            placeholder={t("Search")}
             onChange={(e) => {
               handleSearch(e.target.value);
             }}
@@ -57,12 +59,12 @@ export const HeaderStore= ({categories}: HeaderForumProps) => {
       <main className="flex flex-col md:flex-row md:justify-end md:items-center gap-3 px-10 xl:container">
       
         <div className="flex flex-row justify-start items-center gap-3">
-          <p>Categories: </p>
+          <p>{t("Categories")} </p>
 
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Button>
-                Categories
+                {t("Categories")}
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>

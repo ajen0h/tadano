@@ -17,10 +17,8 @@ const StorePage = async ({
     <>
       <Store products={products} categories={categories} />
       {/* <Alert/> */}:
-      {success==="1" ? (<>Hola</>):null}
-      {canceled==="1" ? (<>
-      
-      </>):null}
+
+     
       
     </>
   );

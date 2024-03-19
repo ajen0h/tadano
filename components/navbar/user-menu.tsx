@@ -16,8 +16,10 @@ import NavigationLink from './navigation-link';
 import {Group, User} from 'lucide-react';
 import Image from 'next/image';
 import {Button} from '../ui/button';
+import { useTranslations } from 'next-intl';
 
 export const UserMenu = () => {
+  const t=useTranslations("General")
   const [open, setOpen] = useState(false);
   const session = useSession();
   return (
@@ -34,7 +36,7 @@ export const UserMenu = () => {
                   className="rounded-full object-cover"
                 />
               </div>
-              <p>{session.data.user.name}</p>
+              
             </div>
           ) : (
             <div className=" flex flex-row justify-center items-center gap-2">
@@ -46,11 +48,12 @@ export const UserMenu = () => {
                   className="rounded-full object-cover"
                 />
               </div>
-              <p>{session?.data?.user?.name}</p>
+              
             </div>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          <DropdownMenuLabel><p>{session?.data?.user?.name}</p></DropdownMenuLabel>
           <DropdownMenuSeparator />
           {
             //@ts-ignore
@@ -62,7 +65,7 @@ export const UserMenu = () => {
                       <div className='flex flex-row items-center gap-3'>
 
                       <Group className='w-4 h-4' />
-                      <h3>Dashboard</h3>
+                      <h3> {t("Dashboard")}</h3>
                       </div>
                     </NavigationLink>
                   </Button>
